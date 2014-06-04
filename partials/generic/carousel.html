@@ -1,0 +1,22 @@
+<div id="carousel" class="carousel slide" data-ride="carousel">
+	<!-- Menu -->
+	<ol class="carousel-indicators">
+		<li ng-repeat="slide in data.slides" 
+			data-target="#carousel" 
+			data-slide-to="{{$index}}" 
+			ng-class="{active: $first}"></li>
+	</ol>
+
+	<!-- Items -->
+	<div class="carousel-inner">
+		<div class="item" ng-repeat="slide in data.slides" ng-class="{active: $first}">
+			<img ng-src="{{slide.picture.src}}" alt="{{slide.name}}" />
+		</div>
+	</div> 
+	<a href="#carousel" class="left carousel-control" data-slide="prev">
+		<span class="glyphicon glyphicon-chevron-left"></span>
+	</a>
+	<a href="#carousel" class="right carousel-control" data-slide="next">
+		<span class="glyphicon glyphicon-chevron-right"></span>
+	</a>
+</div>

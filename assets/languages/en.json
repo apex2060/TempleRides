@@ -1,0 +1,12 @@
+{
+	"SITE":{
+		"TITLE":"Temple Rides",
+		"NAV":{
+			"HOME":"Home",
+			"ADMIN": "Admin Dashboard"
+		},
+		"LOGIN":"Login",
+		"SIGNUP":"Signup",
+		"COPYRIGHT":"2014 Creative Design"
+	}
+}

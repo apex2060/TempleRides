@@ -1,0 +1,20 @@
+<form class="form-horizontal" role="form" ng-hide="temp.invitation.status=='active'" ng-submit="tools.invite(temp.invitation)">
+	<h1>Invite!</h1>
+	<p>Everyone must be invited in order to create an account.  You can invite people, and give them permission to create an account by entering their name and email below.</p>
+	<div class="form-group">
+		<label class="sr-only" for="">label</label>
+		<input type="text" class="form-control" id="" placeholder="Name" ng-model="temp.invitation.name">
+	</div>
+	<div class="form-group">
+		<label class="sr-only" for="">label</label>
+		<input type="email" class="form-control" id="" placeholder="Email" ng-model="temp.invitation.email">
+	</div>
+
+	<button type="submit" class="btn btn-primary btn-block" ng-hide="temp.invitation.status=='sending'">Invite</button>
+	<button type="button" class="btn btn-primary btn-block" ng-show="temp.invitation.status=='sending'">Sending...</button>
+</form>
+<form ng-show="temp.invitation.status=='active'">
+	<h1>Invite Sent!</h1>
+	<p>Thanks for inviting someone to join Temple Rides.  They should receive an email with a link to signup shortly.</p>
+	<button type="button" class="btn btn-primary btn-block" ng-click="tools.clearInvite()">Send Another</button>
+</form>

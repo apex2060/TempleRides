@@ -1,0 +1,71 @@
+<div class="container" ng-controller="RideCtrl" ng-init="tools.ride.ind()">
+	<div class="well">
+		<div class="row" ng-show="ride">
+			<div class="col-md-4">
+				<h1>Temple Ride</h1>
+				<a class="pull-left" href="#">
+					<!-- <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/t1.0-1/c70.44.553.553/s50x50/317430_10150338692123497_469125273_n.jpg" alt="Driver Profile Pic" class="media-object"> -->
+				</a>
+				<div class="media-body">
+					<h4 class="media-heading name">{{ride.createdBy.fullName}}</h4>
+					<h4 class="media-heading phone">{{ride.createdBy.phone}}</h4>
+				</div>
+				<div class="button-group" ng-show="ride.type=='driver'">
+					<a class="btn btn-info btn-block" href="#/map">View Route Map</a>
+					<hr>
+					<a class="btn btn-danger btn-block" ng-click="tools.ride.remove(ride)">Delete Ride</a>
+				</div>
+				<div class="button-group" ng-show="ride.type=='passenger'">
+					<a class="btn btn-danger btn-block" ng-show="temp.reservationStatus==null" ng-click="tools.ride.cancelReservation(ride)">Cancel Ride Request</a>
+					<a class="btn btn-default btn-block" ng-show="temp.reservationStatus=='processing'" ng-click="tools.ride.cancelReservation(ride)">Processing Request</a>
+					<a class="btn btn-warning btn-block" ng-show="temp.reservationStatus=='canceled'">Ride Canceled</a>
+					<a class="btn btn-danger btn-block" ng-show="temp.reservationStatus=='error'">An error occurred</a>
+				</div>
+				<div class="button-group" ng-show="ride.type=='other'">
+					<a class="btn btn-info btn-block" ng-show="temp.reservationStatus==null" ng-click="tools.ride.reserve(ride)">Get A Ride</a>
+					<a class="btn btn-default btn-block" ng-show="temp.reservationStatus=='processing'">Processing Request</a>
+					<a class="btn btn-danger btn-block" ng-show="temp.reservationStatus=='reserved'" ng-click="tools.ride.cancelReservation(ride)">Cancel  Ride Request</a>
+					<a class="btn btn-danger btn-block" ng-show="temp.reservationStatus=='error'">An error occurred</a>
+				</div>
+			</div>
+			<div class="ride col-md-8">
+				<h1>{{moment(ride.start).fromNow()}}</h1>
+				<a class="pull-left" href="#">
+					<!-- <img src="http://gilbert-news-blog.dailyprss.com/wp-content/uploads/2013/06/Gilbert-LDS-Temple.jpg" alt="Temple Pic" class="media-object"> -->
+				</a>
+				<div class="media-body">
+					<pair class="media-heading temple"> <key>Temple</key><value>{{ride.temple}}</value> 								</pair>
+					<pair class="media-heading leaving"> <key>Leaving</key><value>{{moment(ride.start).calendar()}}</value> 			</pair>
+					<pair class="media-heading returning"> <key>Returning</key><value>{{moment(ride.end).calendar()}}</value> 			</pair>
+					<pair class="media-heading available"> <key>Seats Available</key><value>{{ride.seatsAvail}}</value> 				</pair>
+					<hr>
+					<pair class="media-heading activities"> <key>Activities</key><value>{{ride.activities}}</value> 					</pair>
+					<hr>
+					<pair class="media-heading details"> <key>Details</key><value>{{ride.details}}</value> 								</pair>
+				</div>
+				<div ng-show="temp.passengers">
+					<hr>
+					<h2>Passengers</h2>
+					<div ng-repeat="passenger in temp.passengers">
+						<h3>{{passenger.fullName}}</h3>
+						<pair class="media-heading phone"> <key>Phone</key><value>{{passenger.phone}}</value> 		</pair>
+						<pair class="media-heading email"> <key>Email</key><value>{{passenger.email}}</value> 		</pair>
+						<pair class="media-heading address"> <key>Address</key><value>{{passenger.address}}</value> </pair>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" ng-hide="ride">
+			<div class="col-md-12">
+				<h1>This ride is not available.</h1>
+				<p>Please visit the ride board to find and post rides.</p>
+			</div>
+			<div class="well col-md-6 pull-right">
+			<a href="#/home" class="btn btn-block btn-large btn-default">Go To Ride Board</a>
+		</div>
+		</div>
+	<!-- <div class="message card">
+		<h2>Message Driver</h2>
+	</div> -->
+</div>
+</div>

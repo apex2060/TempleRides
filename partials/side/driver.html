@@ -1,0 +1,41 @@
+<div ng-controller="RideCtrl">
+	<h1>{{moment(temp.focus.start).fromNow()}}</h1>
+	<div class="media ride card">
+		<h2>{{temp.focus.temple}}</h2>
+		<a class="pull-left" href="#">
+			<!-- <img src="http://gilbert-news-blog.dailyprss.com/wp-content/uploads/2013/06/Gilbert-LDS-Temple.jpg" alt="Temple Pic" class="media-object"> -->
+		</a>
+		<div class="media-body">
+			<pair class="media-heading leaving"> <key>Leaving</key><value>{{moment(temp.focus.start).format('dddd MMMM Do [at] h:mm a')}}</value> 					</pair>
+			<pair class="media-heading returning"> <key>Returning</key><value>{{moment(temp.focus.end).format('dddd MMMM Do [at] h:mm a')}}</value> 				</pair>
+			<pair class="media-heading passengerCt"> <key>Passengers</key><value>{{temp.focus.seats-temp.focus.seatsAvail}}</value>	</pair>
+			<pair class="media-heading available"> <key>Seats Left</key><value>{{temp.focus.seatsAvail}}</value> 							</pair>
+			<hr>
+			<pair class="media-heading activities"> <key>Activities</key><value>{{temp.focus.activities}}</value> 							</pair>
+			<hr>
+			<pair class="media-heading details"> <key>Details</key><value>{{temp.focus.details}}</value> 									</pair>
+			<!-- <a class="btn btn-warning btn-block" ng-click="tools.ride.edit(temp.focus)">Edit Details</a> -->
+		</div>
+	</div>
+
+
+	<div class="contact card">
+		<h2>Passengers</h2>
+		<div class="media" ng-repeat="passenger in temp.passengers">
+			<a class="pull-left" href="#">
+				<!-- <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/t1.0-1/c70.44.553.553/s50x50/317430_10150338692123497_469125273_n.jpg" alt="Passenger Profile Pic" class="media-object"> -->
+			</a>
+			<div class="media-body">
+				<h4 class="media-heading name">{{passenger.fullName}}</h4>
+				<h4 class="media-heading phone">{{passenger.phone}}</h4>
+				<h4 class="media-heading address">{{passenger.address}}</h4>
+			</div>
+		</div>
+		<a class="btn btn-info btn-block" href="#/map">View Route Map</a>
+	</div>
+	<!-- <div class="message card">
+		<h2>Message Driver</h2>
+	</div> -->
+
+	<a class="btn btn-danger btn-block" ng-click="tools.ride.remove(temp.focus)">Delete Ride</a>
+</div>

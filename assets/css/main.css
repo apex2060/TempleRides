@@ -1,0 +1,377 @@
+/*CUSTOM*/
+html{
+	overflow: hidden;
+}
+html,body{
+	height: 100%;
+	/* overflow: hidden; */
+	padding: 0px;
+	margin: 0px;
+}
+body{ 
+	  
+	 height: 100%;
+	 margin: 0px;
+	 padding: 0px;
+
+	 /* Old browsers */
+	 /* FF3.6+ */
+	 /* Chrome,Safari4+ */
+	 /* Chrome10+,Safari5.1+ */
+	 /* Opera 11.10+ */
+	 /* IE10+ */
+	 /* W3C */
+	 /* IE6-9 */
+	 /* background: url('../img/triangle.jpg'); */
+	 /* background: url('http://upload.wikimedia.org/wikipedia/commons/3/31/Reno_Nevada_LDS_Temple_(2).jpg'); */
+	  background-size: cover; 
+	  
+	 background: url('http://gilbert-news-blog.dailyprss.com/wp-content/uploads/2013/06/Gilbert-LDS-Temple.jpg'); 
+}
+header {
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	height: 50px;
+	background: #A6773B;
+	color: #FFF;
+	box-shadow: 0px 2px 2px #FFE7C7;
+	z-index: 10;
+}
+header .logo{
+	width: 290px;
+	display: inline-block;
+	margin: 5px;
+	border: 1px double #FF0;
+	float: left;
+}
+header h1, header h2{
+	font-family: sans-serif;
+	margin: 5px;
+	text-align: center;
+}
+header h1{
+}
+header h2{
+}
+header .account{
+	float: right;
+	margin: 5px;
+}
+header .account .username {
+	padding: 12px;
+	margin: 0px 5px;
+	vertical-align: top;
+	background: #C0C0C0;
+	color: #FFF;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+/*header .account .logout {
+	font-size: 20px;
+	vertical-align: top;
+	color: #FFF;
+}*/
+header .account .icon{
+	padding: 2px 4px;
+	background: #999;
+	border-radius: 3px;
+}
+header nav{
+    display: inline-block;
+	
+}
+header nav ul {
+	padding: 0px;
+	margin: 0px;
+}
+header nav ul li {
+	list-style: none;
+	display: inline-block;
+	margin: 0px;
+}
+header nav ul li a {
+	color: #FFF;
+	/* background: url('http://html5up.net/uploads/demos/striped/css/images/bg1.png'); */
+	background-color: #346A91;
+	box-shadow: -2px -2px 1px #444;
+	font-weight: bold;
+	height: 40px;
+	width: 160px;
+	display: inline-block;
+	text-align: center;
+	margin: 5px 0px 0px 5px;
+	line-height: 40px;
+	font-size: 20px;
+}
+a{
+	color: inherit;
+	cursor: pointer;
+}
+a:hover{
+	text-decoration: none;
+	color: inherit;
+}
+.include>*{
+    min-height: 1000px;
+}
+.page{
+    padding: 50px;
+    /*background: rgba(255, 255, 255, 0.5);*/
+}
+
+
+
+
+/*FLEX STUFF*/
+.wrapper {
+	font-weight: bold;
+	padding-top: 50px;
+	overflow-y: auto;
+	height: 100%;
+	overflow-x: hidden;
+}
+aside{
+	background: url('http://html5up.net/uploads/demos/striped/css/images/bg1.png');
+	/* padding: 15px 0px; */
+	background-color: #FFEDD6;
+	color: #222;
+	/* flex: 1; */
+	z-index: 10;
+	position: absolute;
+	right: 0px;
+	width: 400px;
+	/* padding: 15px; */
+	border-left: 4px solid #A6773B;
+	box-shadow: -3px 1px 2px #444;
+	height: calc(100% - 50px);
+	/* overflow: auto; */
+	/* overflow-y: visible; */
+	/* overflow-x: visible; */
+}
+aside>.sidebar{
+	height: 100%;
+	overflow: auto;
+	padding: 15px;
+}
+aside h1{
+	margin: 15px auto;
+	display: block;
+	padding: 10px;
+	border-radius: 5px;
+	color: #FFF;
+	border: 1px solid #000;
+	width: 250px;
+	font-family: inherit;
+	text-align: center;
+	position: relative;
+	background: url('http://html5up.net/uploads/demos/striped/css/images/bg1.png');
+	background-color: #666;
+	text-transform: capitalize;
+}
+aside#aside_right .minimize{
+	position: absolute;
+	top: 41px;
+	left: -34px;
+	border: 3px solid #A6773B;
+	background: url('http://html5up.net/uploads/demos/striped/css/images/bg1.png');
+	background-color: #FFEDD6;
+	color: #A6773B;
+	border-right: 0px;
+	box-shadow: -3px 3px 2px #444;
+}
+section{
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	flex: 1;
+	-webkit-flex-flow: row;
+	min-height: 100%;
+}
+section > * {
+	flex: 1;
+}
+article {
+}
+#mainContent{
+	margin: 50px;
+}
+
+
+.container {
+	padding-top: 50px;
+}
+
+.well{
+	border-radius: 0px;
+	background: #FFEDD6;
+}
+.well h1{
+	border-bottom: 2px solid #346A91;
+}
+
+
+
+/*GENERAL STUFF*/
+map{
+	display: block;
+	height: 300px;
+	width: 100%;
+}
+
+.calendar, #rideForm{
+	margin: 10px; 
+	padding: 10px;
+	background: #FFE7C7;
+	border: solid 2px #A6773B;
+	border-radius: 10px;
+	box-shadow: -2px -2px 3px #444;
+}
+	.calendar .fc-header-title h2{
+		margin-top: 0;
+		white-space: nowrap;
+		color: #346A91;
+	}
+	.calendar .fc-border-separate th, .calendar .fc-border-separate td{
+		 border: 1px solid #A6773B; 
+	}
+	.calendar .fc-grid .fc-day-number{
+		float: right;
+		padding: 0 2px;
+		color: #346A91;
+	}
+#rideForm{
+	background: #CBE0EF; 
+}
+	#rideForm h1{
+		margin-left: 150px;
+		border-bottom: 1px solid;
+		margin-top: 5px;
+	}
+
+
+/*SCHEDULE*/
+#upcomming ul{
+	padding:0px;
+}
+#upcomming ul li {
+	list-style: none;
+	padding: 15px;
+	background: #FFEDD6;
+	margin: 5px;
+	border-radius: 5px;
+	color: #346A91;
+}
+#upcomming .driver{
+	background: #64CE9E;
+	color: #10663F;
+}
+#upcomming .passenger{
+	background: #68A0C8;
+	color: #113E5E;
+}
+
+
+/*SIDE BAR*/
+.card{
+	border: 1px solid;
+	border-radius: 5px;
+	padding: 5px;
+	margin-bottom: 15px;
+}
+	.card h2{
+		margin-top: 0px;
+		background: rgba(0,0,0,.5);
+		color: #FFF;
+		padding: 5px;
+		text-align: center;
+		border-radius: 4px;
+	}
+	.card.contact{
+
+	}
+	.card.ride{
+
+	}
+		.card.ride .temple{}
+		.card.ride .leaving{}
+		.card.ride .returning{}
+		.card.ride .available{}
+		.card.ride .activities{}
+		.card.ride .details{}
+	.card.message{
+
+	}
+pair{
+	display: block;
+}
+key{
+	font-weight: bold;
+	width: 50%;
+	display: inline-block;
+}
+	key:after{
+		content: ": ";
+	}
+value{
+    font-weight: normal;
+    display: inline-block;
+}
+
+
+/*Other*/
+.fa-sign-out{
+	color: #FFF;
+}
+
+
+/*OVERRIDES*/
+.media-object{
+	max-width: 50px;
+}
+
+/*RESPONSIVE*/
+/*Tablets*/
+@media (max-width: 1000px) {
+	
+}
+/*Smart Phones*/
+@media (max-width: 768px) {
+	#rideForm h1{
+		margin-left: 0px;
+	}
+	aside.show{
+		display: block;
+		position: absolute;
+		left: 0px;
+		width: 100%;
+		z-index: 10;
+	}
+	aside#aside_right .minimize{
+		position: absolute;
+		top: 15px;
+		border: 3px solid;
+		background: none;
+		color: #A6773B;
+		box-shadow: -2px -3px 2px #444;
+		left: 15px;
+	}
+	.media-manager .thumbnail, .media-manager div.thumbnail{
+		width: 100%;
+	}
+	.small-hide{
+		display: none !important;
+	}
+	.calendar{
+		margin: 5px; 
+	}
+	.page{
+		padding: 5px;
+	}
+}
+
+@media all and (min-width: 800px) {
+	section article    { flex: 1; }
+}

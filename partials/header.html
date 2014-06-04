@@ -1,0 +1,15 @@
+<div class="account">
+	<span ng-show="user">
+		<a href="#/account" class="username">{{user.fullName}}</a> 
+		<a class="logout" ng-click="tools.user.logout()" class="logout"> <i class="fa fa-sign-out"></i></a>
+	</span>
+</div>
+<!-- <h1 id="siteTitle">{{'SITE.TITLE' | translate}}</h1> -->
+<nav>
+	<ul>
+		<li class="small-hide"><a ng-show="user" href="#/home" title="">Ride List</a></li>
+		<li class="small-hide"><a href="#/about" title="">Learn More</a></li>
+		<li><a ng-show="user" title="Invite others to join!" ng-click="mainTools.side.set('right','partials/side/invite.html')">Invite</a></li>
+		<li><a ng-hide="user" ng-click="tools.user.loginModal()">{{'SITE.LOGIN' | translate}}</a></li>
+	</ul>
+</nav>

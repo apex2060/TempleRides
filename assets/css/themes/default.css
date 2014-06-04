@@ -1,0 +1,26 @@
+body{
+	background-color: #FFF;
+	background-image: url('http://farm5.staticflickr.com/4138/4824672191_ce383e8d7a_o.jpg');
+	background-position-y: -600px;
+}
+nav.navbar{
+	background-color: rgba(255,255,255,.9);
+	padding: 0px 0px;
+}
+.navbar-header img{
+	height: 100px;
+}
+.tabs li a{
+	height: 130px;
+	font-size: 30px;
+	line-height: normal;
+	width: 200px;
+	text-align: left;
+	border-left: 5px solid #FF0;
+}
+
+.navbar-brand{
+	font-family: 'Advent Pro', sans-serif;
+	font-weight: 100;
+	font-size: 40px;
+}

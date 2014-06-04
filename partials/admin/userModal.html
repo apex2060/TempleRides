@@ -1,0 +1,62 @@
+<div class="modal fade" id="adminUserModal">
+	<div class="modal-dialog">
+		<form class="form-horizontal" ng-submit="tools.user.signup(temp.user)">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Manage Users</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="userName" class="col-lg-3 control-label">Name</label>
+						<div class="col-lg-9">
+							<input type="text" class="form-control" id="userName" placeholder="Name" ng-model="temp.user.name" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="userPhone" class="col-lg-3 control-label">Phone</label>
+						<div class="col-lg-9">
+							<input type="tel" class="form-control" id="userPhone" ng-model="temp.user.phone" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="userEmail" class="col-lg-3 control-label">Email</label>
+						<div class="col-lg-9">
+							<input type="email" class="form-control" id="userEmail" ng-model="temp.user.email" disabled>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading" ng-click="tools.roles.list()">Unassigned Roles</div>
+							<ul class="list-group">
+								<a class="list-group-item" 
+								ng-repeat="role in data.roles"
+								ng-click="tools.userRoles.toggleUserRole(temp.user, role)"
+								ng-hide="tools.userRoles.hasRole(temp.user, role)">
+									<span class="title">{{role.name}}</span>
+								</a>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading" ng-click="tools.roles.list()">Assigned Roles</div>
+							<ul class="list-group">
+								<a class="list-group-item" 
+								ng-repeat="role in data.roles"
+								ng-click="tools.userRoles.toggleUserRole(temp.user, role)"
+								ng-show="tools.userRoles.hasRole(temp.user, role)">
+									<span class="title">{{role.name}}</span>
+								</a>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a class="btn btn-default" data-dismiss="modal">Close</a>
+					<!-- <input type="submit" class="btn btn-primary" value="Save"> -->
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

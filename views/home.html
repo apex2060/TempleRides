@@ -1,0 +1,66 @@
+<div class="page" ng-controller="RideCtrl">
+	<div class="row">
+		<div class="col-md-6">
+			<form id="rideForm" class="form-horizontal" role="form" ng-submit="tools.ride.add(temp.ride)">
+				<h1>Post A Ride</h1>
+				<div class="form-group">
+					<label for="rideTemple" class="col-sm-2 control-label">Temple</label>
+					<div class="col-sm-10">
+						<select class="form-control" id="rideTemple" ng-options="temple for temple in templeList" ng-model="temp.ride.temple"></select>
+						<!-- <input type="text" class="form-control" id="rideTemple" placeholder="Temple" ng-model="temp.ride.temple"> -->
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="rideDate" class="col-sm-2 control-label">Date</label>
+					<div class="col-sm-10">
+						<input type="date" class="form-control" id="rideDate" placeholder="Date" ng-model="temp.ride.date">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="rideLeaving" class="col-sm-2 control-label">Leaving</label>
+					<div class="col-sm-10">
+						<input type="time" class="form-control" id="rideLeaving" placeholder="Leaving" ng-model="temp.ride.leaving">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="rideReturning" class="col-sm-2 control-label">Returning</label>
+					<div class="col-sm-10">
+						<input type="time" class="form-control" id="rideReturning" placeholder="Returning" ng-model="temp.ride.returning">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="rideSeats" class="col-sm-2 control-label">Seats</label>
+					<div class="col-sm-10">
+						<input type="number" class="form-control" id="rideSeats" placeholder="Seats" ng-model="temp.ride.seats">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="rideActivities" class="col-sm-2 control-label">Other Activities</label>
+					<div class="col-sm-10">
+						<textarea class="form-control" id="rideActivities" placeholder="Will stop somewhere to eat and shop afterwards." ng-model="temp.ride.activities"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="rideDetails" class="col-sm-2 control-label">Other Details</label>
+					<div class="col-sm-10">
+						<textarea class="form-control" id="rideDetails" placeholder="Will leave from the stake center at 5:30" ng-model="temp.ride.details"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="pull-right btn btn-success">Post Ride!</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div id="calendar" class="col-md-6">
+			<div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources"></div> 
+			<div id="upcomming">
+				<ul>
+					<li class="driver" ng-repeat="ride in formated.driver.events" ng-click="tools.ride.focus(ride)">{{tools.ride.display(ride)}}</li>
+					<li class="passenger" ng-repeat="ride in formated.passenger.events" ng-click="tools.ride.focus(ride)">{{tools.ride.display(ride)}}</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

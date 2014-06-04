@@ -1,0 +1,70 @@
+<div class="container">
+	<form class="form-horizontal" ng-submit="tools.signup(temp.user)">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Signup</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="firstName" class="col-lg-3 control-label">First Name</label>
+					<div class="col-lg-9">
+						<input type="text" class="form-control" id="firstName" placeholder="First Name" ng-model="temp.user.firstName">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="lastName" class="col-lg-3 control-label">Last Name</label>
+					<div class="col-lg-9">
+						<input type="text" class="form-control" id="lastName" placeholder="Last Name" ng-model="temp.user.lastName">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="userPhone" class="col-lg-3 control-label">Phone</label>
+					<div class="col-lg-9">
+						<input type="tel" class="form-control" id="userPhone" ng-model="temp.user.phone">
+					</div>
+				</div>
+				<div class="form-group" title="If you get a ride, the driver will be given your address so he or she can pick you up.">
+					<label for="userAddress" class="col-lg-3 control-label">Physical Address</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" id="userAddress" ng-model="temp.user.address"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="userToken" class="col-lg-3 control-label">Invitation Code</label>
+					<div class="col-lg-9">
+						<input type="text" class="form-control" id="userToken" disabled ng-model="id">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="userEmail" class="col-lg-3 control-label">Email</label>
+					<div class="col-lg-9">
+						<input type="email" class="form-control" id="userEmail" ng-model="temp.user.email">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="userPassword" class="col-lg-3 control-label">Password</label>
+					<div class="col-lg-9">
+						<input type="password" class="form-control" id="userPassword" ng-model="temp.user.password">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="userPassword1" class="col-lg-3 control-label">Retype Password</label>
+					<div class="col-lg-9">
+						<input type="password" class="form-control" id="userPassword1" ng-model="temp.user.password1">
+					</div>
+				</div>
+				<div>
+					<p>If you do not see a map below, please make sure you click 'allow' at the top of your screen to allow this website to access your geo-location.  If you already clicked 'deny': you will have to click on the circle with an x over it on the top right, then click: 'Clear these settings for future visits', then refresh this page and click 'allow'.  This website aggrigates rides according to your location.  When you accept a ride to the temple, the driver will receive instructions to pick you up from your house according to the point you drop on this map.  Make sure you put the pin on the map in the correct location where your house is.</p>
+				</div>
+				<map points="data.points" zoom="16" selectors="MARKER" initmarker="true" callback="tools.setGeo"></map>
+			</div>
+			<div class="modal-footer">
+				<div class="alert alert-danger" ng-show="error">
+					{{error.error}} (Code: {{error.code}})
+				</div>
+				<input type="submit" class="btn btn-primary" value="Signup">
+			</div>
+		</div>
+	</form>
+</div>

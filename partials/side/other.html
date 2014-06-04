@@ -1,0 +1,34 @@
+<div ng-controller="RideCtrl">
+	<div class="media contact card">
+		<a class="pull-left" href="#">
+			<!-- <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/t1.0-1/c70.44.553.553/s50x50/317430_10150338692123497_469125273_n.jpg" alt="Driver Profile Pic" class="media-object"> -->
+		</a>
+		<div class="media-body">
+			<h4 class="media-heading name">{{temp.focus.createdBy.fullName}}</h4>
+			<h4 class="media-heading phone">{{temp.focus.createdBy.phone}}</h4>
+		</div>
+	</div>
+	<div class="media ride card">
+		<a class="pull-left" href="#">
+			<!-- <img src="http://gilbert-news-blog.dailyprss.com/wp-content/uploads/2013/06/Gilbert-LDS-Temple.jpg" alt="Temple Pic" class="media-object"> -->
+		</a>
+		<div class="media-body">
+			<pair class="media-heading temple"> <key>Temple</key><value>{{temp.focus.temple}}</value> 								</pair>
+			<pair class="media-heading leaving"> <key>Leaving</key><value>{{moment(temp.focus.start).format('dddd MMMM Do [at] h:mm a')}}</value> 			</pair>
+			<pair class="media-heading returning"> <key>Returning</key><value>{{moment(temp.focus.end).format('dddd MMMM Do [at] h:mm a')}}</value> 		</pair>
+			<pair class="media-heading available"> <key>Seats Available</key><value>{{temp.focus.seatsAvail}}</value> 				</pair>
+			<hr>
+			<pair class="media-heading activities"> <key>Activities</key><value>{{temp.focus.activities}}</value> 					</pair>
+			<hr>
+			<pair class="media-heading details"> <key>Details</key><value>{{temp.focus.details}}</value> 							</pair>
+		</div>
+	</div>
+	<!-- <div class="message card">
+		<h2>Message Driver</h2>
+	</div> -->
+
+	<a class="btn btn-info btn-block" ng-show="temp.reservationStatus==null" ng-click="tools.ride.reserve(temp.focus)">Get A Ride</a>
+	<a class="btn btn-default btn-block" ng-show="temp.reservationStatus=='processing'">Processing Request</a>
+	<a class="btn btn-danger btn-block" ng-show="temp.reservationStatus=='complete'" ng-click="tools.ride.cancelReservation(temp.focus)">Cancel Reservation</a>
+	<a class="btn btn-danger btn-block" ng-show="temp.reservationStatus=='error'">An error occurred</a>
+</div>

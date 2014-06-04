@@ -1,0 +1,28 @@
+body * {
+	visibility: hidden;
+}
+.toprint,.toprint * {
+	visibility: visible;
+}
+.toprint {
+	position: absolute;
+	left: 30px;
+	top: 40px;
+}
+
+div.col-md-5{
+	float: left;
+}
+div.col-md-7 {
+	float: left;
+	margin-left: 50px;
+}
+.row{
+	clear: both;
+}
+div.col-md-2 {
+	float: left;
+	text-align: center;
+	width: 30%;
+	margin-top: 50px;
+}

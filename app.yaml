@@ -1,0 +1,34 @@
+application: templerides
+version: 1
+runtime: php
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /(.*\.html)
+  static_files: \1
+  upload: .*\.html
+
+
+- url: /app
+  static_dir: app
+
+- url: /assets
+  static_dir: assets
+
+- url: /partials
+  static_dir: partials
+
+- url: /views
+  static_dir: views
+
+- url: /
+  static_files: index.html
+  upload: index\.html
+
+- url: /favicon.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+# - url: /api/.*
+#   script: api/main.php

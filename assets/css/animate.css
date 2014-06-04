@@ -1,0 +1,89 @@
+.view{
+	-webkit-transition:.5s linear all;
+	transition:.5s linear all;
+	width: 100%;
+	overflow: hidden;
+}
+
+/*.view.ng-enter{
+	margin-top: 0px;
+}
+.view.ng-enter.ng-enter-active{
+	margin-top:100%;
+}
+
+.view.ng-leave{
+	margin-top: 0px;
+}
+.view.ng-leave-active{
+	margin-top:-2000px;
+}
+*/
+
+.view.ng-enter{
+	margin-left: 0px;
+}
+.view.ng-enter.ng-enter-active{
+	margin-left:100%;
+}
+
+.view.ng-leave{
+	margin-left: 0px;
+}
+.view.ng-leave-active{
+	margin-left:-100%;
+}
+
+/*
+#shoebox.ng-enter{
+	margin-left: 0px;
+	margin-top: 0px;
+}
+#shoebox.ng-enter.ng-enter-active{
+	margin-left: 0px;
+	margin-top:100%;
+}
+
+#shoebox.ng-leave{
+	margin-left: 0px;
+	margin-top: 0px;
+}
+#shoebox.ng-leave-active{
+	margin-left: 0px;
+	margin-top:100%;
+}
+
+
+
+
+
+
+.allitems .card{
+	-webkit-transition:.5s linear all;
+	transition:.5s linear all;
+	overflow: hidden;
+	border-radius: 5px;
+}
+.allitems .card.ng-enter-stagger, .allitems .card.ng-leave-stagger {
+	-webkit-transition-delay: 0.1s;
+	transition-delay: 0.1s;
+	-webkit-transition-duration: 0s;
+	transition-duration: 0s;
+}
+
+.allitems .card.ng-enter{
+	opacity: 0;
+	border-radius: 200px;
+}
+.allitems .card.ng-enter-active{
+	opacity: 1;
+	border-radius: 5px;
+}
+
+.allitems .card.ng-leave{
+	opacity: 1;
+}
+.allitems .card.ng-leave-active{
+	opacity: 0;
+	border-radius: 200px;
+}*/
