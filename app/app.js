@@ -4,6 +4,10 @@ var app = angular.module('TempleRides', ['firebase','pascalprecht.translate','ng
 .config(function($routeProvider,$translateProvider) {
 	$routeProvider
 
+	.when('/signup/:id/:email', {
+		templateUrl: 'views/signup.html',
+		controller: 'MainCtrl'
+	})
 	.when('/:view', {
 		templateUrl: 'views/main.html',
 		controller: 'MainCtrl'

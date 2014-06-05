@@ -2,6 +2,7 @@ var MainCtrl = app.controller('MainCtrl', function($rootScope, $scope, $routePar
 	$rootScope.action = $routeParams.action;
 	$rootScope.view = $routeParams.view;
 	$rootScope.id = $routeParams.id;
+	$rootScope.email = $routeParams.email;
 	$rootScope.config = config;
 
 	function setup(){
@@ -53,6 +54,8 @@ var MainCtrl = app.controller('MainCtrl', function($rootScope, $scope, $routePar
 		},
 		signup:function(user){
 			user.token=$routeParams.id;
+			if($routeParams.email)
+			user.email=$routeParams.email;
 			tools.user.signup(user)
 		},
 		accountInit: function(){

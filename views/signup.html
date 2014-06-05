@@ -36,7 +36,13 @@
 						<input type="text" class="form-control" id="userToken" disabled ng-model="id">
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group" title="If you would like to register using a different email, please ask the person who invited you to send an invite to your prefered email address." ng-show="email">
+					<label for="userEmail" class="col-lg-3 control-label">Email</label>
+					<div class="col-lg-9">
+						<input type="email" class="form-control" id="userEmail" disabled ng-model="email">
+					</div>
+				</div>
+				<div class="form-group" ng-hide="email">
 					<label for="userEmail" class="col-lg-3 control-label">Email</label>
 					<div class="col-lg-9">
 						<input type="email" class="form-control" id="userEmail" ng-model="temp.user.email">
