@@ -238,7 +238,8 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 			},
 			add: function(ride){
 				ride.timestamp = new Date(ride.date+' '+ride.leaving).getTime();
-				ride.status = 'active'
+				ride.status = 'active';
+				ride.temple = ride.temple.name;
 				allRidesPromise.then(function(rideResource){
 					rideResource.item.save(ride)
 				})
@@ -313,6 +314,14 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 						// })
 					}
 				})
+			}
+		},
+		temple:{
+			set:function(temple){
+				var temple = $rootScope.temp.ride.temple;
+				$rootScope.templeLink = $sce.trustAsResourceUrl(temple.link+'#primary-details');
+				// $rootScope.templeLink = $sce.trustAsResourceUrl(temple.link+'#schedule-section');
+				$rootScope.mainTools.side.set('right', 'partials/side/temple.html');
 			}
 		}
 	}

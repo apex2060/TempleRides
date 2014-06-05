@@ -154,6 +154,9 @@ aside>.sidebar{
 	overflow: auto;
 	padding: 15px;
 }
+aside>.sidebar>div{
+	height: 100%;
+}
 aside h1{
 	margin: 15px auto;
 	display: block;
@@ -250,7 +253,11 @@ map{
 		border-bottom: 1px solid;
 		margin-top: 5px;
 	}
-
+.ldsframe{
+	width: 100%;
+	height: 100%;
+	border: 2px solid #346A91;
+}
 
 /*SCHEDULE*/
 #upcomming ul{

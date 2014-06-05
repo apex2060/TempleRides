@@ -6,7 +6,7 @@
 				<div class="form-group">
 					<label for="rideTemple" class="col-sm-2 control-label">Temple</label>
 					<div class="col-sm-10">
-						<select class="form-control" id="rideTemple" ng-options="temple for temple in templeList" ng-model="temp.ride.temple"></select>
+						<select class="form-control" id="rideTemple" ng-options="temple as temple.name for temple in templeList" ng-model="temp.ride.temple" ng-change="tools.temple.set(temple)"></select>
 						<!-- <input type="text" class="form-control" id="rideTemple" placeholder="Temple" ng-model="temp.ride.temple"> -->
 					</div>
 				</div>

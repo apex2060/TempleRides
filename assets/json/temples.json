@@ -1,172 +1,682 @@
-{"temples":[
-	"Winter Quarters Nebraska",
-	"Winnipeg Manitoba",
-	"Washington D.C.",
-	"Villahermosa Mexico",
-	"Vernal Utah",
-	"Veracruz Mexico",
-	"Vancouver British Columbia",
-	"Urdaneta Philippines",
-	"Twin Falls Idaho",
-	"Tuxtla Gutiérrez Mexico",
-	"Tucson Arizona",
-	"Trujillo Peru Peru",
-	"Toronto Ontario",
-	"Tokyo Japan",
-	"Tijuana Mexico",
-	"The Hague Netherlands",
-	"The Gila Valley Arizona",
-	"Tegucigalpa Honduras",
-	"Tampico Mexico",
-	"Taipei Taiwan Taiwan",
-	"Sydney Australia",
-	"Suva Fiji",
-	"Stockholm Sweden",
-	"Star Valley Wyoming",
-	"St. Paul Minnesota",
-	"St. Louis Missouri",
-	"St. George Utah",
-	"Spokane Washington",
-	"Snowflake Arizona",
-	"Seoul Korea South Korea",
-	"Seattle Washington",
-	"Sapporo Japan",
-	"São Paulo Brazil",
-	"Santo Domingo DR",
-	"Santiago Chile Chile",
-	"San Salvador El Salvador",
-	"San José Costa Rica",
-	"San Diego California",
-	"San Antonio Texas",
-	"Salt Lake",
-	"Sacramento California",
-	"Rome Italy Italy",
-	"Rio de Janeiro Brazil",
-	"Rexburg Idaho",
-	"Reno Nevada",
-	"Regina Saskatchewan",
-	"Redlands California",
-	"Recife Brazil",
-	"Raleigh North Carolina",
-	"Quetzaltenango Guatemala",
-	"Provo Utah",
-	"Provo City Center",
-	"Preston England UK",
-	"Porto Alegre Brazil",
-	"Portland Oregon",
-	"Phoenix Arizona",
-	"Philadelphia Pennsylvania",
-	"Perth Australia",
-	"Payson Utah",
-	"Paris France",
-	"Papeete Tahiti France",
-	"Panama City Panama",
-	"Palmyra New York",
-	"Orlando Florida",
-	"Oquirrh Mountain Utah",
-	"Oklahoma City Oklahoma",
-	"Ogden Utah",
-	"Oaxaca Mexico",
-	"Oakland California",
-	"Nuku'alofa Tonga Tonga",
-	"Newport Beach California",
-	"Nauvoo Illinois",
-	"Nashville Tennessee",
-	"Mount Timpanogos Utah",
-	"Montreal Quebec",
-	"Monticello Utah",
-	"Montevideo Uruguay",
-	"Monterrey Mexico",
-	"Mexico City Mexico",
-	"Mesa Arizona",
-	"Meridian Idaho",
-	"Mérida Mexico",
-	"Memphis Tennessee",
-	"Melbourne Australia",
-	"Medford Oregon",
-	"Manti Utah",
-	"Manila Philippines",
-	"Manhattan New York",
-	"Manaus Brazil",
-	"Madrid Spain",
-	"Lubbock Texas",
-	"Louisville Kentucky",
-	"Los Angeles California",
-	"London England UK",
-	"Logan Utah",
-	"Lisbon Portugal Portugal",
-	"Lima Peru Peru",
-	"Las Vegas Nevada",
-	"Laie Hawaii",
-	"Kyiv Ukraine Ukraine",
-	"Kona Hawaii",
-	"Kinshasa Democratic Republic of Congo",
-	"Kansas City Missouri",
-	"Jordan River Utah",
-	"Johannesburg South Africa",
-	"Indianapolis Indiana",
-	"Idaho Falls Idaho",
-	"Houston Texas",
-	"Hong Kong China China",
-	"Hermosillo Sonora Mexico",
-	"Helsinki Finland Finland",
-	"Hartford Connecticut",
-	"Hamilton New Zealand",
-	"Halifax Nova Scotia",
-	"Guayaquil Ecuador Ecuador",
-	"Guatemala City Guatemala",
-	"Guadalajara Mexico",
-	"Gilbert Arizona",
-	"Fukuoka Japan",
-	"Fresno California",
-	"Freiberg Germany",
-	"Frankfurt Germany",
-	"Fortaleza Brazil",
-	"Fort Lauderdale Florida",
-	"Fort Collins Colorado",
-	"Edmonton Alberta",
-	"Durban South Africa",
-	"Draper Utah",
-	"Detroit Michigan",
-	"Denver Colorado",
-	"Dallas Texas",
-	"Curitiba Brazil",
-	"Córdoba Argentina",
-	"Copenhagen Denmark",
-	"Concepción Chile",
-	"Columbus Ohio",
-	"Columbia South Carolina",
-	"Columbia River Washington",
-	"Colonia Juárez Chihuahua Mexico",
-	"Cochabamba Bolivia",
-	"Ciudad Juárez Mexico",
-	"Chicago Illinois",
-	"Cedar City Utah",
-	"Cebu City Philippines",
-	"Cardston Alberta",
-	"Caracas Venezuela Venezuela",
-	"Campinas Brazil",
-	"Calgary Alberta",
-	"Buenos Aires Argentina",
-	"Brisbane Australia",
-	"Brigham City Utah",
-	"Bountiful Utah",
-	"Boston Massachusetts",
-	"Boise Idaho",
-	"Bogotá Colombia",
-	"Bismarck North Dakota",
-	"Birmingham Alabama",
-	"Billings Montana",
-	"Bern Switzerland Switzerland",
-	"Baton Rouge Louisiana",
-	"Barranquilla Colombia",
-	"Atlanta Georgia",
-	"Asunción Paraguay",
-	"Arequipa Peru Peru",
-	"Apia Samoa Samoa",
-	"Anchorage Alaska",
-	"Albuquerque New Mexico",
-	"Adelaide Australia",
-	"Accra Ghana Ghana",
-	"Aba Nigeria Nigeria"
+{"temples": [
+	{	
+		"name": "Aba Nigeria",
+		"link": "https://www.lds.org/church/temples/aba-nigeria"	
+	},
+	{	
+		"name": "Accra Ghana",
+		"link": "https://www.lds.org/church/temples/accra-ghana"	
+	},
+	{	
+		"name": "Adelaide Australia",
+		"link": "https://www.lds.org/church/temples/adelaide-australia"	
+	},
+	{	
+		"name": "Albuquerque New Mexico",
+		"link": "https://www.lds.org/church/temples/albuquerque-new-mexico"	
+	},
+	{	
+		"name": "Anchorage Alaska",
+		"link": "https://www.lds.org/church/temples/anchorage-alaska"	
+	},
+	{	
+		"name": "Apia Samoa",
+		"link": "https://www.lds.org/church/temples/apia-samoa"	
+	},
+	{	
+		"name": "Arequipa Peru",
+		"link": "https://www.lds.org/church/temples/arequipa-peru"	
+	},
+	{	
+		"name": "Asunción Paraguay",
+		"link": "https://www.lds.org/church/temples/asuncion-paraguay"	
+	},
+	{	
+		"name": "Atlanta Georgia",
+		"link": "https://www.lds.org/church/temples/atlanta-georgia"	
+	},
+	{	
+		"name": "Barranquilla Colombia",
+		"link": "https://www.lds.org/church/temples/barranquilla-colombia"	
+	},
+	{	
+		"name": "Baton Rouge Louisiana",
+		"link": "https://www.lds.org/church/temples/baton-rouge-louisiana"	
+	},
+	{	
+		"name": "Bern Switzerland",
+		"link": "https://www.lds.org/church/temples/bern-switzerland"	
+	},
+	{	
+		"name": "Billings Montana",
+		"link": "https://www.lds.org/church/temples/billings-montana"	
+	},
+	{	
+		"name": "Birmingham Alabama",
+		"link": "https://www.lds.org/church/temples/birmingham-alabama"	
+	},
+	{	
+		"name": "Bismarck North Dakota",
+		"link": "https://www.lds.org/church/temples/bismarck-north-dakota"	
+	},
+	{	
+		"name": "Bogotá Colombia",
+		"link": "https://www.lds.org/church/temples/bogota-colombia"	
+	},
+	{	
+		"name": "Boise Idaho",
+		"link": "https://www.lds.org/church/temples/boise-idaho"	
+	},
+	{	
+		"name": "Boston Massachusetts",
+		"link": "https://www.lds.org/church/temples/boston-massachusetts"	
+	},
+	{	
+		"name": "Bountiful Utah",
+		"link": "https://www.lds.org/church/temples/bountiful-utah"	
+	},
+	{	
+		"name": "Brigham City Utah",
+		"link": "https://www.lds.org/church/temples/brigham-city-utah"	
+	},
+	{	
+		"name": "Brisbane Australia",
+		"link": "https://www.lds.org/church/temples/brisbane-australia"	
+	},
+	{	
+		"name": "Buenos Aires Argentina",
+		"link": "https://www.lds.org/church/temples/buenos-aires-argentina"	
+	},
+	{	
+		"name": "Calgary Alberta",
+		"link": "https://www.lds.org/church/temples/calgary-alberta"	
+	},
+	{	
+		"name": "Campinas Brazil",
+		"link": "https://www.lds.org/church/temples/campinas-brazil"	
+	},
+	{	
+		"name": "Caracas Venezuela",
+		"link": "https://www.lds.org/church/temples/caracas-venezuela"	
+	},
+	{	
+		"name": "Cardston Alberta",
+		"link": "https://www.lds.org/church/temples/cardston-alberta"	
+	},
+	{	
+		"name": "Cebu City Philippines",
+		"link": "https://www.lds.org/church/temples/cebu-city-philippines"	
+	},
+	{	
+		"name": "Cedar City Utah",
+		"link": "https://www.lds.org/church/temples/cedar-city-utah"	
+	},
+	{	
+		"name": "Chicago Illinois",
+		"link": "https://www.lds.org/church/temples/chicago-illinois"	
+	},
+	{	
+		"name": "Ciudad Juárez Mexico",
+		"link": "https://www.lds.org/church/temples/ciudad-juarez-mexico"	
+	},
+	{	
+		"name": "Cochabamba Bolivia",
+		"link": "https://www.lds.org/church/temples/cochabamba-bolivia"	
+	},
+	{	
+		"name": "Colonia Juárez Chihuahua Mexico",
+		"link": "https://www.lds.org/church/temples/colonia-juarez-chihuahua-mexico"	
+	},
+	{	
+		"name": "Columbia River Washington",
+		"link": "https://www.lds.org/church/temples/columbia-river-washington"	
+	},
+	{	
+		"name": "Columbia South Carolina",
+		"link": "https://www.lds.org/church/temples/columbia-south-carolina"	
+	},
+	{	
+		"name": "Columbus Ohio",
+		"link": "https://www.lds.org/church/temples/columbus-ohio"	
+	},
+	{	
+		"name": "Concepción Chile",
+		"link": "https://www.lds.org/church/temples/concepcion-chile"	
+	},
+	{	
+		"name": "Copenhagen Denmark",
+		"link": "https://www.lds.org/church/temples/copenhagen-denmark"	
+	},
+	{	
+		"name": "Córdoba Argentina",
+		"link": "https://www.lds.org/church/temples/cordoba-argentina"	
+	},
+	{	
+		"name": "Curitiba Brazil",
+		"link": "https://www.lds.org/church/temples/curitiba-brazil"	
+	},
+	{	
+		"name": "Dallas Texas",
+		"link": "https://www.lds.org/church/temples/dallas-texas"	
+	},
+	{	
+		"name": "Denver Colorado",
+		"link": "https://www.lds.org/church/temples/denver-colorado"	
+	},
+	{	
+		"name": "Detroit Michigan",
+		"link": "https://www.lds.org/church/temples/detroit-michigan"	
+	},
+	{	
+		"name": "Draper Utah",
+		"link": "https://www.lds.org/church/temples/draper-utah"	
+	},
+	{	
+		"name": "Durban South Africa",
+		"link": "https://www.lds.org/church/temples/durban-south-africa"	
+	},
+	{	
+		"name": "Edmonton Alberta",
+		"link": "https://www.lds.org/church/temples/edmonton-alberta"	
+	},
+	{	
+		"name": "Fort Collins Colorado",
+		"link": "https://www.lds.org/church/temples/fort-collins-colorado-temple"	
+	},
+	{	
+		"name": "Fort Lauderdale Florida",
+		"link": "https://www.lds.org/church/temples/fort-lauderdale-florida"	
+	},
+	{	
+		"name": "Fortaleza Brazil",
+		"link": "https://www.lds.org/church/temples/fortaleza-brazil"	
+	},
+	{	
+		"name": "Frankfurt Germany",
+		"link": "https://www.lds.org/church/temples/frankfurt-germany"	
+	},
+	{	
+		"name": "Freiberg Germany",
+		"link": "https://www.lds.org/church/temples/freiberg-germany"	
+	},
+	{	
+		"name": "Fresno California",
+		"link": "https://www.lds.org/church/temples/fresno-california"	
+	},
+	{	
+		"name": "Fukuoka Japan",
+		"link": "https://www.lds.org/church/temples/fukuoka-japan"	
+	},
+	{	
+		"name": "Gilbert Arizona",
+		"link": "https://www.lds.org/church/temples/gilbert-arizona"	
+	},
+	{	
+		"name": "Guadalajara Mexico",
+		"link": "https://www.lds.org/church/temples/guadalajara-mexico"	
+	},
+	{	
+		"name": "Guatemala City Guatemala",
+		"link": "https://www.lds.org/church/temples/guatemala-city-guatemala"	
+	},
+	{	
+		"name": "Guayaquil Ecuador",
+		"link": "https://www.lds.org/church/temples/guayaquil-ecuador"	
+	},
+	{	
+		"name": "Halifax Nova Scotia",
+		"link": "https://www.lds.org/church/temples/halifax-nova-scotia"	
+	},
+	{	
+		"name": "Hamilton New Zealand",
+		"link": "https://www.lds.org/church/temples/hamilton-new-zealand"	
+	},
+	{	
+		"name": "Hartford Connecticut",
+		"link": "https://www.lds.org/church/temples/hartford-connecticut"	
+	},
+	{	
+		"name": "Helsinki Finland",
+		"link": "https://www.lds.org/church/temples/helsinki-finland"	
+	},
+	{	
+		"name": "Hermosillo Sonora Mexico",
+		"link": "https://www.lds.org/church/temples/hermosillo-sonora-mexico"	
+	},
+	{	
+		"name": "Hong Kong China",
+		"link": "https://www.lds.org/church/temples/hong-kong-china"	
+	},
+	{	
+		"name": "Houston Texas",
+		"link": "https://www.lds.org/church/temples/houston-texas"	
+	},
+	{	
+		"name": "Idaho Falls Idaho",
+		"link": "https://www.lds.org/church/temples/idaho-falls-idaho"	
+	},
+	{	
+		"name": "Indianapolis Indiana",
+		"link": "https://www.lds.org/church/temples/indianapolis-indiana"	
+	},
+	{	
+		"name": "Johannesburg South Africa",
+		"link": "https://www.lds.org/church/temples/johannesburg-south-africa"	
+	},
+	{	
+		"name": "Jordan River Utah",
+		"link": "https://www.lds.org/church/temples/jordan-river-utah"	
+	},
+	{	
+		"name": "Kansas City Missouri",
+		"link": "https://www.lds.org/church/temples/kansas-city-missouri"	
+	},
+	{	
+		"name": "Kinshasa Democratic Republic of Congo",
+		"link": "https://www.lds.org/church/temples/kinshasa-democratic-republic-of-congo"	
+	},
+	{	
+		"name": "Kona Hawaii",
+		"link": "https://www.lds.org/church/temples/kona-hawaii"	
+	},
+	{	
+		"name": "Kyiv Ukraine",
+		"link": "https://www.lds.org/church/temples/kyiv-ukraine"	
+	},
+	{	
+		"name": "Laie Hawaii",
+		"link": "https://www.lds.org/church/temples/laie-hawaii"	
+	},
+	{	
+		"name": "Las Vegas Nevada",
+		"link": "https://www.lds.org/church/temples/las-vegas-nevada"	
+	},
+	{	
+		"name": "Lima Peru",
+		"link": "https://www.lds.org/church/temples/lima-peru"	
+	},
+	{	
+		"name": "Lisbon Portugal",
+		"link": "https://www.lds.org/church/temples/lisbon-portugal"	
+	},
+	{	
+		"name": "Logan Utah",
+		"link": "https://www.lds.org/church/temples/logan-utah"	
+	},
+	{	
+		"name": "London England",
+		"link": "https://www.lds.org/church/temples/london-england"	
+	},
+	{	
+		"name": "Los Angeles California",
+		"link": "https://www.lds.org/church/temples/los-angeles-california"	
+	},
+	{	
+		"name": "Louisville Kentucky",
+		"link": "https://www.lds.org/church/temples/louisville-kentucky"	
+	},
+	{	
+		"name": "Lubbock Texas",
+		"link": "https://www.lds.org/church/temples/lubbock-texas"	
+	},
+	{	
+		"name": "Madrid Spain",
+		"link": "https://www.lds.org/church/temples/madrid-spain"	
+	},
+	{	
+		"name": "Manaus Brazil",
+		"link": "https://www.lds.org/church/temples/manaus-brazil"	
+	},
+	{	
+		"name": "Manhattan New York",
+		"link": "https://www.lds.org/church/temples/manhattan-new-york"	
+	},
+	{	
+		"name": "Manila Philippines",
+		"link": "https://www.lds.org/church/temples/manila-philippines"	
+	},
+	{	
+		"name": "Manti Utah",
+		"link": "https://www.lds.org/church/temples/manti-utah"	
+	},
+	{	
+		"name": "Medford Oregon",
+		"link": "https://www.lds.org/church/temples/medford-oregon"	
+	},
+	{	
+		"name": "Melbourne Australia",
+		"link": "https://www.lds.org/church/temples/melbourne-australia"	
+	},
+	{	
+		"name": "Memphis Tennessee",
+		"link": "https://www.lds.org/church/temples/memphis-tennessee"	
+	},
+	{	
+		"name": "Mérida Mexico",
+		"link": "https://www.lds.org/church/temples/merida-mexico"	
+	},
+	{	
+		"name": "Meridian Idaho",
+		"link": "https://www.lds.org/church/temples/meridian-idaho-temple"	
+	},
+	{	
+		"name": "Mesa Arizona",
+		"link": "https://www.lds.org/church/temples/mesa-arizona"	
+	},
+	{	
+		"name": "Mexico City Mexico",
+		"link": "https://www.lds.org/church/temples/mexico-city-mexico"	
+	},
+	{	
+		"name": "Monterrey Mexico",
+		"link": "https://www.lds.org/church/temples/monterrey-mexico"	
+	},
+	{	
+		"name": "Montevideo Uruguay",
+		"link": "https://www.lds.org/church/temples/montevideo-uruguay"	
+	},
+	{	
+		"name": "Monticello Utah",
+		"link": "https://www.lds.org/church/temples/monticello-utah"	
+	},
+	{	
+		"name": "Montreal Quebec",
+		"link": "https://www.lds.org/church/temples/montreal-quebec"	
+	},
+	{	
+		"name": "Mount Timpanogos Utah",
+		"link": "https://www.lds.org/church/temples/mount-timpanogos-utah"	
+	},
+	{	
+		"name": "Nashville Tennessee",
+		"link": "https://www.lds.org/church/temples/nashville-tennessee"	
+	},
+	{	
+		"name": "Nauvoo Illinois",
+		"link": "https://www.lds.org/church/temples/nauvoo-illinois"	
+	},
+	{	
+		"name": "Newport Beach California",
+		"link": "https://www.lds.org/church/temples/newport-beach-california"	
+	},
+	{	
+		"name": "Nuku'alofa Tonga",
+		"link": "https://www.lds.org/church/temples/nukualofa-tonga"	
+	},
+	{	
+		"name": "Oakland California",
+		"link": "https://www.lds.org/church/temples/oakland-california"	
+	},
+	{	
+		"name": "Oaxaca Mexico",
+		"link": "https://www.lds.org/church/temples/oaxaca-mexico"	
+	},
+	{	
+		"name": "Ogden Utah",
+		"link": "https://www.lds.org/church/temples/ogden-utah"	
+	},
+	{	
+		"name": "Oklahoma City Oklahoma",
+		"link": "https://www.lds.org/church/temples/oklahoma-city-oklahoma"	
+	},
+	{	
+		"name": "Oquirrh Mountain Utah",
+		"link": "https://www.lds.org/church/temples/oquirrh-mountain-utah"	
+	},
+	{	
+		"name": "Orlando Florida",
+		"link": "https://www.lds.org/church/temples/orlando-florida"	
+	},
+	{	
+		"name": "Palmyra New York",
+		"link": "https://www.lds.org/church/temples/palmyra-new-york"	
+	},
+	{	
+		"name": "Panama City Panama",
+		"link": "https://www.lds.org/church/temples/panama-city-panama"	
+	},
+	{	
+		"name": "Papeete Tahiti",
+		"link": "https://www.lds.org/church/temples/papeete-tahiti"	
+	},
+	{	
+		"name": "Paris France",
+		"link": "https://www.lds.org/church/temples/paris-france"	
+	},
+	{	
+		"name": "Payson Utah",
+		"link": "https://www.lds.org/church/temples/payson-utah"	
+	},
+	{	
+		"name": "Perth Australia",
+		"link": "https://www.lds.org/church/temples/perth-australia"	
+	},
+	{	
+		"name": "Philadelphia Pennsylvania",
+		"link": "https://www.lds.org/church/temples/philadelphia-pennsylvania"	
+	},
+	{	
+		"name": "Phoenix Arizona",
+		"link": "https://www.lds.org/church/temples/phoenix-arizona"	
+	},
+	{	
+		"name": "Portland Oregon",
+		"link": "https://www.lds.org/church/temples/portland-oregon"	
+	},
+	{	
+		"name": "Porto Alegre Brazil",
+		"link": "https://www.lds.org/church/temples/porto-alegre-brazil"	
+	},
+	{	
+		"name": "Preston England",
+		"link": "https://www.lds.org/church/temples/preston-england"	
+	},
+	{	
+		"name": "Provo City Center",
+		"link": "https://www.lds.org/church/temples/new-provo-temple-provo-tabernacle"	
+	},
+	{	
+		"name": "Provo Utah",
+		"link": "https://www.lds.org/church/temples/provo-utah"	
+	},
+	{	
+		"name": "Quetzaltenango Guatemala",
+		"link": "https://www.lds.org/church/temples/quetzaltenango-guatemala"	
+	},
+	{	
+		"name": "Raleigh North Carolina",
+		"link": "https://www.lds.org/church/temples/raleigh-north-carolina"	
+	},
+	{	
+		"name": "Recife Brazil",
+		"link": "https://www.lds.org/church/temples/recife-brazil"	
+	},
+	{	
+		"name": "Redlands California",
+		"link": "https://www.lds.org/church/temples/redlands-california"	
+	},
+	{	
+		"name": "Regina Saskatchewan",
+		"link": "https://www.lds.org/church/temples/regina-saskatchewan"	
+	},
+	{	
+		"name": "Reno Nevada",
+		"link": "https://www.lds.org/church/temples/reno-nevada"	
+	},
+	{	
+		"name": "Rexburg Idaho",
+		"link": "https://www.lds.org/church/temples/rexburg-idaho"	
+	},
+	{	
+		"name": "Rio de Janeiro Brazil",
+		"link": "https://www.lds.org/church/temples/rio-de-janiero-brazil"	
+	},
+	{	
+		"name": "Rome Italy",
+		"link": "https://www.lds.org/church/temples/rome-italy"	
+	},
+	{	
+		"name": "Sacramento California",
+		"link": "https://www.lds.org/church/temples/sacramento-california"	
+	},
+	{	
+		"name": "Salt Lake",
+		"link": "https://www.lds.org/church/temples/salt-lake"	
+	},
+	{	
+		"name": "San Antonio Texas",
+		"link": "https://www.lds.org/church/temples/san-antonio-texas"	
+	},
+	{	
+		"name": "San Diego California",
+		"link": "https://www.lds.org/church/temples/san-diego-california"	
+	},
+	{	
+		"name": "San José Costa Rica",
+		"link": "https://www.lds.org/church/temples/san-jose-costa-rica"	
+	},
+	{	
+		"name": "San Salvador El Salvador",
+		"link": "https://www.lds.org/church/temples/san-salvador-el-salvador"	
+	},
+	{	
+		"name": "Santiago Chile",
+		"link": "https://www.lds.org/church/temples/santiago-chile"	
+	},
+	{	
+		"name": "Santo Domingo Dominican Republic",
+		"link": "https://www.lds.org/church/temples/santo-domingo-dominican-republic"	
+	},
+	{	
+		"name": "São Paulo Brazil",
+		"link": "https://www.lds.org/church/temples/sao-paulo-brazil"	
+	},
+	{	
+		"name": "Sapporo Japan",
+		"link": "https://www.lds.org/church/temples/sapporo-japan"	
+	},
+	{	
+		"name": "Seattle Washington",
+		"link": "https://www.lds.org/church/temples/seattle-washington"	
+	},
+	{	
+		"name": "Seoul Korea",
+		"link": "https://www.lds.org/church/temples/seoul-korea"	
+	},
+	{	
+		"name": "Snowflake Arizona",
+		"link": "https://www.lds.org/church/temples/snowflake-arizona"	
+	},
+	{	
+		"name": "Spokane Washington",
+		"link": "https://www.lds.org/church/temples/spokane-washington"	
+	},
+	{	
+		"name": "St. George Utah",
+		"link": "https://www.lds.org/church/temples/st-george-utah"	
+	},
+	{	
+		"name": "St. Louis Missouri",
+		"link": "https://www.lds.org/church/temples/st-louis-missouri"	
+	},
+	{	
+		"name": "St. Paul Minnesota",
+		"link": "https://www.lds.org/church/temples/st-paul-minnesota"	
+	},
+	{	
+		"name": "Star Valley Wyoming",
+		"link": "https://www.lds.org/church/temples/star-valley-wyoming"	
+	},
+	{	
+		"name": "Stockholm Sweden",
+		"link": "https://www.lds.org/church/temples/stockholm-sweden"	
+	},
+	{	
+		"name": "Suva Fiji",
+		"link": "https://www.lds.org/church/temples/suva-fiji"	
+	},
+	{	
+		"name": "Sydney Australia",
+		"link": "https://www.lds.org/church/temples/sydney-australia"	
+	},
+	{	
+		"name": "Taipei Taiwan",
+		"link": "https://www.lds.org/church/temples/taipei-taiwan"	
+	},
+	{	
+		"name": "Tampico Mexico",
+		"link": "https://www.lds.org/church/temples/tampico-mexico"	
+	},
+	{	
+		"name": "Tegucigalpa Honduras",
+		"link": "https://www.lds.org/church/temples/tegucigalpa-honduras"	
+	},
+	{	
+		"name": "The Gila Valley Arizona",
+		"link": "https://www.lds.org/church/temples/the-gila-valley-arizona"	
+	},
+	{	
+		"name": "The Hague Netherlands",
+		"link": "https://www.lds.org/church/temples/the-hague-netherlands"	
+	},
+	{	
+		"name": "Tijuana Mexico",
+		"link": "https://www.lds.org/church/temples/tijuana-mexico"	
+	},
+	{	
+		"name": "Tokyo Japan",
+		"link": "https://www.lds.org/church/temples/tokyo-japan"	
+	},
+	{	
+		"name": "Toronto Ontario",
+		"link": "https://www.lds.org/church/temples/toronto-ontario"	
+	},
+	{	
+		"name": "Trujillo Peru",
+		"link": "https://www.lds.org/church/temples/trujillo-peru"	
+	},
+	{	
+		"name": "Tucson Arizona",
+		"link": "https://www.lds.org/church/temples/tucson-arizona"	
+	},
+	{	
+		"name": "Tuxtla Gutiérrez Mexico",
+		"link": "https://www.lds.org/church/temples/tuxtla-gutierrez-mexico"	
+	},
+	{	
+		"name": "Twin Falls Idaho",
+		"link": "https://www.lds.org/church/temples/twin-falls-idaho"	
+	},
+	{	
+		"name": "Urdaneta Philippines",
+		"link": "https://www.lds.org/church/temples/urdaneta-philippines"	
+	},
+	{	
+		"name": "Vancouver British Columbia",
+		"link": "https://www.lds.org/church/temples/vancouver-british-columbia"	
+	},
+	{	
+		"name": "Veracruz Mexico",
+		"link": "https://www.lds.org/church/temples/veracruz-mexico"	
+	},
+	{	
+		"name": "Vernal Utah",
+		"link": "https://www.lds.org/church/temples/vernal-utah"	
+	},
+	{	
+		"name": "Villahermosa Mexico",
+		"link": "https://www.lds.org/church/temples/villahermosa-mexico"	
+	},
+	{	
+		"name": "Washington D.C.",
+		"link": "https://www.lds.org/church/temples/washington-dc"	
+	},
+	{	
+		"name": "Winnipeg Manitoba",
+		"link": "https://www.lds.org/church/temples/winnipeg-manitoba-temple"	
+	},
+	{	
+		"name": "Winter Quarters Nebraska",
+		"link": "https://www.lds.org/church/temples/winter-quarters-nebraska"	
+	}
 ]}
