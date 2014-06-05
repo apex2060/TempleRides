@@ -233,6 +233,7 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 				$scope.temp.reservationStatus = null;
 				$rootScope.temp.focus = ride;
 				$rootScope.mainTools.side.set('right','partials/side/'+ride.type+'.html');
+				console.log(ride.type)
 				if(ride.type=='driver')
 					tools.ride.passengerList(ride);
 			},
@@ -292,27 +293,18 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 				$http.post(config.parseRoot+'functions/passengerList', {objectId: ride.objectId}).then(function(response){
 					var passengers = response.data.result;
 					$scope.temp.passengers = passengers;
-
+					var details = '?'
+								+ 'key=' + config.googleApiKey
+								+ '&origin='+$rootScope.user.geo.latitude+','+$rootScope.user.geo.longitude
+								+ '&destination='+ride.temple
 					if(passengers.length>0){
 						var waypoints = passengers[0].geo.latitude+','+passengers[0].geo.longitude;
 						for(var i=1; i<passengers.length; i++)
 							waypoints += '|' + passengers[i].geo.latitude+','+passengers[i].geo.longitude;
-
-						var details = '?'
-									+ 'key=' + config.googleApiKey
-									+ '&origin='+$rootScope.user.geo.latitude+','+$rootScope.user.geo.longitude
-									+ '&waypoints='+waypoints
-									+ '&destination='+ride.temple
-
-						// var directions = 'https://maps.googleapis.com/maps/api/directions/json'+details
-						var mapUrl 	= 'https://www.google.com/maps/embed/v1/directions'+details
-
-						$rootScope.mapUrl = $sce.trustAsResourceUrl(mapUrl);
-						// $http.get(directions).then(function(response){
-						// 	it.directions = response;
-						// 	console.log('directions', response)
-						// })
+						details += '&waypoints='+waypoints;
 					}
+					var mapUrl 	= 'https://www.google.com/maps/embed/v1/directions'+details
+					$rootScope.mapUrl = $sce.trustAsResourceUrl(mapUrl);
 				})
 			}
 		},
