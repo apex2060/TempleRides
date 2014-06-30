@@ -1,9 +1,11 @@
 <div ng-controller="RideCtrl">
+	<h1>{{moment(temp.focus.starts).fromNow()}}</h1>
 	<div class="media contact card">
 		<a class="pull-left" href="#">
 			<!-- <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/t1.0-1/c70.44.553.553/s50x50/317430_10150338692123497_469125273_n.jpg" alt="Driver Profile Pic" class="media-object"> -->
 		</a>
 		<div class="media-body">
+			<h2>Driver</h2>
 			<h4 class="media-heading name">{{temp.focus.createdBy.fullName}}</h4>
 			<h4 class="media-heading phone">{{temp.focus.createdBy.phone}}</h4>
 		</div>
@@ -13,14 +15,16 @@
 			<!-- <img src="http://gilbert-news-blog.dailyprss.com/wp-content/uploads/2013/06/Gilbert-LDS-Temple.jpg" alt="Temple Pic" class="media-object"> -->
 		</a>
 		<div class="media-body">
-			<pair class="media-heading temple"> <key>Temple</key><value>{{temp.focus.temple}}</value> 										</pair>
-			<pair class="media-heading leaving"> <key>Leaving</key><value>{{moment(temp.focus.start).fromNow()}}</value> 					</pair>
-			<pair class="media-heading returning"> <key>Returning</key><value>{{moment(temp.focus.end).format('dddd MMMM Do [at] h:mm a')}}</value> 				</pair>
-			<pair class="media-heading available"> <key>Seats Available</key><value>{{temp.focus.seatsAvail}}</value> 						</pair>
+			<h2>Details</h2>
+			<pair class="media-heading temple"> <key>Temple</key><value>{{temp.focus.temple}}</value></pair>
+			<pair class="media-heading day"> <key>Day</key><value>{{moment(temp.focus.starts).format('dddd MMMM Do')}}</value></pair>
+			<pair class="media-heading leaving"> <key>Leaving</key><value>{{moment(temp.focus.starts).format('h:mm a')}}</value></pair>
+			<pair class="media-heading returning"> <key>Returning</key><value>{{moment(temp.focus.ends).format('h:mm a')}}</value></pair>
+			<pair class="media-heading available"> <key>Seats Available</key><value>{{temp.focus.seatsAvail}}</value></pair>
 			<hr>
-			<pair class="media-heading activities"> <key>Activities</key><value>{{temp.focus.activities}}</value> 							</pair>
+			<pair class="media-heading activities"> <key>Activities</key><value>{{temp.focus.activities}}</value></pair>
 			<hr>
-			<pair class="media-heading details"> <key>Details</key><value>{{temp.focus.details}}</value> 									</pair>
+			<pair class="media-heading details"> <key>Details</key><value>{{temp.focus.details}}</value></pair>
 		</div>
 	</div>
 	<!-- <div class="message card">

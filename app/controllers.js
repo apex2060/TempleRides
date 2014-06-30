@@ -181,8 +181,8 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 
 					tRide.title 	= tRide.temple;
 					tRide.type 		= type;
-					tRide.start 	= new Date(tRide.date+' '+tRide.leaving);
-					tRide.end 		= new Date(tRide.date+' '+tRide.returning);
+					tRide.starts 	= new Date(tRide.date+' '+tRide.leaving);
+					tRide.ends 		= new Date(tRide.date+' '+tRide.returning);
 					tRide.allDay 	= false;
 
 					rideList.push(tRide);
