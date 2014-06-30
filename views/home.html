@@ -57,8 +57,8 @@
 			<div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources"></div> 
 			<div id="upcomming">
 				<ul>
-					<li class="driver" ng-repeat="ride in formated.driver.events" ng-click="tools.ride.focus(ride)">{{tools.ride.display(ride)}}</li>
-					<li class="passenger" ng-repeat="ride in formated.passenger.events" ng-click="tools.ride.focus(ride)">{{tools.ride.display(ride)}}</li>
+					<li class="driver" ng-repeat="ride in formated.driver.events | filter:future" ng-click="tools.ride.focus(ride)">{{tools.ride.display(ride)}}</li>
+					<li class="passenger" ng-repeat="ride in formated.passenger.events | filter:future" ng-click="tools.ride.focus(ride)">{{tools.ride.display(ride)}}</li>
 				</ul>
 			</div>
 		</div>

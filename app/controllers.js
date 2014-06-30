@@ -119,9 +119,13 @@ var MainCtrl = app.controller('MainCtrl', function($rootScope, $scope, $routePar
 var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce, $http, config, settings, dataService, userService){
 	console.log('RIDE CONTROLLER')
 	$scope.moment = moment;
+	$scope.future = {
+		ends: new Date()
+	}
 	$http.get('/assets/json/temples.json').success(function(data){
 		$scope.templeList = data.temples;
 	})
+
 
 	$scope.formated = {
 		driver: {
