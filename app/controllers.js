@@ -52,10 +52,16 @@ var MainCtrl = app.controller('MainCtrl', function($rootScope, $scope, $routePar
 			// tools.side.set('left','partials/shoeboxlist/sidebar.html')
 			// tools.side.set('right','partials/sidebar.html')
 		},
+		getInvite:function(){
+			$routeParams.id
+			$routeParams.email
+			//[] Query parse for details using this information.
+			//Auto fill form (assign to $rootScope.temp.user)
+		},
 		signup:function(user){
 			user.token=$routeParams.id;
 			if($routeParams.email)
-			user.email=$routeParams.email;
+				user.email=$routeParams.email;
 			tools.user.signup(user)
 		},
 		accountInit: function(){
@@ -357,6 +363,171 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 });
 
 
+
+
+
+
+
+
+
+
+
+var ListCtrl = app.controller('ListCtrl', function($rootScope, $scope, $q, $http, config, dataService, userService){
+	var tools = {
+		authAndSync: function(request){
+			if(!request){
+				if(config.dataLink.sessionToken){
+					tools.http.get(config.parseRoot+'classes/Family?limit=1000').then(function(data){
+						$scope.familyList = data.results;
+					})
+				}
+			}else{
+				tools.http.auth(request.username, request.password).then(function(credentials){
+					tools.http.get(config.parseRoot+'classes/Family?limit=1000').then(function(data){
+						$scope.familyList = data.results;
+					})
+				})
+			}
+		},
+		family:{
+			details: function(family){
+				var lastName = family.coupleName.split(",")[0]
+				var firstName = family.coupleName.split(",")[1].replace("&", "or")
+				$rootScope.temp.oFamily = family;
+				$rootScope.temp.family = {
+					lastName: 	lastName,
+					firstName: 	firstName,
+					name: 		family.coupleName,
+					email: 		family.householdInfo.email,
+					phone: 		family.householdInfo.phone,
+					share: 		family.shareRides,
+					internet: 	family.hasInternet
+				}
+				if(!family.householdInfo.email)
+					if(family.headOfHousehold && family.headOfHousehold.email)
+						$rootScope.temp.family.email = family.headOfHousehold.email;
+					else if(family.spouse && family.spouse.email)
+						$rootScope.temp.family.email = family.spouse.email;
+
+				if(!family.householdInfo.phone)
+					if(family.headOfHousehold && family.headOfHousehold.phone)
+						$rootScope.temp.family.phone = family.headOfHousehold.phone;
+					else if(family.spouse && family.spouse.phone)
+						$rootScope.temp.family.phone = family.spouse.phone;
+
+				if(family.householdInfo.address){
+					$rootScope.temp.family.address = family.householdInfo.address.addr1+' '+family.householdInfo.address.addr2;
+					$rootScope.temp.family.geo = {
+						latitude: 	family.householdInfo.address.latitude,
+						longitude: 	family.householdInfo.address.longitude
+					}
+				}
+				$('#familyModal').modal('show');
+			},
+			save: function(family){
+				var oFamily = $rootScope.temp.oFamily;
+				$('#familyModal').modal('hide');
+				
+				//Validate email & phone
+				//Check for internet - call later if not.
+				if(family.share && !oFamily.shareRides){
+					family.fromList = true;
+					tools.family.invite(family)
+				}
+
+				var familyId = oFamily.objectId;
+				oFamily.householdInfo.phone = family.phone;
+				oFamily.householdInfo.email = family.email;
+				oFamily.shareRides 			= family.share;
+				oFamily.hasInternet 		= family.internet;
+				delete oFamily.ACL
+				delete oFamily.objectId
+				delete oFamily.createdBy
+				delete oFamily.createdAt
+				delete oFamily.updatedAt
+				tools.http.put(config.parseRoot+'classes/Family/'+familyId, oFamily)
+				//Save data back to parse
+			},
+			invite: function(invitation){
+				// Add another modal that says an invitation email has been sent.
+				invitation.status = 'sending';
+				$http.post(config.parseRoot+'classes/invitations', invitation)
+					.success(function(response){
+						console.log('invitation success: ', response);
+						invitation.status='active';
+					})
+					.error(function(response){
+						console.log('invitation error: ', response);
+					})
+			}
+		},
+		http: {
+			auth: function(username, password){
+				var deferred = $q.defer();
+				if(!$rootScope.dataLink){
+					tools.http.get(config.parseRoot+'login?username='+username+'&password='+password).then(function(response){
+						$rootScope.dataLink = response;
+						deferred.resolve(response)
+					})
+				}else{
+					deferred.resolve($rootScope.dataLink)
+				}
+				return deferred.promise;
+			},
+			get: function(url){
+				var deferred = $q.defer();
+				if($rootScope.dataLink)
+					config.dataLink.sessionToken = $rootScope.dataLink.sessionToken;
+				$http.get(url, {
+					headers: {
+						'X-Parse-Application-Id': 	config.dataLink.parseAppId,
+						'X-Parse-REST-API-Key': 	config.dataLink.parseRestApiKey,
+						'X-Parse-Session-Token': 	config.dataLink.sessionToken,
+						'Content-Type': 			'application/json'
+					}
+				}).success(function(data){
+					deferred.resolve(data);
+				})
+				return deferred.promise;
+			},
+			post: function(url, data){
+				var deferred = $q.defer();
+				if($rootScope.dataLink)
+					config.dataLink.sessionToken = $rootScope.dataLink.sessionToken;
+				$http.post(url, data, {
+					headers: {
+						'X-Parse-Application-Id': 	config.dataLink.parseAppId,
+						'X-Parse-REST-API-Key': 	config.dataLink.parseRestApiKey,
+						'X-Parse-Session-Token': 	config.dataLink.sessionToken,
+						'Content-Type': 			'application/json'
+					}
+				}).success(function(data){
+					deferred.resolve(data);
+				})
+				return deferred.promise;
+			},
+			put: function(url, data){
+				var deferred = $q.defer();
+				if($rootScope.dataLink)
+					config.dataLink.sessionToken = $rootScope.dataLink.sessionToken;
+				$http.put(url, data, {
+					headers: {
+						'X-Parse-Application-Id': 	config.dataLink.parseAppId,
+						'X-Parse-REST-API-Key': 	config.dataLink.parseRestApiKey,
+						'X-Parse-Session-Token': 	config.dataLink.sessionToken,
+						'Content-Type': 			'application/json'
+					}
+				}).success(function(data){
+					deferred.resolve(data);
+				})
+				return deferred.promise;
+			}
+		}
+	}
+	$scope.tools = tools;
+	
+	it.ListCtrl=$scope;
+});
 
 
 
