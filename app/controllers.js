@@ -55,8 +55,26 @@ var MainCtrl = app.controller('MainCtrl', function($rootScope, $scope, $routePar
 		getInvite:function(){
 			$routeParams.id
 			$routeParams.email
-			//[] Query parse for details using this information.
-			//Auto fill form (assign to $rootScope.temp.user)
+			if($routeParams.id && $routeParams.email)
+				$http.post(config.parseRoot+'functions/dataFromInvite', {token: $routeParams.id, email: $routeParams.email})
+				.success(function(response){
+					it.dataFromInvite = response;
+					var u = response.result;
+					$rootScope.temp.user = {
+						firstName: 	u.firstName,
+						lastName: 	u.lastName,
+						phone: 		u.phone,
+						address: 	u.address,
+						geo: 		{
+							__type: 	"GeoPoint",
+							latitude: 	u.geo.latitude,
+							longitude: 	u.geo.longitude
+						},
+						email:  	u.email
+					}
+				}).error(function(response){
+					console.log('dataFromInvite error: ', response)
+				})
 		},
 		signup:function(user){
 			user.token=$routeParams.id;
