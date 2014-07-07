@@ -1,0 +1,19 @@
+<div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form class="form-horizontal" role="form" ng-submit="tools.family.save(temp.family)">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="myModalLabel">Enrollment Complete</h4>
+				</div>
+				<div class="modal-body">
+					<p ng-show="temp.family.internet">Awesome!  A confirmation email will be sent to you at:  {{temp.family.email}} which will allow you to create a password and post rides when you go to the temple.</p>
+					<p ng-show="!temp.family.internet">You will get a call at: {{temp.family.phone}} when a ride to the temple becomes available.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

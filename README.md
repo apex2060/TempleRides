@@ -13,8 +13,8 @@ Time Log: https://docs.google.com/spreadsheets/d/1-aFD5cvJma0QpY1Cdi9XdUoP7_MbhD
 Github: https://github.com/apex2060/TempleRides
 
 Color Schemes:
-http://colorschemedesigner.com/#3w21T9pP.w0w0
-http://colorschemedesigner.com/#3w51TlTsnw0w0
+http://paletton.com/#uid=23-240kllll4rKdcTtdtNdtNI5B
+http://paletton.com/#uid=53-0A0kllll6IF+e1swsEeaGU70
 
 
 ------------------------

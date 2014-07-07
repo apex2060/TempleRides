@@ -1,8 +1,6 @@
-<form class="form-horizontal" role="form" ng-hide="temp.invitation.status=='active'" ng-submit="tools.invite(temp.invitation)">
+<form class="form" role="form" ng-hide="temp.invitation.status=='active'" ng-submit="tools.invite(temp.invitation)">
 	<h1>Invite!</h1>
 	<p>Everyone must be invited in order to create an account.  You can invite people, and give them permission to create an account by entering their name and email below.</p>
-	<p>You can also load your ward member list and pass this around at church.</p>
-	<a class="btn btn-default btn-block" href="#/memberForm">Load Member List</a>
 	<div class="form-group">
 		<label class="sr-only" for="">label</label>
 		<input type="text" class="form-control" id="" placeholder="Name" ng-model="temp.invitation.name">
@@ -14,6 +12,9 @@
 
 	<button type="submit" class="btn btn-primary btn-block" ng-hide="temp.invitation.status=='sending'">Invite</button>
 	<button type="button" class="btn btn-primary btn-block" ng-show="temp.invitation.status=='sending'">Sending...</button>
+	<hr>
+	<p>You can also load your ward member list and pass this around at church.</p>
+	<a class="btn btn-default btn-block" href="#/memberForm">Load Member List</a>
 </form>
 <form ng-show="temp.invitation.status=='active'">
 	<h1>Invite Sent!</h1>

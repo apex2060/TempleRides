@@ -375,6 +375,7 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 var ListCtrl = app.controller('ListCtrl', function($rootScope, $scope, $q, $http, config, dataService, userService){
 	var tools = {
 		authAndSync: function(request){
+			$rootScope.mainTools.side.hide('right')
 			if(!request){
 				if(config.dataLink.sessionToken){
 					tools.http.get(config.parseRoot+'classes/Family?limit=1000').then(function(data){
@@ -400,6 +401,7 @@ var ListCtrl = app.controller('ListCtrl', function($rootScope, $scope, $q, $http
 					name: 		family.coupleName,
 					email: 		family.householdInfo.email,
 					phone: 		family.householdInfo.phone,
+					ward: 		family.ward,
 					share: 		family.shareRides,
 					internet: 	family.hasInternet
 				}
@@ -450,6 +452,7 @@ var ListCtrl = app.controller('ListCtrl', function($rootScope, $scope, $q, $http
 			},
 			invite: function(invitation){
 				// Add another modal that says an invitation email has been sent.
+				$('#welcomeModal').modal('show');
 				invitation.status = 'sending';
 				$http.post(config.parseRoot+'classes/invitations', invitation)
 					.success(function(response){
