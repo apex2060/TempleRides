@@ -144,9 +144,9 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 	console.log('RIDE CONTROLLER')
 	$scope.moment = moment;
 	$scope.warnings = {};
-	$scope.future = {
-		ends: new Date()
-	}
+	$scope.futureFilter = function (event) {
+        return event.ends >= new Date();
+    };
 	$http.get('/assets/json/temples.json').success(function(data){
 		$scope.templeList = data.temples;
 	})
