@@ -291,7 +291,7 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 					else
 						delete $scope.warnings.seats
 				}
-				if($scope.warnings.length == 0){
+				if(angular.toJson($scope.warnings) == "{}"){
 					ride.timestamp = new Date(ride.date+' '+ride.leaving).getTime();
 					ride.status = 'active';
 					ride.temple = ride.temple.name;
