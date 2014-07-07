@@ -242,6 +242,7 @@ map{
 	/* border: solid 2px #AA7C39; */
 	border-radius: 4px;
 	box-shadow: 2px 2px 2px #010F1D;
+	min-height: 550px;
 }
 	.calendar .fc-header-title h2{
 		margin-top: 0;
@@ -258,6 +259,7 @@ map{
 	}
 #rideForm{
 	background: #B5C3D0; 
+	min-height: 550px;
 }
 	#rideForm h1{
 		margin-left: 150px;
