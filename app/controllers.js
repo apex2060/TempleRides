@@ -143,6 +143,7 @@ var MainCtrl = app.controller('MainCtrl', function($rootScope, $scope, $routePar
 var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce, $http, config, settings, dataService, userService){
 	console.log('RIDE CONTROLLER')
 	$scope.moment = moment;
+	$scope.warnings = {};
 	$scope.future = {
 		ends: new Date()
 	}
@@ -269,13 +270,36 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 					tools.ride.passengerList(ride);
 			},
 			add: function(ride){
-				ride.timestamp = new Date(ride.date+' '+ride.leaving).getTime();
-				ride.status = 'active';
-				ride.temple = ride.temple.name;
-				allRidesPromise.then(function(rideResource){
-					rideResource.item.save(ride)
-				})
-				$scope.temp.ride = {};
+				if(ride){
+					if(!ride.date)
+						$scope.warnings.date = 'You must specify the day you will go to the temple.'
+					else
+						delete $scope.warnings.date
+
+					if(new Date(ride.date+' '+ride.leaving) > new Date(ride.date+' '+ride.returning))
+						$scope.warnings.leaveReturn = 'You must leave before you return.'
+					else
+						delete $scope.warnings.leaveReturn
+
+					if(!ride.temple)
+						$scope.warnings.temple = 'You must specify the temple you will be attending.'
+					else
+						delete $scope.warnings.temple
+
+					if(!ride.seats)
+						$scope.warnings.seats = 'You must specify the number of seats available.'
+					else
+						delete $scope.warnings.seats
+				}
+				if($scope.warnings.length == 0){
+					ride.timestamp = new Date(ride.date+' '+ride.leaving).getTime();
+					ride.status = 'active';
+					ride.temple = ride.temple.name;
+					allRidesPromise.then(function(rideResource){
+						rideResource.item.save(ride)
+					})
+					$scope.temp.ride = {};
+				}
 			},
 			remove: function(ride){
 				var infoToSave = {
