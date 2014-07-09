@@ -29,14 +29,14 @@
 				</div>
 			</div>
 			<div class="ride col-md-8">
-				<h1>{{moment(ride.start).fromNow()}}</h1>
+				<h1>{{moment(ride.starts).fromNow()}}</h1>
 				<a class="pull-left" href="#">
 					<!-- <img src="http://gilbert-news-blog.dailyprss.com/wp-content/uploads/2013/06/Gilbert-LDS-Temple.jpg" alt="Temple Pic" class="media-object"> -->
 				</a>
 				<div class="media-body">
 					<pair class="media-heading temple"> <key>Temple</key><value>{{ride.temple}}</value> 								</pair>
-					<pair class="media-heading leaving"> <key>Leaving</key><value>{{moment(ride.start).calendar()}}</value> 			</pair>
-					<pair class="media-heading returning"> <key>Returning</key><value>{{moment(ride.end).calendar()}}</value> 			</pair>
+					<pair class="media-heading leaving"> <key>Leaving</key><value>{{moment(ride.starts).calendar()}}</value> 			</pair>
+					<pair class="media-heading returning"> <key>Returning</key><value>{{moment(ride.ends).calendar()}}</value> 			</pair>
 					<pair class="media-heading available"> <key>Seats Available</key><value>{{ride.seatsAvail}}</value> 				</pair>
 					<hr>
 					<pair class="media-heading activities"> <key>Activities</key><value>{{ride.activities}}</value> 					</pair>
