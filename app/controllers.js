@@ -69,13 +69,14 @@ var MainCtrl = app.controller('MainCtrl', function($rootScope, $scope, $routePar
 						lastName: 	u.lastName,
 						phone: 		u.phone,
 						address: 	u.address,
-						geo: 		{
+						email:  	u.email
+					};
+					if(u.geo)
+						$rootScope.temp.user.geo = {
 							__type: 	"GeoPoint",
 							latitude: 	u.geo.latitude,
 							longitude: 	u.geo.longitude
-						},
-						email:  	u.email
-					}
+						}
 				}).error(function(response){
 					console.log('dataFromInvite error: ', response)
 				})
@@ -442,6 +443,8 @@ var ListCtrl = app.controller('ListCtrl', function($rootScope, $scope, $q, $http
 				var lastName = family.coupleName.split(",")[0]
 				var firstName = family.coupleName.split(",")[1].replace("&", "or")
 				$rootScope.temp.oFamily = family;
+				if(family.hasInternet==undefined)
+					family.hasInternet = true;
 				$rootScope.temp.family = {
 					lastName: 	lastName,
 					firstName: 	firstName,
@@ -474,28 +477,31 @@ var ListCtrl = app.controller('ListCtrl', function($rootScope, $scope, $q, $http
 				$('#familyModal').modal('show');
 			},
 			save: function(family){
-				var oFamily = $rootScope.temp.oFamily;
-				$('#familyModal').modal('hide');
-				
-				//Validate email & phone
-				//Check for internet - call later if not.
-				if(family.share && !oFamily.shareRides){
-					family.fromList = true;
-					tools.family.invite(family)
-				}
+				if(!family.email && family.internet)
+					alert('Please provide an email if you have internet at home.')
+				else{
+					var oFamily = $rootScope.temp.oFamily;
+					$('#familyModal').modal('hide');
+					if(family.share && !oFamily.shareRides){
+						family.fromList = true;
+						tools.family.invite(family)
+					}
 
-				var familyId = oFamily.objectId;
-				oFamily.householdInfo.phone = family.phone;
-				oFamily.householdInfo.email = family.email;
-				oFamily.shareRides 			= family.share;
-				oFamily.hasInternet 		= family.internet;
-				delete oFamily.ACL
-				delete oFamily.objectId
-				delete oFamily.createdBy
-				delete oFamily.createdAt
-				delete oFamily.updatedAt
-				tools.http.put(config.parseRoot+'classes/Family/'+familyId, oFamily)
-				//Save data back to parse
+					var familyId = oFamily.objectId;
+					oFamily.householdInfo.phone = family.phone;
+					oFamily.householdInfo.email = family.email;
+					oFamily.shareRides 			= family.share;
+					oFamily.hasInternet 		= family.internet;
+
+					var nFamily = {}
+					angular.copy(oFamily, nFamily)
+					delete nFamily.ACL
+					delete nFamily.objectId
+					delete nFamily.createdBy
+					delete nFamily.createdAt
+					delete nFamily.updatedAt
+					tools.http.put(config.parseRoot+'classes/Family/'+familyId, nFamily)
+				}
 			},
 			invite: function(invitation){
 				// Add another modal that says an invitation email has been sent.
