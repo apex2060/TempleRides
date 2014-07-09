@@ -479,6 +479,8 @@ var ListCtrl = app.controller('ListCtrl', function($rootScope, $scope, $q, $http
 			save: function(family){
 				if(!family.email && family.internet)
 					alert('Please provide an email if you have internet at home.')
+				else if(!family.email && !family.phone && family.share)
+					alert('You need to provide a phone number or email address so you can share rides to the temple.')
 				else{
 					var oFamily = $rootScope.temp.oFamily;
 					$('#familyModal').modal('hide');
