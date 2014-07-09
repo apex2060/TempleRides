@@ -110,13 +110,13 @@ var MainCtrl = app.controller('MainCtrl', function($rootScope, $scope, $routePar
 		invite: function(invitation){
 			invitation.status = 'sending';
 			$http.post(config.parseRoot+'classes/invitations', invitation)
-				.success(function(response){
-					console.log('invitation success: ', response);
-					invitation.status='active';
-				})
-				.error(function(response){
-					console.log('invitation error: ', response);
-				})
+			.success(function(response){
+				console.log('invitation success: ', response);
+				invitation.status='active';
+			})
+			.error(function(response){
+				console.log('invitation error: ', response);
+			})
 		},
 		clearInvite:function(){
 			$rootScope.temp.invitation = {};
@@ -496,14 +496,17 @@ var ListCtrl = app.controller('ListCtrl', function($rootScope, $scope, $q, $http
 				// Add another modal that says an invitation email has been sent.
 				$('#welcomeModal').modal('show');
 				invitation.status = 'sending';
+				if(invitation.geo)
+					invitation.geo.__type =	"GeoPoint";
+
 				$http.post(config.parseRoot+'classes/invitations', invitation)
-					.success(function(response){
-						console.log('invitation success: ', response);
-						invitation.status='active';
-					})
-					.error(function(response){
-						console.log('invitation error: ', response);
-					})
+				.success(function(response){
+					console.log('invitation success: ', response);
+					invitation.status='active';
+				})
+				.error(function(response){
+					console.log('invitation error: ', response);
+				})
 			}
 		},
 		http: {
