@@ -7,8 +7,9 @@
 <!-- <h1 id="siteTitle">{{'SITE.TITLE' | translate}}</h1> -->
 <nav>
 	<ul>
-		<li class="small-hide"><a ng-show="user" href="#/home" title="">Ride List</a></li>
-		<li class="small-hide"><a href="#/about" title="">Learn More</a></li>
+		<li class="small-hide"><a href="#/home" title="">Home</a></li>
+		<li><a ng-show="user" href="#/rides" title="">Ride List</a></li>
+		<!-- <li class="small-hide"><a href="#/about" title="">Learn More</a></li> -->
 		<li><a ng-show="user" title="Invite others to join!" ng-click="mainTools.side.set('right','partials/side/invite.html')">Invite</a></li>
 		<li><a ng-hide="user" ng-click="tools.user.loginModal()">{{'SITE.LOGIN' | translate}}</a></li>
 	</ul>
