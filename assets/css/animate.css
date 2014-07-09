@@ -5,7 +5,7 @@
 	overflow: hidden;
 }
 
-/*.view.ng-enter{
+.view.ng-enter{
 	margin-top: 0px;
 }
 .view.ng-enter.ng-enter-active{
@@ -16,11 +16,11 @@
 	margin-top: 0px;
 }
 .view.ng-leave-active{
-	margin-top:-2000px;
+	margin-top:100%;
 }
-*/
 
-.view.ng-enter{
+
+/*.view.ng-enter{
 	margin-left: 0px;
 }
 .view.ng-enter.ng-enter-active{
@@ -33,24 +33,46 @@
 .view.ng-leave-active{
 	margin-left:-100%;
 }
+*/
 
-/*
-#shoebox.ng-enter{
-	margin-left: 0px;
+
+#home.ng-enter{
+	opacity: 0;
 	margin-top: 0px;
 }
-#shoebox.ng-enter.ng-enter-active{
-	margin-left: 0px;
-	margin-top:100%;
-}
-
-#shoebox.ng-leave{
-	margin-left: 0px;
+#home.ng-enter.ng-enter-active{
+	opacity: 0;
 	margin-top: 0px;
 }
-#shoebox.ng-leave-active{
-	margin-left: 0px;
-	margin-top:100%;
+
+#home.ng-leave{
+	opacity: 1;
+	margin-top: 0px;
+}
+#home.ng-leave-active{
+	opacity: 0;
+	margin-top: 0px;
+}
+
+
+
+
+
+#account.ng-enter{
+	margin-left: 100%;
+	margin-top:-100%;
+}
+#account.ng-enter.ng-enter-active{
+	margin-left:100%;
+	margin-top:-100%;
+}
+
+#account.ng-leave{
+	margin-left: 0%;
+}
+#account.ng-leave-active{
+	margin-left:100%;
+	margin-top:-100%;
 }
 
 

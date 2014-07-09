@@ -353,6 +353,17 @@ value{
 .media-object{
 	max-width: 50px;
 }
+.btn-brown{
+	background: url('http://html5up.net/uploads/demos/striped/css/images/bg1.png');
+	background-color: #AA7C39;
+	border: 0px;
+	box-shadow: 3px 3px 3px #210;
+	font-weight: bold;
+	color: #FFF1DC;
+}
+.btn-brown:hover{
+	color: #FFF;
+}
 
 /*RESPONSIVE*/
 /*Tablets*/

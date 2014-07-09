@@ -10,14 +10,14 @@
 		<input type="email" class="form-control" id="" placeholder="Email" ng-model="temp.invitation.email">
 	</div>
 
-	<button type="submit" class="btn btn-primary btn-block" ng-hide="temp.invitation.status=='sending'">Invite</button>
+	<button type="submit" class="btn btn-default btn-block" ng-hide="temp.invitation.status=='sending'">Invite</button>
 	<button type="button" class="btn btn-primary btn-block" ng-show="temp.invitation.status=='sending'">Sending...</button>
 	<hr>
 	<p>You can also load your ward member list and pass this around at church.</p>
-	<a class="btn btn-default btn-block" href="#/memberForm">Load Member List</a>
+	<a class="btn btn-brown btn-block" href="#/memberForm">Load Member List</a>
 </form>
 <form ng-show="temp.invitation.status=='active'">
 	<h1>Invite Sent!</h1>
 	<p>Thanks for inviting someone to join Temple Rides.  They should receive an email with a link to signup shortly.</p>
-	<button type="button" class="btn btn-primary btn-block" ng-click="tools.clearInvite()">Send Another</button>
+	<button type="button" class="btn btn-default btn-block" ng-click="tools.clearInvite()">Send Another</button>
 </form>
