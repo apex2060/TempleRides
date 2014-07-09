@@ -6,6 +6,9 @@ var MainCtrl = app.controller('MainCtrl', function($rootScope, $scope, $routePar
 	$rootScope.config = config;
 
 	function setup(){
+		$http.get('/assets/json/temples.json').success(function(data){
+			$rootScope.templeList = data.temples;
+		})
 		$scope.$on('$viewContentLoaded', function(event) {
 			ga('send', 'pageview', $location.path());
 		});
@@ -46,7 +49,7 @@ var MainCtrl = app.controller('MainCtrl', function($rootScope, $scope, $routePar
 			setup();
 			$rootScope.data=	{};
 			$rootScope.resource={};
-			$rootScope.temp=	{};
+			$rootScope.temp=	{ride: {}};
 			$rootScope.side=	{};
 			$rootScope.mode=	'normal';
 			// tools.side.set('left','partials/shoeboxlist/sidebar.html')
@@ -61,6 +64,7 @@ var MainCtrl = app.controller('MainCtrl', function($rootScope, $scope, $routePar
 					it.dataFromInvite = response;
 					var u = response.result;
 					$rootScope.temp.user = {
+						emailNotifications: true,
 						firstName: 	u.firstName,
 						lastName: 	u.lastName,
 						phone: 		u.phone,
@@ -84,6 +88,9 @@ var MainCtrl = app.controller('MainCtrl', function($rootScope, $scope, $routePar
 		},
 		accountInit: function(){
 			$rootScope.temp.user = angular.fromJson(angular.toJson($rootScope.user))
+			for(var i=0; i<$rootScope.templeList.length; i++)
+				if($rootScope.templeList[i].link == $rootScope.temp.user.temple.link)
+					$rootScope.temp.user.temple = $rootScope.templeList[i]
 		},
 		settings:function(user){
 			var us = {}
@@ -95,11 +102,8 @@ var MainCtrl = app.controller('MainCtrl', function($rootScope, $scope, $routePar
 				us.address = user.address
 			if(user.email)
 				us.email = user.email
-			if(user.geo){
-				us.geo = user.geo
-				$rootScope.$broadcast('geoChange', user.geo);
-			}
-
+			if(user.temple)
+				us.temple = user.temple
 			$http.put(config.parseRoot+'users/'+$rootScope.user.objectId, us).success(function(data){
 				$rootScope.error = null;
 				$rootScope.success = data;
@@ -147,9 +151,7 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 	$scope.futureFilter = function (event) {
         return event.ends >= new Date();
     };
-	$http.get('/assets/json/temples.json').success(function(data){
-		$scope.templeList = data.temples;
-	})
+    
 
 
 	$scope.formated = {
@@ -198,6 +200,9 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 				$scope.formated.other.events 		= tools.formatRides(data.results.other, 'other');
 			}
 		})
+		for(var i=0; i<$rootScope.templeList.length; i++)
+			if($rootScope.templeList[i].link == $rootScope.user.temple.link)
+				$scope.temp.ride.temple = $rootScope.templeList[i]
 	});
 	var allRidesPromise = allRides.promise;
 

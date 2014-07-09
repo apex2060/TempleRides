@@ -36,7 +36,12 @@ app.factory('userService', function ($rootScope, $http, $q, config) {
 				var localUser = angular.fromJson(localStorage.user);
 				$http.defaults.headers.common['X-Parse-Session-Token'] = localUser.sessionToken;
 			}
+			console.log('user service init')
  			$http.get(config.parseRoot+'users/me').success(function(data){
+ 				//Add a weird hack because /me does not return all information stored in the user object.
+ 				$http.get(config.parseRoot+'users/'+data.objectId).success(function(data){
+ 					$rootScope.user=data;
+ 				});
  				userService.getRoles(data).then(function(roles){
  					data.roles = roles;
 	 				$rootScope.user=data;
