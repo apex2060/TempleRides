@@ -218,6 +218,8 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 					tRide.type 		= type;
 					tRide.starts 	= new Date(tRide.date+' '+tRide.leaving);
 					tRide.ends 		= new Date(tRide.date+' '+tRide.returning);
+					tRide.start 	= new Date(tRide.date+' '+tRide.leaving);
+					tRide.end 		= new Date(tRide.date+' '+tRide.returning);
 					tRide.allDay 	= false;
 
 					rideList.push(tRide);
@@ -257,15 +259,15 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 				if(ride.type=='driver'){
 					var passengers = ride.seats-ride.seatsAvail;
 					if(passengers == 0)
-						return 'No one is going yet, but you have set up a ride for '+moment(ride.start).format('dddd MMMM Do [at] h:mm a');
+						return 'No one is going yet, but you have set up a ride for '+moment(ride.starts).format('dddd MMMM Do [at] h:mm a');
 					else if(passengers == 1)
-						return 'You are giving a ride to one person '+moment(ride.start).format('dddd MMMM Do [at] h:mm a');
+						return 'You are giving a ride to one person '+moment(ride.starts).format('dddd MMMM Do [at] h:mm a');
 					else
-						return 'You are giving a ride to '+(ride.seats-ride.seatsAvail)+' people '+moment(ride.start).format('dddd MMMM Do [at] h:mm a');
+						return 'You are giving a ride to '+(ride.seats-ride.seatsAvail)+' people '+moment(ride.starts).format('dddd MMMM Do [at] h:mm a');
 				}else if(ride.type=='passenger')
-					return 'You will be picked up to go to the temple: '+moment(ride.start).format('dddd MMMM Do [at] h:mm a');
+					return 'You will be picked up to go to the temple: '+moment(ride.starts).format('dddd MMMM Do [at] h:mm a');
 				else 
-					return 'A ride to the '+ride.temple+' is available: '+moment(ride.start).format('dddd MMMM Do [at] h:mm a');
+					return 'A ride to the '+ride.temple+' is available: '+moment(ride.starts).format('dddd MMMM Do [at] h:mm a');
 			},
 			focus: function(ride){
 				$scope.temp.reservationStatus = null;

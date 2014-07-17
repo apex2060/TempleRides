@@ -1,6 +1,6 @@
 .view{
-	-webkit-transition:.5s linear all;
-	transition:.5s linear all;
+	-webkit-transition:.5s ease-in-out all;
+	transition:.5s ease-in-out all;
 	width: 100%;
 	overflow: hidden;
 }
