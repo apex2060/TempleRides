@@ -16,6 +16,9 @@ handlers:
 - url: /assets
   static_dir: assets
 
+- url: /assets/css
+  static_dir: assets/css
+
 - url: /partials
   static_dir: partials
 
