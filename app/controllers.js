@@ -376,26 +376,11 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 		},
 		gas: {
 			setSavings: function(temple){
-				// var geo = $rootScope.user.geo
-				// var url = 'https://maps.googleapis.com/maps/api/directions/json?origin='+geo.latitude+','+geo.longitude+'&destination='+temple.name+' temple';//&key='+config.googleApiKey;
-				// $http.get(url).success(function(directions){
-				// 	console.log('directions',directions)
-				// })
-				alert('savings')
-				var map;
-				var directionsPanel;
-				var directions;
-
-				function initialize() {
-					directionsPanel = document.getElementById("route");
-					directions = new GDirections(null, directionsPanel);
-					GEvent.addListener(directions , "load", onGDirectionsLoad);
-					directions.load("from: 500 Memorial Drive, Cambridge, MA to: 4 Yawkey Way, Boston, MA 02215 (Fenway Park)");
-				}
-
-				function onGDirectionsLoad(){ 
-					alert(directions.getDistance().html);
-				}
+				var geo = $rootScope.user.geo
+				var url = 'https://maps.googleapis.com/maps/api/directions/json?origin='+geo.latitude+','+geo.longitude+'&destination='+temple.name+' temple&key='+config.googleApiKey;
+				$http.get(url).success(function(directions){
+					console.log('directions',directions)
+				})
 			},
 			savings: function(miles){
 				var mpg = {
