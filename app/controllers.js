@@ -211,6 +211,9 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 	var allRidesPromise = allRides.promise;
 
 	var tools = {
+		say:function(message){
+			alert(message)
+		},
 		formatRides: function(rides, type){
 			var rideList = [];
 			if(rides)
@@ -387,8 +390,14 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 				var prior 	= $scope.temp.tripTime + 30*60;
 				var duration= $scope.temp.tripTime * 2 + (30 * 60) + (2 * 60 * 60);
 				var after 	= duration - prior;
-				$rootScope.temp.suggestedLeave 	= moment(session).subtract(moment.duration(prior*1000)).calendar();
-				$rootScope.temp.suggestedReturn = moment(session).add(moment.duration(after*1000)).calendar();
+				$rootScope.temp.suggestedLeave 	= moment(session).subtract(moment.duration(prior*1000))
+				$rootScope.temp.suggestedReturn = moment(session).add(moment.duration(after*1000))
+			},
+			setLeave: function(){
+				$rootScope.temp.ride.leaving = $rootScope.temp.suggestedLeave.format("HH:mm")
+			},
+			setReturn: function(){
+				$rootScope.temp.ride.returning = $rootScope.temp.suggestedReturn.format("HH:mm")
 			}
 		},
 		gas: {
@@ -448,8 +457,8 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 			set:function(){
 				var temple = $rootScope.temp.ride.temple;
 				tools.gas.setSavings(temple)
-				$rootScope.templeLink = $sce.trustAsResourceUrl(temple.link+'#primary-details');
-				// $rootScope.templeLink = $sce.trustAsResourceUrl(temple.link+'#schedule-section');
+				// $rootScope.templeLink = $sce.trustAsResourceUrl(temple.link+'#primary-details');
+				$rootScope.templeLink = $sce.trustAsResourceUrl(temple.link+'#schedule-section');
 				$rootScope.mainTools.side.set('right', 'partials/side/temple.html');
 			}
 		}

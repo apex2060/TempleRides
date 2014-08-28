@@ -19,21 +19,21 @@
 				<div class="form-group">
 					<label for="rideSession" class="col-sm-2 control-label">Session</label>
 					<div class="col-sm-10">
-						<input type="time" class="form-control" id="rideSession" placeholder="Session" ng-model="temp.ride.session">
+						<input type="time" class="form-control" id="rideSession" placeholder="Session" ng-model="temp.ride.session" ng-blur="tools.time.calculate()">
 					</div>
 				</div>
 				<div class="form-group" ng-click="tools.time.calculate()">
 					<label for="rideLeaving" class="col-sm-2 control-label">Leaving</label>
 					<div class="col-sm-10">
 						<input type="time" class="form-control" id="rideLeaving" placeholder="Leaving" ng-model="temp.ride.leaving">
-						<span>{{temp.suggestedLeave}}</span>
+						<a ng-click="tools.time.setLeave()">{{temp.suggestedLeave.format('ddd [at] h:mm a')}}</a>
 					</div>
 				</div>
 				<div class="form-group" ng-click="tools.time.calculate()">
 					<label for="rideReturning" class="col-sm-2 control-label">Returning</label>
 					<div class="col-sm-10">
 						<input type="time" class="form-control" id="rideReturning" placeholder="Returning" ng-model="temp.ride.returning">
-						<span>{{temp.suggestedReturn}}</span>
+						<a ng-click="tools.time.setReturn()">{{temp.suggestedReturn.format('ddd [at] h:mm a')}}</a>
 					</div>
 				</div>
 				<div class="form-group">
