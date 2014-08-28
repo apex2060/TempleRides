@@ -141,7 +141,7 @@ a:hover{
 	overflow-x: hidden;
 }
 aside{
-	background: url('http://html5up.net/uploads/demos/striped/css/images/bg1.png');
+	/*background: url('http://html5up.net/uploads/demos/striped/css/images/bg1.png');*/
 	/* padding: 15px 0px; */
 	background-color: #FFF1DC;
 	color: #010F1D;
@@ -177,7 +177,7 @@ aside h1{
 	font-family: inherit;
 	text-align: center;
 	position: relative;
-	background: url('http://html5up.net/uploads/demos/striped/css/images/bg1.png');
+	/*background: url('http://html5up.net/uploads/demos/striped/css/images/bg1.png');*/
 	background-color: #5F7B97;
 	text-transform: capitalize;
 }
@@ -186,7 +186,7 @@ aside#aside_right .minimize{
 	top: 41px;
 	left: -34px;
 	border: 3px solid #A6773B;
-	background: url('http://html5up.net/uploads/demos/striped/css/images/bg1.png');
+	/*background: url('http://html5up.net/uploads/demos/striped/css/images/bg1.png');*/
 	background-color: #FFEDD6;
 	color: #A6773B;
 	border-right: 0px;
@@ -238,28 +238,34 @@ map{
 .calendar, #rideForm{
 	margin: 10px; 
 	padding: 10px;
-	background: #FFF1DC;
-	/* border: solid 2px #AA7C39; */
-	border-radius: 4px;
-	box-shadow: 2px 2px 2px #010F1D;
-	min-height: 550px;
+	background: #AA7C39;
+	border: 5px double #705634;
+	/* border-radius: 4px; */
+	box-shadow: 8px 8px 8px rgba(0, 0, 25, 0.6);
+	min-height: 600px;
 }
 	.calendar .fc-header-title h2{
 		margin-top: 0;
 		white-space: nowrap;
-		color: #346A91;
-	}
+		color: #FFF;
+	
+}
 	.calendar .fc-border-separate th, .calendar .fc-border-separate td{
-		 border: 1px solid #A6773B; 
-	}
+		 border: 1px dashed #A6773B; 
+	
+		 background: #705634;
+		 color: #FFF;
+}
 	.calendar .fc-grid .fc-day-number{
 		float: right;
-		padding: 0 2px;
-		color: #346A91;
+		padding: 0 4px;
+		color: #FFC;
 	}
 #rideForm{
 	background: #B5C3D0; 
-	min-height: 550px;
+	min-height: 600px;
+	border: 5px double #AA7C39;
+	border-radius: 0px;
 }
 	#rideForm h1{
 		margin-left: 150px;
@@ -282,17 +288,20 @@ map{
 	list-style: none;
 	padding: 15px;
 	background: #FFEDD6;
-	margin: 5px;
-	border-radius: 5px;
+	margin: 10px;
+	border: 5px double #08416A;
 	color: #346A91;
+	cursor: pointer;
 }
 #upcomming .driver{
-	background: #64CE9E;
-	color: #10663F;
+	background: #10663F;
+	color: #FFFFFF;
+	border: 5px double #024124;
 }
 #upcomming .passenger{
-	background: #68A0C8;
+	background: #FFEDD6;
 	color: #113E5E;
+	border: 5px double #08416A;
 }
 
 
@@ -354,7 +363,7 @@ value{
 	max-width: 50px;
 }
 .btn-brown{
-	background: url('http://html5up.net/uploads/demos/striped/css/images/bg1.png');
+	/*background: url('http://html5up.net/uploads/demos/striped/css/images/bg1.png');*/
 	background-color: #AA7C39;
 	border: 0px;
 	box-shadow: 3px 3px 3px #210;

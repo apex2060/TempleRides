@@ -33,13 +33,13 @@ app.factory('settings', function ($rootScope) {
 	var settings = {
 		colors: {
 			background: {
-				driver: 	'#64CE9E',	//Green
-				passenger: 	'#68A0C8',	//Blue
+				driver: 	'#10663F',	//Green
+				passenger: 	'#FFEDD6',	//Blue
 				other: 		'#AAA'		//Grey
 			},
 			font: {
-				driver: 	'#10663F',
-				passenger: 	'#113E5E',
+				driver: 	'#FFF',
+				passenger: 	'#FFF',
 				other: 		'#333'
 			}
 		}
