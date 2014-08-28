@@ -303,10 +303,13 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 					ride.timestamp = new Date(ride.date+' '+ride.leaving).getTime();
 					ride.status = 'active';
 					ride.temple = ride.temple.name;
-					allRidesPromise.then(function(rideResource){
-						rideResource.item.save(ride)
+					tools.gas.station().then(function(station){
+						ride.gasPrice = station.reg_price;
+						allRidesPromise.then(function(rideResource){
+							rideResource.item.save(ride)
+							$scope.temp.ride = {};
+						})
 					})
-					$scope.temp.ride = {};
 				}
 			},
 			remove: function(ride){
@@ -371,9 +374,66 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 				})
 			}
 		},
+		gas: {
+			setSavings: function(temple){
+				// var geo = $rootScope.user.geo
+				// var url = 'https://maps.googleapis.com/maps/api/directions/json?origin='+geo.latitude+','+geo.longitude+'&destination='+temple.name+' temple';//&key='+config.googleApiKey;
+				// $http.get(url).success(function(directions){
+				// 	console.log('directions',directions)
+				// })
+				alert('savings')
+				var map;
+				var directionsPanel;
+				var directions;
+
+				function initialize() {
+					directionsPanel = document.getElementById("route");
+					directions = new GDirections(null, directionsPanel);
+					GEvent.addListener(directions , "load", onGDirectionsLoad);
+					directions.load("from: 500 Memorial Drive, Cambridge, MA to: 4 Yawkey Way, Boston, MA 02215 (Fenway Park)");
+				}
+
+				function onGDirectionsLoad(){ 
+					alert(directions.getDistance().html);
+				}
+			},
+			savings: function(miles){
+				var mpg = {
+					sm: 24,
+					md: 20,
+					lg: 17
+				}
+				return tools.gas.station().then(function(station){
+					var savings = station.reg_price * miles / mpg.sm;
+					$rootScope.temp.gas.savings = savings
+					return savings;
+				})
+			},
+			station: function(){
+				var station = $q.defer();
+				if($rootScope.temp.gas)
+					station.resolve($rootScope.temp.gas)
+				else
+					tools.gas.stations().then(function(results){
+						$rootScope.temp.gas = results.stations[0];
+						station.resolve($rootScope.temp.gas)
+					})
+				return station.promise;
+			},
+			stations: function(){
+				var stations = $q.defer();
+				var geo = $rootScope.user.geo
+				var url = config.gasRoot+'stations/radius/'+geo.latitude+'/'+geo.longitude+'/10/reg/price/'+config.gasKey+'.json?callback=JSON_CALLBACK'
+				$http.jsonp(url).success(function(results){
+					stations.resolve(results)
+				})
+				return stations.promise;
+			}
+		},
 		temple:{
-			set:function(temple){
+			set:function(){
 				var temple = $rootScope.temp.ride.temple;
+				tools.gas.setSavings(temple)
 				$rootScope.templeLink = $sce.trustAsResourceUrl(temple.link+'#primary-details');
 				// $rootScope.templeLink = $sce.trustAsResourceUrl(temple.link+'#schedule-section');
 				$rootScope.mainTools.side.set('right', 'partials/side/temple.html');
