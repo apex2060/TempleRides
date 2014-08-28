@@ -201,9 +201,12 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 				$scope.formated.other.events 		= tools.formatRides(data.results.other, 'other');
 			}
 		})
-		for(var i=0; i<$rootScope.templeList.length; i++)
-			if($rootScope.templeList[i].link == $rootScope.user.temple.link)
-				$scope.temp.ride.temple = $rootScope.templeList[i]
+		if(!$scope.temp.ride.temple)
+			for(var i=0; i<$rootScope.templeList.length; i++)
+				if($rootScope.templeList[i].link == $rootScope.user.temple.link){
+					$scope.temp.ride.temple = $rootScope.templeList[i]
+					tools.temple.set();
+				}
 	});
 	var allRidesPromise = allRides.promise;
 
@@ -273,7 +276,7 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 				$scope.temp.reservationStatus = null;
 				$rootScope.temp.focus = ride;
 				$rootScope.mainTools.side.set('right','partials/side/'+ride.type+'.html');
-				console.log(ride.type)
+				// console.log(ride.type)
 				if(ride.type=='driver')
 					tools.ride.passengerList(ride);
 			},
@@ -305,6 +308,9 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 					ride.temple = ride.temple.name;
 					tools.gas.station().then(function(station){
 						ride.gasPrice = station.reg_price;
+						ride.miles = $rootScope.temp.gas.miles;
+						ride.passengerSavings = $rootScope.temp.gas.savings;
+						ride.possibleSavings = ride.passengerSavings * ride.seats;
 						allRidesPromise.then(function(rideResource){
 							rideResource.item.save(ride)
 							$scope.temp.ride = {};
@@ -374,13 +380,35 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 				})
 			}
 		},
+		time: {
+			calculate: function(){
+				var tRide 	= $scope.temp.ride
+				var session = new Date(tRide.date+' '+tRide.session)
+				var prior 	= $scope.temp.tripTime + 30*60;
+				var duration= $scope.temp.tripTime * 2 + (30 * 60) + (2 * 60 * 60);
+				var after 	= duration - prior;
+				$rootScope.temp.suggestedLeave 	= moment(session).subtract(moment.duration(prior*1000)).calendar();
+				$rootScope.temp.suggestedReturn = moment(session).add(moment.duration(after*1000)).calendar();
+			}
+		},
 		gas: {
 			setSavings: function(temple){
 				var geo = $rootScope.user.geo
-				var url = 'https://maps.googleapis.com/maps/api/directions/json?origin='+geo.latitude+','+geo.longitude+'&destination='+temple.name+' temple&key='+config.googleApiKey;
-				$http.get(url).success(function(directions){
-					console.log('directions',directions)
-				})
+				var request = {
+					origin: 		geo.latitude+','+geo.longitude,
+					destination: 	temple.name+' temple'
+				}
+				$http.post(config.parseRoot+'functions/distance', request).then(function(directions){
+					if(directions.data.result.routes.length >0){
+						var miles = directions.data.result.routes[0].legs[0].distance.value * .000621371;
+						var seconds = directions.data.result.routes[0].legs[0].duration.value;
+						// var thereSessionAndBack = seconds * 2 + (30 * 60) + (2 * 60 * 60);
+						$scope.temp.tripTime = seconds;
+						tools.gas.savings(miles);
+					}else{
+						console.log('Hmmmmm Not sure about this trip.')
+					}
+				});
 			},
 			savings: function(miles){
 				var mpg = {
@@ -390,7 +418,8 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 				}
 				return tools.gas.station().then(function(station){
 					var savings = station.reg_price * miles / mpg.sm;
-					$rootScope.temp.gas.savings = savings
+					$rootScope.temp.gas.savings = Math.floor(savings);
+					$rootScope.temp.gas.miles = Math.ceil(miles);
 					return savings;
 				})
 			},
