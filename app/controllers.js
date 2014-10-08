@@ -340,7 +340,7 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 						$scope.temp.reservationStatus = 'reserved';
 						allRidesPromise.then(function(rideResource){
 							rideResource.broadcast(response.data.result.updatedAt)
-							tools.ride.focus(ride)
+							$rootScope.mainTools.side.set('right');
 						})
 					}else{
 						$scope.temp.reservationStatus = 'error';
@@ -354,7 +354,7 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 						$scope.temp.reservationStatus = 'canceled';
 						allRidesPromise.then(function(rideResource){
 							rideResource.broadcast(response.data.result.updatedAt)
-							tools.ride.focus(ride)
+							$rootScope.mainTools.side.set('right');
 						})
 					}else{
 						$scope.temp.reservationStatus = 'error';
