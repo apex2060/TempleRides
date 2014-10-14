@@ -6,7 +6,10 @@
 				<div class="form-group">
 					<label for="rideTemple" class="col-sm-2 control-label">Temple</label>
 					<div class="col-sm-10">
-						<select class="form-control" id="rideTemple" ng-options="temple as temple.name for temple in templeList" ng-model="temp.ride.temple" ng-change="tools.temple.set(temple)"></select>
+						<div class="input-group">
+							<select class="form-control" id="rideTemple" ng-options="temple as temple.name for temple in templeList" ng-model="temp.ride.temple"></select>
+							<span class="input-group-addon" ng-click="tools.temple.set(temple)">Schedule</span>
+						</div>
 						<!-- <input type="text" class="form-control" id="rideTemple" placeholder="Temple" ng-model="temp.ride.temple"> -->
 					</div>
 				</div>
