@@ -205,7 +205,6 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 			for(var i=0; i<$rootScope.templeList.length; i++)
 				if($rootScope.templeList[i].link == $rootScope.user.temple.link){
 					$scope.temp.ride.temple = $rootScope.templeList[i]
-					tools.temple.set();
 				}
 	});
 	var allRidesPromise = allRides.promise;
@@ -456,7 +455,7 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 			}
 		},
 		temple:{
-			set:function(){
+			show:function(){
 				var temple = $rootScope.temp.ride.temple;
 				tools.gas.setSavings(temple)
 				// $rootScope.templeLink = $sce.trustAsResourceUrl(temple.link+'#primary-details');
