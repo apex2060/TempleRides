@@ -689,6 +689,27 @@ var ListCtrl = app.controller('ListCtrl', function($rootScope, $scope, $q, $http
 
 
 
+var StatsCtrl = app.controller('StatsCtrl', function($rootScope, $scope, $http, $q, config){
+	var tools = {
+		loadStats:function(){
+			$http.post(config.parseRoot+'functions/stats', {}).success(function(data){
+				console.log('stats', data)
+				$scope.stats = data;
+			}).error(function(error, data){
+				$scope.stats = {error:error,data:data};
+			});
+		}
+	}
+
+	$scope.tools = tools;
+	it.StatsCtrl=$scope;
+});
+
+
+
+
+
+
 
 
 

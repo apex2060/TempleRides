@@ -1,9 +1,9 @@
 <div id="mainContent" class="container" ng-controller="AdminCtrl">
-	<div class="cards">
-		<div class="card" ng-show="!data.roles.length">
+	<div class="row">
+		<div class="col-md-4" ng-show="!data.roles.length">
 			<h2 ng-click="tools.roles.setup()">Setup Roles</h2>
 		</div>
-		<div class="card">
+		<div class="col-md-4">
 			<div class="parent" ng-repeat="role in data.roles | orderBy:'order'">
 				<h2>{{role.name}}</h2>
 				<ul class="list child"><!-- child -->
@@ -16,7 +16,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="card" ng-show="data.unassigned">
+		<div class="col-md-4" ng-show="data.unassigned">
 			<h2>Unassigned</h2>
 			<ul class="list">
 				<li ng-repeat="user in data.unassigned">
@@ -27,19 +27,24 @@
 				</li>
 			</ul>
 		</div>
-		<div class="card">
+		<div class="col-md-4">
 			<h2>Tools</h2>
 			<ul class="list">
 				<li>
-					<a href="https://docs.google.com/spreadsheet/ccc?key=0As79z8Uw8IvadGc4bnNVdzNscmhvZm56SGZRbmdoMnc&usp=drive_web#gid=0" target="_new">
-						<span class="title">View Recomendations</span>
-						<span class="sub">Google Drive</span>
+					<a href="#/stats" target="_new">
+						<span class="title">Stats</span>
 					</a>
 				</li>
 				<li>
-					<a href="https://docs.google.com/spreadsheet/ccc?key=0As79z8Uw8IvadEtmUlNhckxuUG1LLU5hS194TzJydHc&usp=drive_web#gid=0" target="_new">
-						<span class="title">View Seminar Reviews</span>
-						<span class="sub">Google Drive</span>
+					<a href="#/rideTable" target="_new">
+						<span class="title">Ride List</span>
+						<span class="sub">Table</span>
+					</a>
+				</li>
+				<li>
+					<a href="#/inviteTable" target="_new">
+						<span class="title">Invitation Tree</span>
+						<span class="sub">Diagram</span>
 					</a>
 				</li>
 			</ul>
