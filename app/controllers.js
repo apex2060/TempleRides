@@ -693,8 +693,8 @@ var StatsCtrl = app.controller('StatsCtrl', function($rootScope, $scope, $http, 
 	var tools = {
 		loadStats:function(){
 			$http.post(config.parseRoot+'functions/stats', {}).success(function(data){
-				console.log('stats', data)
-				$scope.stats = data;
+				console.log('stats', data.result)
+				$scope.stats = data.result;
 			}).error(function(error, data){
 				$scope.stats = {error:error,data:data};
 			});
