@@ -437,6 +437,7 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 							deferred.reject();
 						}
 					});
+				}
 				return deferred.promise;
 			},
 			savings: function(miles){
