@@ -418,9 +418,9 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 				}
 				if(localStorage.trip)
 					var localTrip = angular.fromJson(localStorage.trip);
-				if($scope.temp.trip && $scope.temp.trip.temple == temple){
+				if($scope.temp.trip && $scope.temp.trip.temple.name == temple.name){
 					deferred.resolve($scope.temp.trip)
-				}else if(localTrip && localTrip.temple == temple){
+				}else if(localTrip && localTrip.temple.name == temple.name){
 					$scope.temp.trip = localTrip;
 					deferred.resolve($scope.temp.trip)
 				}else{
