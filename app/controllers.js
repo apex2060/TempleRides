@@ -416,15 +416,21 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 					origin: 		geo.latitude+','+geo.longitude,
 					destination: 	temple.name+' temple'
 				}
-				if($scope.temp.trip && $scope.temp.trip.temple == temple)
+				if(localStorage.trip)
+					var localTrip = angular.fromJson(localStorage.trip);
+				if($scope.temp.trip && $scope.temp.trip.temple == temple){
 					deferred.resolve($scope.temp.trip)
-				else
+				}else if(localTrip && localTrip.temple == temple){
+					$scope.temp.trip = localTrip;
+					deferred.resolve($scope.temp.trip)
+				}else{
 					$http.post(config.parseRoot+'functions/distance', request).then(function(directions){
 						if(directions.data.result.routes.length >0){
 							var miles = directions.data.result.routes[0].legs[0].distance.value * .000621371;
 							var seconds = directions.data.result.routes[0].legs[0].duration.value;
 							// var thereSessionAndBack = seconds * 2 + (30 * 60) + (2 * 60 * 60);
 							$scope.temp.trip = {temple:temple,miles:miles,seconds:seconds};
+							localStorage.setItem('trip', angular.toJson($scope.temp.trip));
 							deferred.resolve($scope.temp.trip);
 						}else{
 							console.log('Hmmmmm Not sure about this trip.')
