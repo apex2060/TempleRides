@@ -18,6 +18,10 @@ app.factory('config', function ($rootScope, $http) {
 			sessionToken: 		""
 	 	}
 	};
+	
+	config.parse = function(c){
+		return config.parseRoot+'classes/'+c;
+	}
 
 	Parse.initialize(config.parseAppId, config.parseJsKey);
 	$http.defaults.headers.common['X-Parse-Application-Id'] = config.parseAppId;

@@ -686,6 +686,63 @@ var ListCtrl = app.controller('ListCtrl', function($rootScope, $scope, $q, $http
 
 
 
+var SitterCtrl = app.controller('SitterCtrl', function($rootScope, $scope, $http, $q, config, userService, dataService){
+	var localSitters = $q.defer();
+	userService.user().then(function(user){
+		var liveId = $rootScope.user.geo.latitude.toString().split('.')[0]+$rootScope.user.geo.longitude.toString().split('.')[0];
+		var timestamp = new Date().getTime();
+		var sitterResource = new dataService.resource(
+			'sitters', 
+			'sitterList/'+liveId, 
+			true, 
+			true, 
+			config.parseRoot+'functions/sitterList', 
+			{timestamp: timestamp}
+		);
+			// ar.setQuery('');
+		localSitters.resolve(sitterResource);
+		sitterResource.item.list().then(function(data){
+			$scope.sitters = data.results;
+		})
+		$rootScope.$on(sitterResource.listenId, function(event, data){
+			$scope.sitters = data.results;
+		})
+	});
+	var localSittersPromise = localSitters.promise;
+
+
+
+	var tools = {
+		sitter: {
+			become:function(){
+				var profile = angular.extend({}, $rootScope.user);
+				delete profile.username;
+				delete profile.roles;
+				delete profile.sessionToken;
+				delete profile.objectId;
+				delete profile.createdAt;
+				delete profile.updatedAt;
+				localSittersPromise.then(function(sitterResource){
+					sitterResource.item.add(profile).then(function(){
+						alert('Thanks for volunteering to be a sitter!')
+					})
+				});
+			},
+			view:function(sitter){
+				//Show in sidebar
+			}
+		}
+	}
+
+	$scope.tools = tools;
+	it.SitterCtrl=$scope;
+});
+
+
+
+
+
+
 
 
 
