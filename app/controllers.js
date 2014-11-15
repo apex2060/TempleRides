@@ -387,38 +387,50 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 		time: {
 			calculate: function(){
 				var tRide 	= $scope.temp.ride
-				var session = new Date(tRide.date+' '+tRide.session)
-				var prior 	= $scope.temp.tripTime + 30*60;
-				var duration= $scope.temp.tripTime * 2 + (30 * 60) + (2 * 60 * 60);
-				var after 	= duration - prior;
-				$rootScope.temp.suggestedLeave 	= moment(session).subtract(moment.duration(prior*1000))
-				$rootScope.temp.suggestedReturn = moment(session).add(moment.duration(after*1000))
+				tools.gas.trip(tRide.temple).then(function(trip){
+					if(tRide.session && tRide.date){
+						var session = new Date(tRide.date+' '+tRide.session)
+						var prior 	= trip.seconds + 30*60;
+						var duration= trip.seconds * 2 + (30 * 60) + (2 * 60 * 60);
+						var after 	= duration - prior;
+						$scope.temp.trip = angular.extend({}, $scope.temp.trip, {
+							suggestedLeave: 	moment(session).subtract(moment.duration(prior*1000)),
+							suggestedReturn: 	moment(session).add(moment.duration(after*1000))
+						})
+					}
+				})
 			},
 			setLeave: function(){
-				$rootScope.temp.ride.leaving = $rootScope.temp.suggestedLeave.format("HH:mm")
+				$rootScope.temp.ride.leaving = $rootScope.temp.trip.suggestedLeave.format("HH:mm")
 			},
 			setReturn: function(){
-				$rootScope.temp.ride.returning = $rootScope.temp.suggestedReturn.format("HH:mm")
+				$rootScope.temp.ride.returning = $rootScope.temp.trip.suggestedReturn.format("HH:mm")
 			}
 		},
 		gas: {
-			setSavings: function(temple){
+			trip: function(temple){
+				var deferred = $q.defer();
 				var geo = $rootScope.user.geo
 				var request = {
 					origin: 		geo.latitude+','+geo.longitude,
 					destination: 	temple.name+' temple'
 				}
-				$http.post(config.parseRoot+'functions/distance', request).then(function(directions){
-					if(directions.data.result.routes.length >0){
-						var miles = directions.data.result.routes[0].legs[0].distance.value * .000621371;
-						var seconds = directions.data.result.routes[0].legs[0].duration.value;
-						// var thereSessionAndBack = seconds * 2 + (30 * 60) + (2 * 60 * 60);
-						$scope.temp.tripTime = seconds;
-						tools.gas.savings(miles);
-					}else{
-						console.log('Hmmmmm Not sure about this trip.')
-					}
-				});
+				if($scope.temp.trip && $scope.temp.trip.temple == temple)
+					deferred.resolve($scope.temp.trip)
+				else
+					$http.post(config.parseRoot+'functions/distance', request).then(function(directions){
+						if(directions.data.result.routes.length >0){
+							var miles = directions.data.result.routes[0].legs[0].distance.value * .000621371;
+							var seconds = directions.data.result.routes[0].legs[0].duration.value;
+							// var thereSessionAndBack = seconds * 2 + (30 * 60) + (2 * 60 * 60);
+							$scope.temp.trip = {temple:temple,miles:miles,seconds:seconds};
+							deferred.resolve($scope.temp.trip);
+						}else{
+							console.log('Hmmmmm Not sure about this trip.')
+							deferred.reject();
+						}
+					});
+				return deferred.promise;
 			},
 			savings: function(miles){
 				var mpg = {
@@ -457,10 +469,16 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 		temple:{
 			show:function(){
 				var temple = $rootScope.temp.ride.temple;
-				tools.gas.setSavings(temple)
+				// tools.gas.trip(temple).then(function(trip){
+				// 	tools.gas.savings(trip.miles);
+				// })
+				// Being handled on calculation of time.
 				// $rootScope.templeLink = $sce.trustAsResourceUrl(temple.link+'#primary-details');
 				$rootScope.templeLink = $sce.trustAsResourceUrl(temple.link+'#schedule-section');
 				$rootScope.mainTools.side.set('right', 'partials/side/temple.html');
+			},
+			update:function(){
+				tools.time.calculate();
 			}
 		}
 	}

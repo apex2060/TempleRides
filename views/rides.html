@@ -7,7 +7,7 @@
 					<label for="rideTemple" class="col-sm-2 control-label">Temple</label>
 					<div class="col-sm-10">
 						<div class="input-group">
-							<select class="form-control" id="rideTemple" ng-options="temple as temple.name for temple in templeList" ng-model="temp.ride.temple"></select>
+							<select class="form-control" id="rideTemple" ng-options="temple as temple.name for temple in templeList" ng-model="temp.ride.temple" ng-change="tools.temple.update()"></select>
 							<span class="input-group-addon" ng-click="tools.temple.show()">Schedule</span>
 						</div>
 						<!-- <input type="text" class="form-control" id="rideTemple" placeholder="Temple" ng-model="temp.ride.temple"> -->
@@ -29,14 +29,14 @@
 					<label for="rideLeaving" class="col-sm-2 control-label">Leaving</label>
 					<div class="col-sm-10">
 						<input type="time" class="form-control" id="rideLeaving" placeholder="Leaving" ng-model="temp.ride.leaving">
-						<a ng-click="tools.time.setLeave()">{{temp.suggestedLeave.format('ddd [at] h:mm a')}}</a>
+						<a ng-click="tools.time.setLeave()">{{temp.trip.suggestedLeave.format('ddd [at] h:mm a')}}</a>
 					</div>
 				</div>
 				<div class="form-group" ng-click="tools.time.calculate()">
 					<label for="rideReturning" class="col-sm-2 control-label">Returning</label>
 					<div class="col-sm-10">
 						<input type="time" class="form-control" id="rideReturning" placeholder="Returning" ng-model="temp.ride.returning">
-						<a ng-click="tools.time.setReturn()">{{temp.suggestedReturn.format('ddd [at] h:mm a')}}</a>
+						<a ng-click="tools.time.setReturn()">{{temp.trip.suggestedReturn.format('ddd [at] h:mm a')}}</a>
 					</div>
 				</div>
 				<div class="form-group">
