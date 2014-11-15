@@ -66,7 +66,6 @@
 	margin-left:100%;
 	margin-top:-100%;
 }
-
 #account.ng-leave{
 	margin-left: 0%;
 }
@@ -75,6 +74,27 @@
 	margin-top:-100%;
 }
 
+
+#sitters.ng-enter{
+	margin-left: 0%;
+	margin-top: 0%;
+	transform:scale(0,0);
+}
+#sitters.ng-enter.ng-enter-active{
+	margin-left: 0%;
+	margin-top: 0%;
+	transform:scale(0,0);
+}
+#sitters.ng-leave{
+	margin-left: 0%;
+	margin-top: 0%;
+	transform:scale(1,1);
+}
+#sitters.ng-leave-active{
+	margin-left: 0%;
+	margin-top: 0%;
+	transform:scale(0,0);
+}
 
 
 
@@ -108,4 +128,4 @@
 .allitems .card.ng-leave-active{
 	opacity: 0;
 	border-radius: 200px;
-}*/
+}
