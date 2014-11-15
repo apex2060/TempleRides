@@ -204,7 +204,8 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 		if(!$scope.temp.ride.temple)
 			for(var i=0; i<$rootScope.templeList.length; i++)
 				if($rootScope.templeList[i].link == $rootScope.user.temple.link){
-					$scope.temp.ride.temple = $rootScope.templeList[i]
+					$scope.temp.ride.temple = $rootScope.templeList[i];
+					tools.gas.trip($scope.temp.ride.temple);
 				}
 	});
 	var allRidesPromise = allRides.promise;
