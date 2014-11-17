@@ -1,0 +1,39 @@
+<div class="modal fade" id="sitterModal">
+	<div class="modal-dialog">
+		<form class="form-horizontal" ng-submit="tools.sitter.signup(temp.user)">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Information</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="userLink" class="col-lg-3 control-label">Profile Link</label>
+						<div class="col-lg-9">
+							<input type="url" class="form-control" id="userLink" ng-model="temp.user.link">
+							<span id="helpBlock" class="help-block">This could be a facebook, google plus, or personal blog.  This is to help others get to know you better.</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="userPassword" class="col-lg-3 control-label">Profile Picture</label>
+						<div class="col-lg-9">
+							<div media-manager="tools.sitter.uploadPic" class="media-manager" max-width="600" max-height="600">
+								<div ng-hide="temp.user.pic" class="thumbnail">Profile Picture</div>
+								<img id="userPicture" ng-show="temp.user.pic" class="thumbnail fit" 
+								ng-class="temp.user.pic.class" 
+								ng-src="{{temp.user.pic.src}}" 
+								title="{{temp.user.pic.name}}">
+								<span class="clearfix" ng-show="temp.user.pic.temp">
+									Uploading picture... This may take a while.
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="submit" class="btn btn-primary" value="Volunteer">
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

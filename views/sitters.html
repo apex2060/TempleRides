@@ -1,18 +1,59 @@
 <div class="page" ng-controller="SitterCtrl">
-	<div class="jumbotron">
+	<div class="jumbotron" ng-hide="user.isSitter">
 		<h1>Babysitting Service</h1>
-		<h2>Comming Soon</h2>
 		<p>You can offer a great service to help people get to the temple.  Many people have children and need a babysitter.  You can volunteer here and make it easy for others to know that you are willing.</p>
 		<a ng-click="tools.sitter.become()" class="btn btn-block btn-info">Become A Sitter</a>
+	</div>
+	<div class="jumbotron" ng-show="user.isSitter">
+		<h1>Babysitting Service</h1>
+		<p>Thank you for volunteering to be a babysitter!</p>
+		<!--Sitter Times-->
+		<div class="row">
+			<div class="col-md-3" ng-repeat="time in times">
+				<div class="well">
+					<form role="form" ng-submit="tools.time.save(time)">
+						<div class="form-group">
+							<label>Day</label>
+							<select ng-model="time.day">
+								<option>Monday</option>
+								<option>Tuesday</option>
+								<option>Wednesday</option>
+								<option>Thursday</option>
+								<option>Friday</option>
+								<option>Saturday</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Available From</label>
+							<input type="time" class="form-control" ng-model="time.start">
+						</div>
+						<div class="form-group">
+							<label>Available To</label>
+							<input type="time" class="form-control" ng-model="time.end">
+						</div>
+						<button type="button" class="btn btn-danger btn-block" ng-hide="time.temp" ng-click="tools.time.remove(time)">Delete</button>
+						<button type="submit" class="btn btn-info btn-block" ng-show="time.temp">Save</button>
+					</form>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="well">
+					<h3><a ng-click="tools.time.add()">Add A Time</a></h3>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="row">
 		<div class="col-lg-3 col-md-4 col-sm-6" ng-repeat="volunteer in sitters" ng-click="tools.view(volunteer)">
 			<div class="well">
 				<h1>{{volunteer.fullName}}</h1>
-				<h3>{{volunteer.phone}}</h3>
-				<h3>{{volunteer.email}}</h3>
-				<img ng-src="{{volunteer.picture.src}}"></img>
+				<h4><a href="tel:{{volunteer.phone}}">Phone: {{volunteer.phone}}</a></h4>
+				<h4><a href="mailto:{{volunteer.email}}">Email: {{volunteer.email}}</a></h4>
+				<div class="imgBox">
+					<img class="thumbnail fit" ng-src="{{volunteer.pic.src}}"></img>
+				</div>
 			</div>
 		</div>
 	</div>
+	<div ng-include="'partials/sitterModal.html'"></div>
 </div>

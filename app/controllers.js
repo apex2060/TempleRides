@@ -712,10 +712,11 @@ var ListCtrl = app.controller('ListCtrl', function($rootScope, $scope, $q, $http
 
 
 
-var SitterCtrl = app.controller('SitterCtrl', function($rootScope, $scope, $http, $q, config, userService, dataService){
+var SitterCtrl = app.controller('SitterCtrl', function($rootScope, $scope, $http, $q, config, userService, dataService, fileService){
+	$scope.times = [];
 	var localSitters = $q.defer();
 	userService.user().then(function(user){
-		var liveId = $rootScope.user.geo.latitude.toString().split('.')[0]+$rootScope.user.geo.longitude.toString().split('.')[0];
+		var liveId = user.geo.latitude.toString().split('.')[0]+user.geo.longitude.toString().split('.')[0];
 		var timestamp = new Date().getTime();
 		var sitterResource = new dataService.resource(
 			'sitters', 
@@ -728,35 +729,120 @@ var SitterCtrl = app.controller('SitterCtrl', function($rootScope, $scope, $http
 			// ar.setQuery('');
 		localSitters.resolve(sitterResource);
 		sitterResource.item.list().then(function(data){
-			$scope.sitters = data.results;
+			tools.sitter.format(data.results)
 		})
 		$rootScope.$on(sitterResource.listenId, function(event, data){
-			$scope.sitters = data.results;
+			tools.sitter.format(data.results)
 		})
 	});
 	var localSittersPromise = localSitters.promise;
 
 
+	var myTime = $q.defer();
+	userService.user().then(function(user){
+		var liveId = user.objectId;
+		var timestamp = new Date().getTime();
+		var timeResource = new dataService.resource(
+			'sitterTimes', 
+			'sitterTimes/'+liveId, 
+			true, 
+			true,
+			'where={"userId":"'+liveId+'"}'
+		);
+			// ar.setQuery('');
+		myTime.resolve(timeResource);
+		timeResource.item.list().then(function(data){
+			if(data)
+				tools.time.format(data.results)
+		})
+		$rootScope.$on(timeResource.listenId, function(event, data){
+			if(data)
+				tools.time.format(data.results)
+		})
+	});
+	var myTimePromise = myTime.promise;
+
 
 	var tools = {
 		sitter: {
+			format:function(sitterList){
+				$scope.sitters = sitterList;
+			},
 			become:function(){
-				var profile = angular.extend({}, $rootScope.user);
+				$rootScope.temp.user = angular.copy($rootScope.user);
+				$('#sitterModal').modal('show');
+			},
+			uploadPic:function(details, src){
+				if(!$rootScope.temp.user)
+					$rootScope.temp.user = {};
+				$rootScope.temp.user.pic = {
+					temp: true,
+					status: 'uploading',
+					class: 'grayscale',
+					name: 'Image Uploading...',
+					src: src
+				}
+	
+				fileService.upload(details,src).then(function(data){
+					$rootScope.temp.user.pic = {
+						name: data.name(),
+						src: data.url()
+					}
+				});
+			},
+			signup:function(){
+				var profile = angular.extend({}, $rootScope.temp.user);
+				profile.userId = $rootScope.user.objectId;
+				profile.isSitter = true;
+				//Remove items from user profile for the sitter list.
 				delete profile.username;
 				delete profile.roles;
 				delete profile.sessionToken;
 				delete profile.objectId;
 				delete profile.createdAt;
 				delete profile.updatedAt;
+				//Set information that needs updated in the user profile.
+				var profileUpdates = {
+					isSitter: profile.isSitter,
+					link: profile.link,
+					pic: profile.pic
+				}
 				localSittersPromise.then(function(sitterResource){
 					sitterResource.item.add(profile).then(function(){
-						alert('Thanks for volunteering to be a sitter!')
+						$http.put('https://api.parse.com/1/users/'+profile.userId, profileUpdates).success(function(){
+							$rootScope.user = angular.extend($rootScope.user, profileUpdates);
+							$('#sitterModal').modal('hide');
+						})
 					})
 				});
 			},
 			view:function(sitter){
 				//Show in sidebar
 			}
+		},
+		time:{
+			format:function(myTimes){
+				$scope.times = myTimes;
+			},
+			add:function(){
+				$scope.times.push({temp:true});
+			},
+			save:function(time){
+				delete time.temp;
+				myTimePromise.then(function(timeResource){
+					timeResource.item.save(time).then(function(){
+						//Time saved successfully
+					})
+				});
+			},
+			remove:function(time){
+				if(confirm('Are you sure you want to delete this time?'))
+					myTimePromise.then(function(timeResource){
+						timeResource.item.remove(time).then(function(){
+							//Time removed successfully
+						})
+					});
+			},
 		}
 	}
 

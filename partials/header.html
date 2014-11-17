@@ -1,17 +1,34 @@
-<div class="account">
-	<span ng-show="user">
-		<a href="#/account" class="username">{{user.fullName}}</a> 
-		<a class="logout" ng-click="tools.user.logout()" class="logout"> <i class="fa fa-sign-out"></i></a>
-	</span>
-</div>
-<!-- <h1 id="siteTitle">{{'SITE.TITLE' | translate}}</h1> -->
-<nav>
-	<ul>
-		<li class="small-hide"><a href="#/home" title="">Home</a></li>
-		<li><a ng-show="user" href="#/rides" title="">Ride List</a></li>
-		<li><a ng-show="user" href="#/sitters" title="">Sitter List</a></li>
-		<!-- <li class="small-hide"><a href="#/about" title="">Learn More</a></li> -->
-		<li><a ng-show="user" title="Invite others to join!" ng-click="mainTools.side.set('right','partials/side/invite.html')">Invite</a></li>
-		<li><a ng-hide="user" ng-click="tools.user.loginModal()">{{'SITE.LOGIN' | translate}}</a></li>
-	</ul>
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#/home">Temple Rides</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="#/rides" title="" ng-show="user">Ride List</a></li>
+				<li><a href="#/sitters" title="" ng-show="user">Sitter List</a></li>
+			</ul>
+			
+			<ul class="nav navbar-nav navbar-right">
+				<li><a ng-show="user" title="Invite others to join!" ng-click="mainTools.side.set('right','partials/side/invite.html')">Invite</a></li>
+				<li ng-hide="user"><a ng-hide="user" ng-click="tools.user.loginModal()">Login</a></li>
+				<li ng-show="user" class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user.firstName}} <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="#/account">Profile</a></li>
+						<li><a ng-click="tools.user.logout()">Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
 </nav>

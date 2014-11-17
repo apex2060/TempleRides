@@ -290,27 +290,28 @@ app.factory('roleService', function ($rootScope, $http, $q, config) {
 
 
 
-
-app.factory('fileService', function ($http, config) {
+app.factory('fileService', function ($http, $q, config) {
 	var fileService = {
-		upload:function(details,b64,successCallback,errorCallback){
+		upload:function(details,b64){
+			var deferred = $q.defer();
 			var file = new Parse.File(details.name, { base64: b64});
 			file.save().then(function(data) {
-				it.fileData = data;
 				console.log('save success',data)
-				if(successCallback)
-					successCallback(data);
+				deferred.resolve(data);
 			}, function(error) {
 				console.log('save error',error)
-				if(errorCallback)
-					errorCallback(error)
+				deferred.reject(error);
 			});
+			return deferred.promise;
 		}
 	}
 
 	it.fileService = fileService;
 	return fileService;
 });
+
+
+
 
 
 
@@ -620,7 +621,7 @@ app.factory('dataService', function ($rootScope, $http, $q, config, Firebase) {
 				var deferred 	= $q.defer();
 				var className 	= resource.config.className
 				var identifier 	= resource.config.identifier
-
+				
 				//We were getting multiple requests when the controller was re-initiated.
 				if(!lastUpdate)
 					lastUpdate = new Date().getTime();
@@ -630,7 +631,7 @@ app.factory('dataService', function ($rootScope, $http, $q, config, Firebase) {
 					if(resource.config.params)
 						query = resource.config.query
 					else if(resource.config.query)
-						query = config.parseRoot+'classes/'+className+'?'+query;
+						query = config.parseRoot+'classes/'+className+'?'+resource.config.query;
 					else
 						query = config.parseRoot+'classes/'+className;
 
