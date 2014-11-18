@@ -34,23 +34,50 @@
 					<!-- <img src="http://gilbert-news-blog.dailyprss.com/wp-content/uploads/2013/06/Gilbert-LDS-Temple.jpg" alt="Temple Pic" class="media-object"> -->
 				</a>
 				<div class="media-body">
-					<pair class="media-heading temple"> <key>Temple</key><value>{{ride.temple}}</value> 								</pair>
-					<pair class="media-heading leaving"> <key>Leaving</key><value>{{moment(ride.starts).calendar()}}</value> 			</pair>
-					<pair class="media-heading returning"> <key>Returning</key><value>{{moment(ride.ends).calendar()}}</value> 			</pair>
-					<pair class="media-heading available"> <key>Seats Available</key><value>{{ride.seatsAvail}}</value> 				</pair>
+					<pair class="media-heading temple">
+						<key>Temple</key>
+						<value>{{ride.temple}}</value>
+					</pair>
+					<pair class="media-heading leaving">
+						<key>Leaving</key>
+						<value>{{moment(ride.starts).calendar()}}</value>
+					</pair>
+					<pair class="media-heading returning">
+						<key>Returning</key>
+						<value>{{moment(ride.ends).calendar()}}</value>
+					</pair>
+					<pair class="media-heading available">
+						<key>Seats Available</key>
+						<value>{{ride.seatsAvail}}</value>
+					</pair>
 					<hr>
-					<pair class="media-heading activities"> <key>Activities</key><value>{{ride.activities}}</value> 					</pair>
+					<pair class="media-heading activities">
+						<key>Activities</key>
+						<value>{{ride.activities}}</value>
+					</pair>
 					<hr>
-					<pair class="media-heading details"> <key>Details</key><value>{{ride.details}}</value> 								</pair>
+					<pair class="media-heading details">
+						<key>Details</key>
+						<value>{{ride.details}}</value>
+					</pair>
 				</div>
 				<div ng-show="temp.passengers">
 					<hr>
 					<h2>Passengers</h2>
 					<div ng-repeat="passenger in temp.passengers">
 						<h3>{{passenger.fullName}}</h3>
-						<pair class="media-heading phone"> <key>Phone</key><value>{{passenger.phone}}</value> 		</pair>
-						<pair class="media-heading email"> <key>Email</key><value>{{passenger.email}}</value> 		</pair>
-						<pair class="media-heading address"> <key>Address</key><value>{{passenger.address}}</value> </pair>
+						<pair class="media-heading phone">
+							<key>Phone</key>
+							<value>{{passenger.phone}}</value>
+						</pair>
+						<pair class="media-heading email">
+							<key>Email</key>
+							<value>{{passenger.email}}</value>
+						</pair>
+						<pair class="media-heading address">
+							<key>Address</key>
+							<value>{{passenger.address}}</value>
+						</pair>
 					</div>
 				</div>
 			</div>
@@ -61,11 +88,12 @@
 				<p>Please visit the ride board to find and post rides.</p>
 			</div>
 			<div class="well col-md-6 pull-right">
-			<a href="#/home" class="btn btn-block btn-large btn-default">Go To Ride Board</a>
+				<a href="#/home" class="btn btn-block btn-large btn-default">Go To Ride Board</a>
+			</div>
 		</div>
-		</div>
-	<!-- <div class="message card">
+		<!-- <div class="message card">
 		<h2>Message Driver</h2>
 	</div> -->
-</div>
+	</div>
+	<div ng-include="'partials/findSitterModal.html'"></div>
 </div>

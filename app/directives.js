@@ -23,16 +23,20 @@ app.directive('datastore', ['$timeout','dataService', function($timeout, dataSer
 			if(attrs.identifier && attrs.datastore){
 				scope.$watch(attrs.datastore, function(newValue, oldValue){
 					if(newValue !== oldValue){
+						console.log(attrs.identifier, attrs.datastore, scope[attrs.datastore])
 						$(elm).addClass('ds-edit');
 						dataService.wip.add(attrs.identifier, scope[attrs.datastore]);
+						scope['dsStatus']='edit';
 					}
 				}, true)
 			}else{
 				console.error('Either a datastore or identifier attr were not defined.  Both must be assigned a value.')
 			}
 
-			if(dataService.wip.isInEdit(attrs.identifier, scope[attrs.datastore]))
+			if(dataService.wip.isInEdit(attrs.identifier, scope[attrs.datastore])){
 				$(elm).addClass('ds-edit');
+				scope['dsStatus']='edit';
+			}
 		}
 	};
 }]);

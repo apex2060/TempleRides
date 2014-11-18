@@ -1,0 +1,28 @@
+<div class="modal fade" id="findSitterModal">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Sitters Available</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-4" ng-repeat="sitter in temp.sitterList">
+						<div class="well">
+							<h1>{{sitter.createdBy.fullName}}</h1>
+							<h4><a href="tel:{{sitter.createdBy.phone}}">Phone: {{sitter.createdBy.phone}}</a></h4>
+							<h4><a href="mailto:{{sitter.createdBy.email}}">Email: {{sitter.createdBy.email}}</a></h4>
+							<div class="imgBox">
+								<img class="thumbnail fit" ng-src="{{sitter.createdBy.pic.src}}"></img>
+							</div>
+							<h4>{{moment(sitter.start.iso).zone(0).format('h:mm a')}} - {{moment(sitter.end.iso).zone(0).format('h:mm a')}}</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button data-dismiss="modal" class="btn btn-danger">Close</button>
+			</div>
+		</div>
+	</div>
+</div>

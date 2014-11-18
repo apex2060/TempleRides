@@ -8,9 +8,10 @@
 		<h1>Babysitting Service</h1>
 		<p>Thank you for volunteering to be a babysitter!</p>
 		<!--Sitter Times-->
-		<div class="row">
-			<div class="col-md-3" ng-repeat="time in times">
-				<div class="well">
+		<a class="btn btn-info btn-block" ng-click="tools.time.setup()" ng-hide="times">Set Time Available</a>
+		<div class="row" ng-show="times">
+			<div class="col-md-3" ng-repeat="time in times.results">
+				<div class="well" datastore="time" identifier="{{times.identifier}}" status="status">
 					<form role="form" ng-submit="tools.time.save(time)">
 						<div class="form-group">
 							<label>Day</label>
@@ -31,8 +32,8 @@
 							<label>Available To</label>
 							<input type="time" class="form-control" ng-model="time.end">
 						</div>
-						<button type="button" class="btn btn-danger btn-block" ng-hide="time.temp" ng-click="tools.time.remove(time)">Delete</button>
-						<button type="submit" class="btn btn-info btn-block" ng-show="time.temp">Save</button>
+						<button type="button" class="btn btn-danger btn-block" ng-hide="time.temp || dsStatus=='edit'" ng-click="tools.time.remove(time)">Delete</button>
+						<button type="submit" class="btn btn-info btn-block" ng-show="time.temp || dsStatus=='edit'">Save</button>
 					</form>
 				</div>
 			</div>

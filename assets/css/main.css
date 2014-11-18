@@ -333,6 +333,10 @@ value{
 
 
 /*OVERRIDES*/
+.modal-lg{
+	width:90%;
+}
+
 .media-object{
 	max-width: 50px;
 }

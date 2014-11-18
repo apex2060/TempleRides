@@ -221,6 +221,7 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 					var tRide = angular.fromJson(angular.toJson(rides[i]))
 
 					tRide.title 	= tRide.temple;
+					tRide.day 		= tRide.date;
 					tRide.type 		= type;
 					tRide.starts 	= new Date(tRide.date+' '+tRide.leaving);
 					tRide.ends 		= new Date(tRide.date+' '+tRide.returning);
@@ -280,6 +281,7 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 				$rootScope.temp.focus = ride;
 				$rootScope.mainTools.side.set('right','partials/side/'+ride.type+'.html');
 				// console.log(ride.type)
+				// tools.ride.sitterList(ride);
 				if(ride.type=='driver')
 					tools.ride.passengerList(ride);
 			},
@@ -364,6 +366,13 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 			list: function(){
 				$http.post(config.parseRoot+'functions/rideList', {}).then(function(response){
 					console.log('Ride List Response: ', response)
+				})
+			},
+			sitterList: function(ride){
+				$('#findSitterModal').modal('show');
+				$http.post(config.parseRoot+'functions/sitterByRide', {rideId:ride.objectId}).success(function(response){
+					$rootScope.temp.sitterList = response.result;
+					it.sitterList = response;
 				})
 			},
 			passengerList: function(ride){
@@ -713,7 +722,7 @@ var ListCtrl = app.controller('ListCtrl', function($rootScope, $scope, $q, $http
 
 
 var SitterCtrl = app.controller('SitterCtrl', function($rootScope, $scope, $http, $q, config, userService, dataService, fileService){
-	$scope.times = [];
+	var myTime = $q.defer();
 	var localSitters = $q.defer();
 	userService.user().then(function(user){
 		var liveId = user.geo.latitude.toString().split('.')[0]+user.geo.longitude.toString().split('.')[0];
@@ -736,31 +745,6 @@ var SitterCtrl = app.controller('SitterCtrl', function($rootScope, $scope, $http
 		})
 	});
 	var localSittersPromise = localSitters.promise;
-
-
-	var myTime = $q.defer();
-	userService.user().then(function(user){
-		var liveId = user.objectId;
-		var timestamp = new Date().getTime();
-		var timeResource = new dataService.resource(
-			'sitterTimes', 
-			'sitterTimes/'+liveId, 
-			true, 
-			true,
-			'where={"userId":"'+liveId+'"}'
-		);
-			// ar.setQuery('');
-		myTime.resolve(timeResource);
-		timeResource.item.list().then(function(data){
-			if(data)
-				tools.time.format(data.results)
-		})
-		$rootScope.$on(timeResource.listenId, function(event, data){
-			if(data)
-				tools.time.format(data.results)
-		})
-	});
-	var myTimePromise = myTime.promise;
 
 
 	var tools = {
@@ -821,15 +805,56 @@ var SitterCtrl = app.controller('SitterCtrl', function($rootScope, $scope, $http
 			}
 		},
 		time:{
-			format:function(myTimes){
-				$scope.times = myTimes;
+			setup:function(){
+				userService.user().then(function(user) {
+					var liveId = user.objectId;
+					var timestamp = new Date().getTime();
+					var timeResource = new dataService.resource(
+						'sitterTimes',
+						'sitterTimes/' + liveId,
+						true,
+						true,
+						'where={"userId":"' + liveId + '"}'
+					);
+					// ar.setQuery('');
+					myTime.resolve(timeResource);
+					timeResource.item.list().then(function(data) {
+						if (data)
+							tools.time.format(data)
+					})
+					$rootScope.$on(timeResource.listenId, function(event, data) {
+						if (data)
+							tools.time.format(data)
+					})
+				});
+			},
+			format:function(data){
+				for(var i=0; i<data.results.length; i++){
+					var temp = data.results[i];
+					if(data.results[i].start)
+						data.results[i].start = moment(data.results[i].start.iso).zone(0).format('HH:mm');
+					if(data.results[i].end)
+						data.results[i].end = moment(data.results[i].end.iso).zone(0).format('HH:mm');
+				}
+				$scope.times = data;
 			},
 			add:function(){
-				$scope.times.push({temp:true});
+				console.log(angular.toJson($scope.times))
+				$scope.times.results.push({temp:true});
+				console.log(angular.toJson($scope.times))
 			},
 			save:function(time){
+				var time = angular.copy(time);
 				delete time.temp;
-				myTimePromise.then(function(timeResource){
+				time.start = {
+					__type: "Date",
+					iso: moment('12/22/2012 '+time.start+'-00:00')
+				}
+				time.end = {
+					__type: "Date",
+					iso: moment('12/22/2012 '+time.end+'-00:00')
+				}
+				myTime.promise.then(function(timeResource){
 					timeResource.item.save(time).then(function(){
 						//Time saved successfully
 					})
@@ -837,7 +862,7 @@ var SitterCtrl = app.controller('SitterCtrl', function($rootScope, $scope, $http
 			},
 			remove:function(time){
 				if(confirm('Are you sure you want to delete this time?'))
-					myTimePromise.then(function(timeResource){
+					myTime.promise.then(function(timeResource){
 						timeResource.item.remove(time).then(function(){
 							//Time removed successfully
 						})
