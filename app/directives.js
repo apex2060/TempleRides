@@ -21,14 +21,19 @@ app.directive('datastore', ['$timeout','dataService', function($timeout, dataSer
 		restrict: 'A',
 		link: function(scope, elm, attrs, ctrl) {
 			if(attrs.identifier && attrs.datastore){
-				scope.$watch(attrs.datastore, function(newValue, oldValue){
-					if(newValue !== oldValue){
-						console.log(attrs.identifier, attrs.datastore, scope[attrs.datastore])
-						$(elm).addClass('ds-edit');
-						dataService.wip.add(attrs.identifier, scope[attrs.datastore]);
-						scope['dsStatus']='edit';
-					}
-				}, true)
+				// scope.$watch()(attrs.datastore, function(newValue, oldValue){
+				// 	console.log('DSDS',attrs.datastore, newValue, oldValue);
+				// 	if(newValue !== oldValue){
+				// 		$(elm).addClass('ds-edit');
+				// 		dataService.wip.add(attrs.identifier, scope[attrs.datastore]);
+				// 		scope['dsStatus']='edit';
+				// 	}
+				// }, true)
+				elm.bind('click ', function(e){
+					$(elm).addClass('ds-edit');
+					dataService.wip.add(attrs.identifier, scope[attrs.datastore]);
+					scope['dsStatus']='edit';
+				})
 			}else{
 				console.error('Either a datastore or identifier attr were not defined.  Both must be assigned a value.')
 			}
