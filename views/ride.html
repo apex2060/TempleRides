@@ -1,5 +1,5 @@
 <div class="container" ng-controller="RideCtrl" ng-init="tools.ride.ind()">
-	<div class="well">
+	<div class="well" ng-hide="loading">
 		<div class="row" ng-show="ride">
 			<div class="col-md-4">
 				<h1>Temple Ride</h1>
@@ -9,6 +9,9 @@
 				<div class="media-body">
 					<h4 class="media-heading name">{{ride.createdBy.fullName}}</h4>
 					<h4 class="media-heading phone">{{ride.createdBy.phone}}</h4>
+					<div class="imgBox" ng-show="ride.createdBy.pic">
+						<img class="thumbnail fit" ng-src="{{ride.createdBy.pic.src}}"></img>
+					</div>
 				</div>
 				<div class="button-group" ng-show="ride.type=='driver'">
 					<a class="btn btn-info btn-block" href="#/map">View Route Map</a>
@@ -82,6 +85,21 @@
 				</div>
 			</div>
 		</div>
+		<div class="row" ng-show="ride">
+			<h1>List of Available Babysitters</h1>
+			<div class="col-md-4" ng-repeat="sitter in temp.sitterList">
+				<div class="well">
+						<h1>{{sitter.createdBy.fullName}}</h1>
+						<h4><a href="tel:{{sitter.createdBy.phone}}">Phone: {{sitter.createdBy.phone}}</a></h4>
+						<h4><a href="mailto:{{sitter.createdBy.email}}">Email: {{sitter.createdBy.email}}</a></h4>
+						<div class="imgBox">
+							<img class="thumbnail fit" ng-src="{{sitter.createdBy.pic.src}}"></img>
+						</div>
+						<h4>{{moment(sitter.start.iso).zone(0).format('h:mm a')}} - {{moment(sitter.end.iso).zone(0).format('h:mm a')}}</h4>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="row" ng-hide="ride">
 			<div class="col-md-12">
 				<h1>This ride is not available.</h1>
@@ -94,6 +112,9 @@
 		<!-- <div class="message card">
 		<h2>Message Driver</h2>
 	</div> -->
+	</div>
+	<div class="well" ng-show="loading">
+		<h1>Loading Content</h1>
 	</div>
 	<div ng-include="'partials/findSitterModal.html'"></div>
 </div>

@@ -145,7 +145,7 @@ var MainCtrl = app.controller('MainCtrl', function($rootScope, $scope, $routePar
 
 
 
-var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce, $http, config, settings, dataService, userService){
+var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $routeParams, $q, $sce, $http, config, settings, dataService, userService){
 	console.log('RIDE CONTROLLER')
 	$scope.moment = moment;
 	$scope.warnings = {};
@@ -235,13 +235,27 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 		},
 		ride:{
 			ind: function(){
-				allRidesPromise.then(function(rideResource){
-					$rootScope.$on(rideResource.listenId, function(event, data){
-						tools.ride.get($rootScope.id).then(function(ride){
-							$scope.ride = ride;
-							if(ride.type=='driver')
-								tools.ride.passengerList(ride);
+				userService.user().then(function(user){
+					$scope.loading = true;
+					console.log('user')
+					allRidesPromise.then(function(rideResource){
+						console.log('arp')
+						var rideId = $routeParams.id;
+						$http.get(config.parseRoot+'classes/rides/'+rideId+'?include=createdBy').success(function(ride){
+							tools.ride.get(rideId).then(function(rideCache){
+								ride.type 	= rideCache.type;
+								ride.starts = rideCache.starts;
+								ride.ends 	= rideCache.ends;
+								$scope.ride = ride;
+								$scope.loading = false;
+								if(ride.type=='driver')
+									tools.ride.passengerList(ride);
+								console.log($scope.ride)
+							})
+						}).error(function(){
+							$scope.loading = false;
 						})
+						tools.ride.sitterList(rideId)
 					});
 				});
 			},
@@ -249,16 +263,25 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 				var ride = $q.defer();
 				allRidesPromise.then(function(rideResource){
 					var rideTypes = ['driver','passenger','other']
-					var rides = $scope.formated;
-					for(var t=0; t<rideTypes.length; t++){
-						var list = rides[rideTypes[t]].events;
-						for(var i=0; i<list.length; i++){
-							if(list[i].objectId == rideId){
-								list[i].type = rideTypes[t];
-								ride.resolve(list[i]);
+					rideResource.item.list().then(function(rides){
+						for(var t=0; t<rideTypes.length; t++){
+							var list = rides.results[rideTypes[t]];
+							for(var i=0; i<list.length; i++){
+								if(list[i].objectId == rideId){
+									var tRide = angular.copy(list[i]);
+									tRide.type = rideTypes[t];
+									tRide.title 	= tRide.temple;
+									tRide.day 		= tRide.date;
+									tRide.starts 	= new Date(tRide.date+' '+tRide.leaving);
+									tRide.ends 		= new Date(tRide.date+' '+tRide.returning);
+									tRide.start 	= new Date(tRide.date+' '+tRide.leaving);
+									tRide.end 		= new Date(tRide.date+' '+tRide.returning);
+									tRide.allDay 	= false;
+									ride.resolve(tRide);
+								}
 							}
 						}
-					}
+					})
 				})
 				return ride.promise;
 			},
@@ -368,9 +391,11 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $q, $sce,
 					console.log('Ride List Response: ', response)
 				})
 			},
-			sitterList: function(ride){
+			sitterList: function(rideId){
+				if(typeof(rideId)=='object')
+					rideId = rideId.objectId
 				$('#findSitterModal').modal('show');
-				$http.post(config.parseRoot+'functions/sitterByRide', {rideId:ride.objectId}).success(function(response){
+				$http.post(config.parseRoot+'functions/sitterByRide', {rideId:rideId}).success(function(response){
 					$rootScope.temp.sitterList = response.result;
 					it.sitterList = response;
 				})
