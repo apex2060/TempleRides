@@ -235,11 +235,9 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $routePar
 		},
 		ride:{
 			ind: function(){
+				$scope.loading = true;
 				userService.user().then(function(user){
-					$scope.loading = true;
-					console.log('user')
 					allRidesPromise.then(function(rideResource){
-						console.log('arp')
 						var rideId = $routeParams.id;
 						$http.get(config.parseRoot+'classes/rides/'+rideId+'?include=createdBy').success(function(ride){
 							tools.ride.get(rideId).then(function(rideCache){
@@ -250,7 +248,6 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $routePar
 								$scope.loading = false;
 								if(ride.type=='driver')
 									tools.ride.passengerList(ride);
-								console.log($scope.ride)
 							})
 						}).error(function(){
 							$scope.loading = false;

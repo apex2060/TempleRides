@@ -87,8 +87,8 @@
 		</div>
 		<div class="row" ng-show="ride">
 			<h1>List of Available Babysitters</h1>
-			<div class="col-md-4" ng-repeat="sitter in temp.sitterList">
-				<div class="well">
+			<div class="col-lg-3 col-md-4 col-sm-6" ng-repeat="sitter in temp.sitterList">
+				<div class="well contact">
 						<h1>{{sitter.createdBy.fullName}}</h1>
 						<h4><a href="tel:{{sitter.createdBy.phone}}">Phone: {{sitter.createdBy.phone}}</a></h4>
 						<h4><a href="mailto:{{sitter.createdBy.email}}">Email: {{sitter.createdBy.email}}</a></h4>
