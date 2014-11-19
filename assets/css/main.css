@@ -183,6 +183,10 @@ div.thumbnail{
 	background: #EEE;
 }
 .imgBox{
+	height:250px;
+	overflow:hidden;
+}
+.contact .imgBox{
 	height:150px;
 	overflow:hidden;
 }

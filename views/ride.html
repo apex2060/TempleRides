@@ -43,13 +43,18 @@
 						<key>Temple</key>
 						<value>{{ride.temple}}</value>
 					</pair>
+					
+					<pair class="media-heading returning">
+						<key>Day</key>
+						<value>{{moment(ride.starts).format('ddd, MMMM Do')}}</value>
+					</pair>
 					<pair class="media-heading leaving">
 						<key>Leaving</key>
-						<value>{{moment(ride.starts).calendar()}}</value>
+						<value>{{moment(ride.starts).format('h:mm a')}}</value>
 					</pair>
 					<pair class="media-heading returning">
 						<key>Returning</key>
-						<value>{{moment(ride.ends).calendar()}}</value>
+						<value>{{moment(ride.ends).format('h:mm a')}}</value>
 					</pair>
 					<pair class="media-heading available">
 						<key>Seats Available</key>

@@ -105,6 +105,8 @@ var MainCtrl = app.controller('MainCtrl', function($rootScope, $scope, $routePar
 				us.email = user.email
 			if(user.temple)
 				us.temple = user.temple
+			if(user.geo)
+				us.geo = user.geo
 			$http.put(config.parseRoot+'users/'+$rootScope.user.objectId, us).success(function(data){
 				$rootScope.error = null;
 				$rootScope.success = data;
