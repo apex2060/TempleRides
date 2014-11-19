@@ -9,13 +9,12 @@ Temple Rides will allow people to post and reserve a ride to the temple.
 ------------------------
 GENERAL:
 ------------------------
-Time Log: https://docs.google.com/spreadsheets/d/1-aFD5cvJma0QpY1Cdi9XdUoP7_MbhD8ivOLFC2tAKLQ/edit#gid=0
+Time Log: https://docs.google.com/spreadsheets/d/1-aFD5cvJma0QpY1Cdi9XdUoP7_MbhD8ivOLFC2tAKLQ/edit?usp=sharing
 
 Github: https://github.com/apex2060/TempleRides
 
 Color Schemes:
-http://paletton.com/#uid=23-240kllll4rKdcTtdtNdtNI5B
-http://paletton.com/#uid=53-0A0kllll6IF+e1swsEeaGU70
+http://paletton.com/#uid=53w0U0klTsn3XUYesC5rZmcFkcK
 
 
 ------------------------

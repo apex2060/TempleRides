@@ -4,15 +4,14 @@ html, body{
 	margin: 0px;
 }
 body{
-background: rgb(252,255,244); /* Old browsers */
-background: -moz-linear-gradient(left,  rgba(252,255,244,1) 0%, rgba(223,229,215,1) 40%, rgba(179,190,173,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(252,255,244,1)), color-stop(40%,rgba(223,229,215,1)), color-stop(100%,rgba(179,190,173,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(left,  rgba(252,255,244,1) 0%,rgba(223,229,215,1) 40%,rgba(179,190,173,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(left,  rgba(252,255,244,1) 0%,rgba(223,229,215,1) 40%,rgba(179,190,173,1) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(left,  rgba(252,255,244,1) 0%,rgba(223,229,215,1) 40%,rgba(179,190,173,1) 100%); /* IE10+ */
-background: linear-gradient(to right,  rgba(252,255,244,1) 0%,rgba(223,229,215,1) 40%,rgba(179,190,173,1) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=1 ); /* IE6-9 */
-
+	background: rgb(254,254,253); /* Old browsers */
+	background: -moz-linear-gradient(left,  rgba(254,254,253,1) 0%, rgba(231,249,219,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(254,254,253,1)), color-stop(100%,rgba(231,249,219,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  rgba(254,254,253,1) 0%,rgba(231,249,219,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  rgba(254,254,253,1) 0%,rgba(231,249,219,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  rgba(254,254,253,1) 0%,rgba(231,249,219,1) 100%); /* IE10+ */
+	background: linear-gradient(to right,  rgba(254,254,253,1) 0%,rgba(231,249,219,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefd', endColorstr='#e7f9db',GradientType=1 ); /* IE6-9 */
 }
 
 a, [ng-click]{
@@ -169,8 +168,8 @@ map{
 	border: 1px dashed #FFF;
 }
 #upcomming .passenger{
-	background: #FFEDD6;
-	color: #113E5E;
+	background: #8F71C0;
+	color: #FFFFFF;
 	border: 1px dashed #FFF;
 }
 
