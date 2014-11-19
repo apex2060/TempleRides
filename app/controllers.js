@@ -252,7 +252,9 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $routePar
 						}).error(function(){
 							$scope.loading = false;
 						})
-						tools.ride.sitterList(rideId)
+						$http.post(config.parseRoot+'functions/sitterByRide', {rideId:rideId}).success(function(response){
+							$rootScope.temp.sitterList = response.result;
+						})
 					});
 				});
 			},
@@ -286,7 +288,7 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $routePar
 				if(ride.type=='driver'){
 					var passengers = ride.seats-ride.seatsAvail;
 					if(passengers == 0)
-						return 'No one is going yet, but you have set up a ride for '+moment(ride.starts).format('dddd MMMM Do [at] h:mm a');
+						return 'You have set up a ride for '+moment(ride.starts).format('dddd MMMM Do [at] h:mm a')+' No passengers have signed up yet.';
 					else if(passengers == 1)
 						return 'You are giving a ride to one person '+moment(ride.starts).format('dddd MMMM Do [at] h:mm a');
 					else
@@ -394,7 +396,6 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $routePar
 				$('#findSitterModal').modal('show');
 				$http.post(config.parseRoot+'functions/sitterByRide', {rideId:rideId}).success(function(response){
 					$rootScope.temp.sitterList = response.result;
-					it.sitterList = response;
 				})
 			},
 			passengerList: function(ride){

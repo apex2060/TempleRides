@@ -1,20 +1,21 @@
 html, body{
+	min-height:100%;
 	padding: 0px;
 	margin: 0px;
 }
 body{
-	 /* background: url('http://gilbert-news-blog.dailyprss.com/wp-content/uploads/2013/06/Gilbert-LDS-Temple.jpg'); */ 
-	background: #0a2846; /* Old browsers */
-	background: -moz-radial-gradient(center, ellipse cover,  #0a2846 0%, #5f7b97 100%); /* FF3.6+ */
-	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#0a2846), color-stop(100%,#5f7b97)); /* Chrome,Safari4+ */
-	background: -webkit-radial-gradient(center, ellipse cover,  #0a2846 0%,#5f7b97 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-radial-gradient(center, ellipse cover,  #0a2846 0%,#5f7b97 100%); /* Opera 12+ */
-	background: -ms-radial-gradient(center, ellipse cover,  #0a2846 0%,#5f7b97 100%); /* IE10+ */
-	background: radial-gradient(ellipse at center,  #0a2846 0%,#5f7b97 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0a2846', endColorstr='#5f7b97',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	background: rgb(255,255,255); /* Old browsers */
+	background: -moz-linear-gradient(left,  rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* IE10+ */
+	background: linear-gradient(to right,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=1 ); /* IE6-9 */
+
 }
 
-a{
+a, [ng-click]{
 	color: inherit;
 	cursor: pointer;
 }
@@ -22,14 +23,22 @@ a:hover{
 	text-decoration: none;
 	color: inherit;
 }
+.btn-brown{
+	background: #FFF;
+	border: 1px solid #CCC;
+	box-shadow: 2px 2px 5px #999;
+	font-weight: bold;
+	border-radius: 0px;
+}
+.btn-brown:hover{
+	color: #346A91;
+}
 .include>*{
     min-height: 1000px;
 }
 .page{
     padding: 50px;
-    /*background: rgba(255, 255, 255, 0.5);*/
 }
-
 
 
 
@@ -40,19 +49,19 @@ header{
 	top: 0px;
 	z-index: 100000;
 }
+
 .wrapper {
 	margin-top:50px;
 }
-
 .navbar{
-	background: #f3e2c7; /* Old browsers */
-	background: -moz-linear-gradient(-45deg,  #f3e2c7 0%, #c19e67 50%, #b68d4c 51%, #e9d4b3 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#f3e2c7), color-stop(50%,#c19e67), color-stop(51%,#b68d4c), color-stop(100%,#e9d4b3)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(-45deg,  #f3e2c7 0%,#c19e67 50%,#b68d4c 51%,#e9d4b3 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(-45deg,  #f3e2c7 0%,#c19e67 50%,#b68d4c 51%,#e9d4b3 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(-45deg,  #f3e2c7 0%,#c19e67 50%,#b68d4c 51%,#e9d4b3 100%); /* IE10+ */
-	background: linear-gradient(135deg,  #f3e2c7 0%,#c19e67 50%,#b68d4c 51%,#e9d4b3 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3e2c7', endColorstr='#e9d4b3',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	background: rgb(255,255,255); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(241,241,241,1) 50%, rgba(225,225,225,1) 51%, rgba(246,246,246,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(241,241,241,1)), color-stop(51%,rgba(225,225,225,1)), color-stop(100%,rgba(246,246,246,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(241,241,241,1) 50%,rgba(225,225,225,1) 51%,rgba(246,246,246,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(241,241,241,1) 50%,rgba(225,225,225,1) 51%,rgba(246,246,246,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(241,241,241,1) 50%,rgba(225,225,225,1) 51%,rgba(246,246,246,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(241,241,241,1) 50%,rgba(225,225,225,1) 51%,rgba(246,246,246,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
 
 	border-radius: 0px;
 	color: #220;
@@ -69,66 +78,20 @@ header{
 	color: #2A4D6E;
 }
 .navbar .dropdown-menu{
-	background: #f3e2c7;
+	background: #EEE;
 }
 .navbar .dropdown-menu{
-	background: #f3e2c7;
+	background: #EEE;
 }
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus{
-	background:#f3e2c7;
+	background:#EEE;
 }
 .navbar .dropdown-menu li a:hover{
-	background: #b68d4c;
+	background: #AAA;
 }
 
 
-aside{
-	position: fixed;
-	background-color: #FFF1DC;
-	color: #010F1D;
-	z-index: 10;
-	right: 0px;
-	width: 400px;
-	border-left: 4px solid #AA7C39;
-	box-shadow: -3px 1px 2px #010F1D;
-	height: calc(100% - 50px);
-	top: 52px;
-}
-aside>.sidebar{
-	height: 100%;
-	overflow: auto;
-	padding: 15px;
-}
-aside>.sidebar>div{
-	min-height: 100%;
-	padding-bottom: 50px;
-}
-aside h1{
-	margin: 15px auto;
-	display: block;
-	padding: 10px;
-	border-radius: 5px;
-	color: #FFF;
-	border: 2px solid #2A4D6E;
-	width: 250px;
-	font-family: inherit;
-	text-align: center;
-	position: relative;
-	/*background: url('http://html5up.net/uploads/demos/striped/css/images/bg1.png');*/
-	background-color: #5F7B97;
-	text-transform: capitalize;
-}
-aside#aside_right .minimize{
-	position: absolute;
-	top: 41px;
-	left: -34px;
-	border: 3px solid #A6773B;
-	/*background: url('http://html5up.net/uploads/demos/striped/css/images/bg1.png');*/
-	background-color: #FFEDD6;
-	color: #A6773B;
-	border-right: 0px;
-	box-shadow: -3px 3px 2px #444;
-}
+
 section{
 	display: -webkit-box;
 	display: -moz-box;
@@ -143,17 +106,14 @@ section > * {
 	flex: 1;
 }
 article {}
-
-
-.container {
-	padding-top: 50px;
+.container{
+	margin-top:50px;
 }
-
 .well, .modal-content{
-	background: #FFF1DC;
+	background: #FBFBFB;
 	border: 0px;
-	box-shadow: 5px 5px 10px #010F1D;
-	border-radius: 3px;
+	box-shadow: 5px 5px 10px #666;
+	border-radius: 0px;
 }
 .well h1{
 	border-bottom: 2px solid #346A91;
@@ -168,50 +128,27 @@ map{
 	width: 100%;
 }
 
-.calendar, #rideForm{
-	margin: 10px; 
-	padding: 10px;
-	background: #AA7C39;
-	border: 5px double #705634;
-	/* border-radius: 4px; */
-	box-shadow: 8px 8px 8px rgba(0, 0, 25, 0.6);
-	min-height: 600px;
+.calendar{
+	
 }
 	.calendar .fc-header-title h2{
 		margin-top: 0;
 		white-space: nowrap;
-		color: #FFF;
+		color: #2A4D6E;
 	
-}
+	}
 	.calendar .fc-border-separate th, .calendar .fc-border-separate td{
 		 border: 1px dashed #A6773B; 
-	
 		 background: #705634;
 		 color: #FFF;
-}
+	}
 	.calendar .fc-grid .fc-day-number{
 		float: right;
 		padding: 0 4px;
 		color: #FFC;
 	}
-#rideForm{
-	background: #B5C3D0; 
-	min-height: 600px;
-	border: 5px double #AA7C39;
-	border-radius: 0px;
-}
-	#rideForm h1{
-		margin-left: 150px;
-		border-bottom: 1px solid;
-		margin-top: 5px;
-	
-		color: #6B4307;
-}
-.ldsframe{
-	width: 100%;
-	height: 100%;
-	border: 2px solid #346A91;
-}
+
+
 
 /*SCHEDULE*/
 #upcomming ul{
@@ -222,19 +159,19 @@ map{
 	padding: 15px;
 	background: #FFEDD6;
 	margin: 10px;
-	border: 5px double #08416A;
+	border: 1px dashed #FFF;
 	color: #346A91;
 	cursor: pointer;
 }
 #upcomming .driver{
 	background: #10663F;
 	color: #FFFFFF;
-	border: 5px double #024124;
+	border: 1px dashed #FFF;
 }
 #upcomming .passenger{
 	background: #FFEDD6;
 	color: #113E5E;
-	border: 5px double #08416A;
+	border: 1px dashed #FFF;
 }
 
 
@@ -256,6 +193,57 @@ div.thumbnail{
 }
 
 /*SIDE BAR*/
+aside{
+	position: fixed;
+	background-color: #FFF;
+	color: #2A4D6E;
+	z-index: 10;
+	right: 0px;
+	width: 400px;
+	border-left: 4px solid #999;
+	box-shadow: -3px 1px 2px #444;
+	height: calc(100% - 50px);
+	top: 52px;
+}
+	aside>.sidebar{
+		height: 100%;
+		overflow: auto;
+		padding: 15px;
+	}
+	aside>.sidebar>div{
+		min-height: 100%;
+		padding-bottom: 50px;
+	}
+	aside h1{
+		margin: 15px auto;
+		display: block;
+		padding: 10px;
+		border-radius: 5px;
+		color: #FFF;
+		border: 1px solid #111;
+		width: 250px;
+		font-family: inherit;
+		text-align: center;
+		position: relative;
+		/*background: url('http://html5up.net/uploads/demos/striped/css/images/bg1.png');*/
+		background-color: #333;
+		text-transform: capitalize;
+	}
+	aside#aside_right .minimize{
+		position: absolute;
+		top: 41px;
+		left: -34px;
+		border: 3px solid #999;
+		/*background: url('http://html5up.net/uploads/demos/striped/css/images/bg1.png');*/
+		background-color: #FFF;
+		color: #999;
+		border-right: 0px;
+		box-shadow: -3px 3px 2px #444;
+	}
+	aside iframe{
+		width:100%;
+		height:10000px;
+	}
 .card{
 	border: 1px solid;
 	border-radius: 5px;
@@ -270,33 +258,6 @@ div.thumbnail{
 		text-align: center;
 		border-radius: 4px;
 	}
-	.card.contact{
-
-	}
-	.card.ride{
-
-	}
-		.card.ride .temple{}
-		.card.ride .leaving{}
-		.card.ride .returning{}
-		.card.ride .available{}
-		.card.ride .activities{}
-		.card.ride .details{}
-	.card.message{
-
-	}
-	
-.contact *{
-	white-space: nowrap;
-	overflow: hidden;
-}
-.contact h1{
-	font-size: 28px;
-}
-.contact h4{
-	font-size: 16px;
-	margin: 20px 0px;
-}
 pair{
 	display: block;
 }
@@ -308,15 +269,20 @@ key{
 	key:after{
 		content: ": ";
 	}
-value{
-    font-weight: normal;
-    display: inline-block;
+value {
+	font-weight: normal;
+	display: inline-block;
 }
-
-
-/*Other*/
-.fa-sign-out{
-	color: #FFF;
+.contact *{
+	white-space: nowrap;
+	overflow: hidden;
+}
+.contact h1{
+	font-size: 28px;
+}
+.contact h4{
+	font-size: 16px;
+	margin: 20px 0px;
 }
 
 
@@ -327,21 +293,10 @@ value{
 .modal-lg{
 	width:90%;
 }
-
 .media-object{
 	max-width: 50px;
 }
-.btn-brown{
-	/*background: url('http://html5up.net/uploads/demos/striped/css/images/bg1.png');*/
-	background-color: #AA7C39;
-	border: 0px;
-	box-shadow: 3px 3px 3px #210;
-	font-weight: bold;
-	color: #FFF1DC;
-}
-.btn-brown:hover{
-	color: #FFF;
-}
+
 
 /*RESPONSIVE*/
 /*Tablets*/
@@ -372,14 +327,8 @@ value{
 	.media-manager .thumbnail, .media-manager div.thumbnail{
 		width: 100%;
 	}
-	.small-hide{
-		display: none !important;
-	}
 	.calendar{
 		margin: 5px; 
-	}
-	.page{
-		padding: 5px;
 	}
 	.modal-lg{
 		width:inherit;

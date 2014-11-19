@@ -1,7 +1,7 @@
 <div class="page" ng-controller="RideCtrl">
 	<div class="row">
 		<div class="col-md-6">
-			<form id="rideForm" class="form-horizontal" role="form" ng-submit="tools.ride.add(temp.ride)">
+			<form id="rideForm" class="form-horizontal well" role="form" ng-submit="tools.ride.add(temp.ride)">
 				<h1>Post A Ride</h1>
 				<div class="form-group">
 					<label for="rideTemple" class="col-sm-2 control-label">Temple</label>
@@ -70,8 +70,10 @@
 			</form>
 		</div>
 		<div id="calendar" class="col-md-6">
-			<div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources"></div> 
-			<div id="upcomming">
+			<div class="well">
+				<div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources"></div> 
+			</div>
+			<div id="upcomming" class="well">
 				<ul>
 					<li class="driver" ng-repeat="ride in formated.driver.events | filter:futureFilter" ng-click="tools.ride.focus(ride)">{{tools.ride.display(ride)}}</li>
 					<li class="passenger" ng-repeat="ride in formated.passenger.events | filter:futureFilter" ng-click="tools.ride.focus(ride)">{{tools.ride.display(ride)}}</li>

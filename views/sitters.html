@@ -8,7 +8,7 @@
 		<h1>Babysitting Service</h1>
 		<p>Thank you for volunteering to be a babysitter!</p>
 		<!--Sitter Times-->
-		<a class="btn btn-info btn-block" ng-click="tools.time.setup()" ng-hide="times">Set Time Available</a>
+		<a class="btn btn-brown" ng-click="tools.time.setup()" ng-hide="times">Set Time Available</a>
 		<div class="row" ng-show="times">
 			<div class="col-md-3" ng-repeat="time in times.results">
 				<div class="well" datastore="time" identifier="{{times.identifier}}" status="status">
