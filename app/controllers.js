@@ -779,7 +779,7 @@ var SitterCtrl = app.controller('SitterCtrl', function($rootScope, $scope, $http
 			},
 			become:function(){
 				$rootScope.temp.user = angular.copy($rootScope.user);
-				$('#sitterModal').modal('show');
+				$('#sitterSignupModal').modal('show');
 			},
 			uploadPic:function(details, src){
 				if(!$rootScope.temp.user)
@@ -820,13 +820,18 @@ var SitterCtrl = app.controller('SitterCtrl', function($rootScope, $scope, $http
 					sitterResource.item.add(profile).then(function(){
 						$http.put('https://api.parse.com/1/users/'+profile.userId, profileUpdates).success(function(){
 							$rootScope.user = angular.extend($rootScope.user, profileUpdates);
-							$('#sitterModal').modal('hide');
+							$('#sitterSignupModal').modal('hide');
 						})
 					})
 				});
 			},
 			view:function(sitter){
-				//Show in sidebar
+				$http.get(config.parseRoot+'classes/sitterTimes?where={"userId":"'+sitter.userId+'"}')
+				.success(function(data){
+					$scope.sitter = sitter;
+					$scope.sitterTimes = tools.time.format(data).results;
+					$('#sitterTimeModal').modal('show');
+				})
 			}
 		},
 		time:{
@@ -845,16 +850,15 @@ var SitterCtrl = app.controller('SitterCtrl', function($rootScope, $scope, $http
 					myTime.resolve(timeResource);
 					timeResource.item.list().then(function(data) {
 						if (data)
-							tools.time.format(data)
+							$scope.times = tools.time.format(data)
 					})
 					$rootScope.$on(timeResource.listenId, function(event, data) {
 						if (data)
-							tools.time.format(data)
+							$scope.times = tools.time.format(data)
 					})
 				});
 			},
 			format:function(data){
-				console.log(data)
 				if(data.results>0)
 					console.log(data.results[0].start.iso)
 				for(var i=0; i<data.results.length; i++){
@@ -864,12 +868,10 @@ var SitterCtrl = app.controller('SitterCtrl', function($rootScope, $scope, $http
 					if(data.results[i].end)
 						data.results[i].end = moment(data.results[i].end.iso).zone(0).format('HH:mm');
 				}
-				$scope.times = data;
+				return data;
 			},
 			add:function(){
-				console.log(angular.toJson($scope.times))
 				$scope.times.results.push({temp:true});
-				console.log(angular.toJson($scope.times))
 			},
 			save:function(time){
 				var time = angular.copy(time);

@@ -1,0 +1,33 @@
+<div class="modal fade" id="sitterTimeModal">
+	<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">{{sitter.fullName}}</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-6" ng-repeat="time in sitterTimes">
+							<div class="well">
+								<h2>{{time.day}}</h2>
+								<p>Available From: {{time.start}} to: {{time.end}}</p>
+							</div>
+						</div>
+					</div>
+					<ul class="list-group">
+						<li class="list-group-item">
+							<a href="tel:{{sitter.phone}}" class="badge"><i class="fa fa-phone"></i></a>
+							<!--<a href="sms:{{sitter.phone}}" class="badge"><i class="fa fa-calculator"></i></a>-->
+							<span>Phone: {{sitter.phone}}</span>
+						</li>
+						<li class="list-group-item">
+							<a class="badge" href="mailto:{{sitter.email}}"><i class="fa fa-envelope"></i></a> Email: {{sitter.email}}
+						</li>
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<a class="btn btn-primary" data-dismiss="modal">Close</a>
+				</div>
+			</div>
+	</div>
+</div>

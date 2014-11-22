@@ -47,9 +47,17 @@
 	<div class="row">
 		<div class="col-lg-3 col-md-4 col-sm-6" 
 			ng-repeat="volunteer in sitters" 
-			ng-click="tools.view(volunteer)" 
+			ng-click="tools.sitter.view(volunteer)" 
 			ng-include="'partials/contactCard.html'">
+			<div class="well contact">
+			<h1>{{volunteer.fullName}}</h1>
+			<h4><a href="tel:{{volunteer.phone}}">Phone: {{volunteer.phone}}</a></h4>
+			<h4><a href="mailto:{{volunteer.email}}">Email: {{volunteer.email}}</a></h4>
+			<div class="imgBox">
+				<img class="thumbnail fit" ng-src="{{volunteer.pic.src}}"></img>
+			</div>
 		</div>
 	</div>
-	<div ng-include="'partials/sitterModal.html'"></div>
+	<div ng-include="'partials/sitterTimeModal.html'"></div>
+	<div ng-include="'partials/sitterSignupModal.html'"></div>
 </div>
