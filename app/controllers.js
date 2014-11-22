@@ -854,6 +854,9 @@ var SitterCtrl = app.controller('SitterCtrl', function($rootScope, $scope, $http
 				});
 			},
 			format:function(data){
+				console.log(data)
+				if(data.results>0)
+					console.log(data.results[0].start.iso)
 				for(var i=0; i<data.results.length; i++){
 					var temp = data.results[i];
 					if(data.results[i].start)
