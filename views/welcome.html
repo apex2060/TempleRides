@@ -1,16 +1,25 @@
 <div class="container large">
 	<div class="well clearfix">
-		<h1>Welcome {{user.firstName}}!</h1>
-		<p class="lead">Temple Rides allows you to share rides to the temple with other Latter Day Saint members.</p>
-		<p class="lead">The more people you invite the better your experience will be.</p>
-		<div ng-include="'partials/side/invite.html'"></div>
-		<p class="lead">This was created after our stake confrence, in which the stake presidency designated three areas of focus: temple, mission, and education.  We hope you will be able to use this tool to attend and help others attend the temple more frequently.  This tool is provided by invite only.  All who are invited are allowed to invite others.  Please utilize this tool only to organize rides to the temple.  I hope you will find opportunities for service, there are many elderly people who need help to get to the temple.</p>
-		<p class="lead">This website was created as a tool for members.  This website was not created nor is it maintained by the LDS church.  We will do everything we can to maintain the integrity of this site's users, however we are not responsible for the actions of those who use this service.  Please use discression and good judgement.  Please report any concerns.  By using this service, you agree to the <a href="#/tos">terms and conditions listed here</a>.</p>
-		<h2>Find &amp; Post Rides!</h2>
-		<p class="lead">You can now find a ride when other people have extra seats.  You can also post rides and help others get to the temple!  Visit the ride board to see what is happening and share when you will be going to the temple next.</p>
-		<p>You can add this site to your bookmarks by dragging this: <a href="#/home" class="btn btn-info">Temple Rides</a> to your bookmark bar.</p>
-		<div class="well col-md-6 pull-right">
-			<a href="#/rides" class="btn btn-block btn-large btn-default">Go To Ride Board</a>
+		<h2>Welcome {{user.firstName}}!</h2>
+		<div class="row">
+			<div class="col-md-4">
+				<div ng-include="'partials/side/invite.html'"></div>
+			</div>
+			<div class="col-md-8">
+				<h1>Purpose</h1>
+				<p class="lead">Temple Rides allows you to share rides to the temple with other Latter Day Saint members.</p>
+				<p class="lead">This was created after our stake confrence, in which the stake presidency designated three areas of focus: temple, mission, and education.  We hope you will be able to use this tool to attend and help others attend the temple more frequently.  This tool is provided by invite only.  All who are invited are allowed to invite others.  Please utilize this tool only to organize rides to the temple.  I hope you will find opportunities for service, there are many elderly people who need help to get to the temple.</p>
+				<p class="lead">This website was created as a tool for members.  This website was not created nor is it maintained by the LDS church.  We will do everything we can to maintain the integrity of this site's users, however we are not responsible for the actions of those who use this service.  Please use discression and good judgement.  Please report any concerns.  By using this service, you agree to the <a href="#/tos">terms and conditions listed here</a>.</p>
+		
+				<h1>Find &amp; Post Rides!</h1>
+				<p class="lead">The more people you invite the better your experience will be.</p>
+				<p class="lead">You can now find a ride when other people have extra seats.  You can also post rides and help others get to the temple!  Visit the ride board to see what is happening and share when you will be going to the temple next.</p>
+				<p>You can add this site to your bookmarks by dragging this: <a href="#/home" class="btn btn-info">Temple Rides</a> to your bookmark bar.</p>
+				<div class="well col-md-6 pull-right">
+					<a href="#/rides" class="btn btn-block btn-large btn-default">Go To Ride Board</a>
+				</div>
+			</div>
 		</div>
+		
 	</div>
 </div>
