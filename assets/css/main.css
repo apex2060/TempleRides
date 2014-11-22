@@ -305,9 +305,15 @@ value {
 /*Tablets*/
 @media (max-width: 1000px) {
 	
+	.page{
+	    padding: 15px;
+	}
 }
 /*Smart Phones*/
 @media (max-width: 768px) {
+	.page{
+	    padding: 5px;
+	}
 	#rideForm h1{
 		margin-left: 0px;
 	}
