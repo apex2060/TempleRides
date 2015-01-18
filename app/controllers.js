@@ -27,7 +27,24 @@ var MainCtrl = app.controller('MainCtrl', function($rootScope, $scope, $routePar
 			else
 				return 'views/restricted.html';
 		},
+		alert:{
+			add:function(type, message){
+				if(type == 'error')
+					type = 'danger';
 
+				var alert = {
+					type: 'alert-'+type,
+					message: message
+				}
+				$rootScope.alerts.push(alert)
+				return alert;
+			},
+			dismiss:function(alert){
+				var alertIndex = $rootScope.alerts.indexOf(alert);
+				if(alertIndex != -1)
+					$rootScope.alerts.splice(alertIndex, 1);
+			}
+		},
 		side:{
 			set:function(side,url){
 				$rootScope.side[side]=url;
@@ -51,6 +68,7 @@ var MainCtrl = app.controller('MainCtrl', function($rootScope, $scope, $routePar
 			$rootScope.resource={};
 			$rootScope.temp=	{ride: {}};
 			$rootScope.side=	{};
+			$rootScope.alerts = [];
 			$rootScope.mode=	'normal';
 			// tools.side.set('left','partials/shoeboxlist/sidebar.html')
 			// tools.side.set('right','partials/sidebar.html')
@@ -131,7 +149,8 @@ var MainCtrl = app.controller('MainCtrl', function($rootScope, $scope, $routePar
 	}
 	$scope.tools = tools;
 	$rootScope.mainTools = tools;
-
+	$rootScope.alert = tools.alert.add;
+	
 	if(!$rootScope.data){
 		tools.setup();
 	}

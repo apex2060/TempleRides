@@ -95,6 +95,7 @@ app.factory('userService', function ($rootScope, $http, $q, config) {
  					$rootScope.$broadcast('authenticated', data);
  				})
  			}).error(function(data){
+ 				$rootScope.alert('error', data.error)
  				console.error('error',data.error);
 				// $('#loading').removeClass('active');
 			});
@@ -102,6 +103,14 @@ app.factory('userService', function ($rootScope, $http, $q, config) {
  		logout:function(){
  			localStorage.clear();
  			$rootScope.user=null;
+ 		},
+ 		resetPassword:function(user){
+ 			$http.post(config.parseRoot+"requestPasswordReset", user).success(function(data){
+				$rootScope.alert('success', 'Please check your email to reset your password.')
+			}).error(function(data){
+				console.log(data)
+				$rootScope.alert('error', data.error)
+			})
  		},
  		getRoles:function(user){
 			var deferred = $q.defer();

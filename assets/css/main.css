@@ -315,6 +315,34 @@ value {
 }
 
 
+
+#alerts{
+	z-index:10000;
+}
+.tr, .br, .bl, .tl{
+	position: fixed;
+	padding: 5px;
+	z-index: 999;
+}
+.tr, .tl{
+	top: 0px;
+}
+.br, .bl{
+	bottom: 0px;
+}
+.tl, .bl{
+	left: 0px;
+}
+.tr, .br{
+	right: 0px;
+}
+
+.point25{
+	width: 20%;
+}
+
+
+
 /*RESPONSIVE*/
 /*Tablets*/
 @media (max-width: 1000px) {
@@ -354,6 +382,9 @@ value {
 	}
 	.modal-lg{
 		width:inherit;
+	}
+	.point25{
+		width: 100%;
 	}
 }
 

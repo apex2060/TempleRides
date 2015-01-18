@@ -1,1 +1,15 @@
 <div class="include" ng-include="tools.url()"></div>
+
+
+
+
+<div id="alerts" class="br point25">
+	<div role="alert" class="alert" 
+	ng-repeat="alert in alerts"
+	ng-class="alert.type">
+	<button type="button" class="close" ng-click="mainTools.alert.dismiss(alert)">
+		<span aria-hidden="true">&times;</span>
+		<span class="sr-only">Close</span>
+	</button>
+	<span>{{alert.message}}</span></div>
+</div>
