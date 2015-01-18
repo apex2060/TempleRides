@@ -512,7 +512,13 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $routePar
 					station.resolve($rootScope.temp.gas)
 				else
 					tools.gas.stations().then(function(results){
-						$rootScope.temp.gas = results.stations[0];
+						var station = null;
+						for(var i=0; i<results.stations.length; i++){
+							if(!station)
+								if(results.stations[i].reg_price != 'N/A')
+									station = results.stations[i];
+						}
+						$rootScope.temp.gas = station;
 						station.resolve($rootScope.temp.gas)
 					})
 				return station.promise;
