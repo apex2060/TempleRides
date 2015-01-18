@@ -1,7 +1,7 @@
 <div class="container" ng-controller="RideCtrl" ng-init="tools.ride.ind()">
 	<div class="row" ng-show="ride">
 		<div class="col-md-4">
-			<div class="well" ng-hide="loading">
+			<div class="well clearfix" ng-hide="loading">
 				<h1>Temple Ride</h1>
 				<a class="pull-left" href="#">
 					<!-- <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/t1.0-1/c70.44.553.553/s50x50/317430_10150338692123497_469125273_n.jpg" alt="Driver Profile Pic" class="media-object"> -->
@@ -33,7 +33,7 @@
 			</div>
 		</div>
 		<div class="ride col-md-8">
-			<div class="well">
+			<div class="well clearfix">
 				<h1>{{moment(ride.starts).fromNow()}}</h1>
 				<a class="pull-left" href="#">
 					<!-- <img src="http://gilbert-news-blog.dailyprss.com/wp-content/uploads/2013/06/Gilbert-LDS-Temple.jpg" alt="Temple Pic" class="media-object"> -->
@@ -114,7 +114,7 @@
 		</div>
 	</div>
 	<div class="row" ng-hide="ride">
-		<div class="well">
+		<div class="well clearfix">
 			<div class="col-md-12">
 				<h1>This ride is not available.</h1>
 				<p>Please visit the ride board to find and post rides.</p>
@@ -124,7 +124,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="well" ng-show="loading">
+	<div class="well clearfix" ng-show="loading">
 		<h1>Loading Content</h1>
 	</div>
 	<div ng-include="'partials/findSitterModal.html'"></div>
