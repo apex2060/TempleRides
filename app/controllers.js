@@ -223,11 +223,7 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $routePar
 			}
 		})
 		if(!$scope.temp.ride.temple)
-			for(var i=0; i<$rootScope.templeList.length; i++)
-				if($rootScope.templeList[i].link == $rootScope.user.temple.link){
-					$scope.temp.ride.temple = $rootScope.templeList[i];
-					tools.gas.trip($scope.temp.ride.temple);
-				}
+			tools.ride.reset();
 	});
 	var allRidesPromise = allRides.promise;
 
@@ -255,6 +251,16 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $routePar
 			return rideList;
 		},
 		ride:{
+			reset: function(){
+				$rootScope.temp.ride = {};
+				for(var i=0; i<$rootScope.templeList.length; i++)
+					if($rootScope.templeList[i].link == $rootScope.user.temple.link){
+						$scope.temp.ride.temple = $rootScope.templeList[i];
+						tools.gas.trip($scope.temp.ride.temple).then(function(trip){
+							$scope.temp.ride.trip = trip;
+						});
+					}
+			},
 			ind: function(){
 				$scope.loading = true;
 				userService.user().then(function(user){
@@ -356,12 +362,15 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $routePar
 					ride.temple = ride.temple.name;
 					tools.gas.station().then(function(station){
 						ride.gasPrice = station.reg_price;
-						ride.miles = $rootScope.temp.gas.miles;
-						ride.passengerSavings = $rootScope.temp.gas.savings;
-						ride.possibleSavings = ride.passengerSavings * ride.seats;
-						allRidesPromise.then(function(rideResource){
-							rideResource.item.save(ride)
-							$scope.temp.ride = {};
+						ride.miles = ride.trip.miles;
+						tools.gas.savings(ride.miles).then(function(savings){
+							ride.passengerSavings = savings;
+							ride.possibleSavings = ride.passengerSavings * ride.seats;
+							console.log('save',ride);
+							allRidesPromise.then(function(rideResource){
+								rideResource.item.save(ride)
+								tools.ride.reset();
+							})
 						})
 					})
 				}
@@ -375,7 +384,7 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $routePar
 					allRidesPromise.then(function(rideResource){
 						rideResource.item.save(infoToSave)
 					})
-					$scope.temp.ride = {};
+					tools.ride.reset();
 				}
 			},
 			reserve: function(ride){
@@ -494,17 +503,17 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $routePar
 				return deferred.promise;
 			},
 			savings: function(miles){
+				var savingsP = $q.defer();
 				var mpg = {
 					sm: 24,
 					md: 20,
 					lg: 17
 				}
-				return tools.gas.station().then(function(station){
+				tools.gas.station().then(function(station){
 					var savings = station.reg_price * miles / mpg.sm;
-					$rootScope.temp.gas.savings = Math.floor(savings);
-					$rootScope.temp.gas.miles = Math.ceil(miles);
-					return savings;
+					savingsP.resolve(savings);
 				})
+				return savingsP.promise;
 			},
 			station: function(){
 				var station = $q.defer();
@@ -546,6 +555,9 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $routePar
 			},
 			update:function(){
 				tools.time.calculate();
+				tools.gas.trip($scope.temp.ride.temple).then(function(trip){
+					$scope.temp.ride.trip = trip;
+				});
 			}
 		}
 	}
