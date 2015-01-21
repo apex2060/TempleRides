@@ -126,21 +126,19 @@ var MainCtrl = app.controller('MainCtrl', function($rootScope, $scope, $routePar
 			if(user.geo)
 				us.geo = user.geo
 			$http.put(config.parseRoot+'users/'+$rootScope.user.objectId, us).success(function(data){
-				$rootScope.error = null;
-				$rootScope.success = data;
-			}).error(function(error){
-				$rootScope.error = error;
+				$rootScope.alert('success', data)
+			}).error(function(data){
+				$rootScope.alert('error', data.error)
 			})
 		},
 		invite: function(invitation){
 			invitation.status = 'sending';
 			$http.post(config.parseRoot+'classes/invitations', invitation)
 			.success(function(response){
-				console.log('invitation success: ', response);
-				invitation.status='active';
+				$rootScope.alert('success', 'Invitation Sent!')
 			})
 			.error(function(response){
-				console.log('invitation error: ', response);
+				$rootScope.alert('error', response)
 			})
 		},
 		clearInvite:function(){
