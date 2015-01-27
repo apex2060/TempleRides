@@ -714,7 +714,6 @@ var ListCtrl = app.controller('ListCtrl', function($rootScope, $scope, $q, $http
 				$http.post(config.parseRoot+'classes/invitations', invitation)
 				.success(function(response){
 					invitation.status='active';
-					$rootScope.alert('success', 'Join Successful')
 				})
 				.error(function(response){
 					$rootScope.alert('error', response)
