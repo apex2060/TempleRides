@@ -601,19 +601,19 @@ var RideCtrl = app.controller('RideCtrl', function($rootScope, $scope, $routePar
 
 
 
-var ListCtrl = app.controller('ListCtrl', function($rootScope, $scope, $q, $http, config, dataService, userService){
+var ListCtrl = app.controller('ListCtrl', function($rootScope, $scope, $q, $http, config, dataService, userService, geoService){
 	var tools = {
 		authAndSync: function(request){
 			$rootScope.mainTools.side.hide('right')
 			if(!request){
 				if(config.dataLink.sessionToken){
-					tools.http.get(config.parseRoot+'classes/Family?limit=1000').then(function(data){
+					tools.http.get(config.parseRoot+'classes/Family?limit=1000&include=ward').then(function(data){
 						$scope.familyList = data.results;
 					})
 				}
 			}else{
 				tools.http.auth(request.username, request.password).then(function(credentials){
-					tools.http.get(config.parseRoot+'classes/Family?limit=1000').then(function(data){
+					tools.http.get(config.parseRoot+'classes/Family?limit=1000&include=ward').then(function(data){
 						$scope.familyList = data.results;
 					})
 				})
@@ -621,6 +621,7 @@ var ListCtrl = app.controller('ListCtrl', function($rootScope, $scope, $q, $http
 		},
 		family:{
 			details: function(family){
+				var family = angular.copy(family);
 				var lastName = family.coupleName.split(",")[0]
 				var firstName = family.coupleName.split(",")[1].replace("&", "or")
 				$rootScope.temp.oFamily = family;
@@ -649,19 +650,29 @@ var ListCtrl = app.controller('ListCtrl', function($rootScope, $scope, $q, $http
 						$rootScope.temp.family.phone = family.spouse.phone;
 
 				if(family.householdInfo.address){
-					$rootScope.temp.family.address = family.householdInfo.address.addr1+' '+family.householdInfo.address.addr2;
-					$rootScope.temp.family.geo = {
-						latitude: 	family.householdInfo.address.latitude,
-						longitude: 	family.householdInfo.address.longitude
+					if(family.householdInfo.address.latitude){
+						$rootScope.temp.family.address = family.householdInfo.address.addr1+' '+family.householdInfo.address.addr2;
+						$rootScope.temp.family.geo = {
+							latitude: 	family.householdInfo.address.latitude,
+							longitude: 	family.householdInfo.address.longitude
+						}
+					}else{
+						geoService.location().then(function(loc){
+							$rootScope.temp.family.address = 'Please coordinate pickup location...'
+							$rootScope.temp.family.geo = {
+								latitude: 	loc.coords.latitude,
+								longitude: 	loc.coords.longitude
+							}
+						})
 					}
 				}
 				$('#familyModal').modal('show');
 			},
 			save: function(family){
 				if(!family.email && family.internet)
-					alert('Please provide an email if you have internet at home.')
+					$rootScope.alert('error','Please provide an email if you have internet at home.')
 				else if(!family.email && !family.phone && family.share)
-					alert('You need to provide a phone number or email address so you can share rides to the temple.')
+					$rootScope.alert('error','You need to provide a phone number or email address so you can share rides to the temple.')
 				else{
 					var oFamily = $rootScope.temp.oFamily;
 					$('#familyModal').modal('hide');
@@ -683,7 +694,13 @@ var ListCtrl = app.controller('ListCtrl', function($rootScope, $scope, $q, $http
 					delete nFamily.createdBy
 					delete nFamily.createdAt
 					delete nFamily.updatedAt
-					tools.http.put(config.parseRoot+'classes/Family/'+familyId, nFamily)
+					delete nFamily.ward
+					tools.http.put(config.parseRoot+'classes/Family/'+familyId, nFamily).then(function(result){
+						// $rootScope.alert('success', 'Change Saved');	
+						console.log('Change Saved.')
+					}, function(result){
+						$rootScope.alert('error', result);	
+					});
 				}
 			},
 			invite: function(invitation){
@@ -692,14 +709,15 @@ var ListCtrl = app.controller('ListCtrl', function($rootScope, $scope, $q, $http
 				invitation.status = 'sending';
 				if(invitation.geo)
 					invitation.geo.__type =	"GeoPoint";
-
+				
+				invitation.ward = invitation.ward.wardUnitNo;
 				$http.post(config.parseRoot+'classes/invitations', invitation)
 				.success(function(response){
-					console.log('invitation success: ', response);
 					invitation.status='active';
+					$rootScope.alert('success', 'Join Successful')
 				})
 				.error(function(response){
-					console.log('invitation error: ', response);
+					$rootScope.alert('error', response)
 				})
 			}
 		},
